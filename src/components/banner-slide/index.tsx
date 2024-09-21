@@ -1264,48 +1264,54 @@ const BannerSlide = () => {
           <SwiperSlide>
             <Image
               src="/banner-slide-01.png"
-              width={1200}
-              height={900}
+              width={1400}
+              height={1200}
+              quality={100}
               alt="banner-slide-01"
             />
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src="/banner-slide-02.png"
-              width={1200}
-              height={900}
+              width={1400}
+              height={1200}
+              quality={100}
               alt="banner-slide-02"
             />
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src="/banner-slide-03.png"
-              width={1200}
-              height={900}
+              width={1400}
+              height={1200}
+              quality={100}
               alt="banner-slide-03"
             />
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src="/banner-slide-04.jpg"
-              width={1200}
-              height={900}
+              width={1400}
+              height={1200}
+              quality={100}
               alt="banner-slide-04"
             />
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src="/banner-slide-05.png"
-              width={1200}
-              height={900}
+              width={1400}
+              height={1200}
+              quality={100}
               alt="banner-slide-05"
             />
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src="/banner-slide-06.jpg"
-              width={1200}
-              height={900}
+              width={1400}
+              height={1200}
+              quality={100}
               alt="banner-slide-06"
             />
           </SwiperSlide>
