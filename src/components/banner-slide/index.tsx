@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { Button, Form, Input, Select, Modal, FormProps } from 'antd';
@@ -29,6 +29,38 @@ const BannerSlide = () => {
   const [selectedOptions, setSelectedOptions] = useState<{
     [key: string]: string;
   }>({});
+
+  const [customerData, setCustomerData] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchCustomerData = async () => {
+      try {
+        const response = await fetch(
+          'https://script.googleusercontent.com/macros/echo?user_content_key=_r2Tnu3qTrt7FRaAe6XPptz6lD9UD8qOCA68N6XZoVQyQA3iXUg7WJwNgDdQsCWEuCsR_HO3pOMONNHgxublinyWF-UonaYjm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNI54tzkJFaj-2iqaolXYotR08AGyFDWn--IfZJqRMOkhO8zfrvzkwbu57uzLUW5qHdqhbqBsOC_67mC9p03Mhbyn1Z4YyOlLg&lib=MFcmlpet2YYsjuSSgQUXZZPGWYEKb6JDU',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            mode: 'no-cors'
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        setCustomerData(data);
+        console.log('Customer data:', data);
+      } catch (error) {
+        console.error('Error fetching customer data:', error);
+      }
+    };
+
+    fetchCustomerData();
+  }, []);
+
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('vi-VN', {
@@ -1248,74 +1280,76 @@ const BannerSlide = () => {
   return (
     <div className="banner-slide">
       <div className="container">
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          spaceBetween={10}
-          slidesPerView="auto"
-          autoplay
-          speed={1000}
-          navigation
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-            },
-          }}
-        >
-          <SwiperSlide>
-            <Image
-              src="/banner-slide-01.png"
-              width={1400}
-              height={1200}
-              quality={100}
-              alt="banner-slide-01"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src="/banner-slide-02.png"
-              width={1400}
-              height={1200}
-              quality={100}
-              alt="banner-slide-02"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src="/banner-slide-03.png"
-              width={1400}
-              height={1200}
-              quality={100}
-              alt="banner-slide-03"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src="/banner-slide-04.jpg"
-              width={1400}
-              height={1200}
-              quality={100}
-              alt="banner-slide-04"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src="/banner-slide-05.png"
-              width={1400}
-              height={1200}
-              quality={100}
-              alt="banner-slide-05"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src="/banner-slide-06.jpg"
-              width={1400}
-              height={1200}
-              quality={100}
-              alt="banner-slide-06"
-            />
-          </SwiperSlide>
-        </Swiper>
+        <div className='banner-swiper'>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            spaceBetween={10}
+            slidesPerView="auto"
+            autoplay
+            speed={1000}
+            navigation
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+              },
+            }}
+          >
+            <SwiperSlide>
+              <Image
+                src="/banner-slide-01.png"
+                width={1400}
+                height={1200}
+                quality={100}
+                alt="banner-slide-01"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src="/banner-slide-02.png"
+                width={1400}
+                height={1200}
+                quality={100}
+                alt="banner-slide-02"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src="/banner-slide-03.png"
+                width={1400}
+                height={1200}
+                quality={100}
+                alt="banner-slide-03"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src="/banner-slide-04.jpg"
+                width={1400}
+                height={1200}
+                quality={100}
+                alt="banner-slide-04"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src="/banner-slide-05.png"
+                width={1400}
+                height={1200}
+                quality={100}
+                alt="banner-slide-05"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src="/banner-slide-06.jpg"
+                width={1400}
+                height={1200}
+                quality={100}
+                alt="banner-slide-06"
+              />
+            </SwiperSlide>
+          </Swiper>
+        </div>
 
         <Image
           src="/banner-60-percent.png"

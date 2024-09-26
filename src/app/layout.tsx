@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.scss";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ToastContainer } from "react-toastify";
+import Provider from "@/utils/Provider";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -19,10 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <AntdRegistry>
-          {children}
-          <ToastContainer />
-        </AntdRegistry>
+        <Provider>
+          <AntdRegistry>
+            {children}
+            <ToastContainer />
+          </AntdRegistry>
+        </Provider>
       </body>
     </html>
   );
