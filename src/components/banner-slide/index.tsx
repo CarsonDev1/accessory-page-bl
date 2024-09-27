@@ -1,15 +1,27 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
-import { Button, Form, Input, Select, Modal, FormProps } from 'antd';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import './banner-slide.scss';
-import Image from 'next/image';
+"use client";
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import { Button, Form, Input, Select, Modal, FormProps } from "antd";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "./banner-slide.scss";
+import iconbaoda from "../../../public/icon-baoda.png";
+import iconcuongluc from "../../../public/icon-cuongluc.png";
+import iconsacduphong from "../../../public/icon-sacduphong.png";
+import iconapple from "../../../public/icon-apple.png";
+import iconlaptop from "../../../public/icon-laptop.png";
+import icontainghe from "../../../public/icon-tainghe.png";
+import icondongho from "../../../public/icon-dongho.png";
+import iconcapsac from "../../../public/icon-capsac.png";
+import iconthenho from "../../../public/icon-thenho.png";
+import iconloa from "../../../public/icon-loa.png";
+import iconsmarthome from "../../../public/icon-smart-home.png";
+import iconkhac from "../../../public/icon-khac.png";
+import Image from "next/image";
 
 type FieldType = {
   username?: string;
@@ -17,8 +29,8 @@ type FieldType = {
   selectedOptions?: { [key: string]: string };
 };
 
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-  console.log('Failed:', errorInfo);
+const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
+  console.log("Failed:", errorInfo);
 };
 
 const BannerSlide = () => {
@@ -36,46 +48,45 @@ const BannerSlide = () => {
     const fetchCustomerData = async () => {
       try {
         const response = await fetch(
-          'https://script.googleusercontent.com/macros/echo?user_content_key=_r2Tnu3qTrt7FRaAe6XPptz6lD9UD8qOCA68N6XZoVQyQA3iXUg7WJwNgDdQsCWEuCsR_HO3pOMONNHgxublinyWF-UonaYjm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNI54tzkJFaj-2iqaolXYotR08AGyFDWn--IfZJqRMOkhO8zfrvzkwbu57uzLUW5qHdqhbqBsOC_67mC9p03Mhbyn1Z4YyOlLg&lib=MFcmlpet2YYsjuSSgQUXZZPGWYEKb6JDU',
+          "https://script.googleusercontent.com/macros/echo?user_content_key=_r2Tnu3qTrt7FRaAe6XPptz6lD9UD8qOCA68N6XZoVQyQA3iXUg7WJwNgDdQsCWEuCsR_HO3pOMONNHgxublinyWF-UonaYjm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNI54tzkJFaj-2iqaolXYotR08AGyFDWn--IfZJqRMOkhO8zfrvzkwbu57uzLUW5qHdqhbqBsOC_67mC9p03Mhbyn1Z4YyOlLg&lib=MFcmlpet2YYsjuSSgQUXZZPGWYEKb6JDU",
           {
-            method: 'GET',
+            method: "GET",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
-            mode: 'no-cors'
+            mode: "no-cors",
           }
         );
 
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
 
         const data = await response.json();
         setCustomerData(data);
-        console.log('Customer data:', data);
+        console.log("Customer data:", data);
       } catch (error) {
-        console.error('Error fetching customer data:', error);
+        console.error("Error fetching customer data:", error);
       }
     };
 
     fetchCustomerData();
   }, []);
 
-
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('vi-VN', {
-      style: 'currency',
-      currency: 'VND',
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
     }).format(price);
   };
 
-  const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
+  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     const allOptionsSelected = modalData.details.every(
-      (item: any) => selectedOptions[item.name] !== undefined,
+      (item: any) => selectedOptions[item.name] !== undefined
     );
 
     if (!allOptionsSelected) {
-      toast.error('Vui lòng chọn đầy đủ các tùy chọn.');
+      toast.error("Vui lòng chọn đầy đủ các tùy chọn.");
       return;
     }
 
@@ -84,19 +95,19 @@ const BannerSlide = () => {
     const selectedOptionsForSubmit = modalData.details.map((item: any) => ({
       name: item.name,
       selectedOption: item.options.find(
-        (option: any) => option.name === values[item.name as keyof FieldType],
+        (option: any) => option.name === values[item.name as keyof FieldType]
       ),
       selectedPrice: item.selectedPrice || 0,
     }));
 
     fetch(
-      'https://script.google.com/macros/s/AKfycbxut5e6PaLVe5TXZK5fsplzTlKrefCqaUfn4pDiQdMzYUT79DdPwz5f70jQjvEYwaxykw/exec',
+      "https://script.google.com/macros/s/AKfycbxut5e6PaLVe5TXZK5fsplzTlKrefCqaUfn4pDiQdMzYUT79DdPwz5f70jQjvEYwaxykw/exec",
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        mode: 'no-cors',
+        mode: "no-cors",
         body: JSON.stringify({
           username: values.username,
           phone: values.phone,
@@ -104,10 +115,10 @@ const BannerSlide = () => {
           comboName: modalData.name,
           totalPrice: formatPrice(totalPrice),
         }),
-      },
+      }
     )
       .then((response) => {
-        toast.success('Đặt hàng thành công!');
+        toast.success("Đặt hàng thành công!");
         setModalIsOpen(false);
         setLoading(false);
         return response.text();
@@ -116,8 +127,8 @@ const BannerSlide = () => {
         console.log(data);
       })
       .catch((error) => {
-        console.error('Error:', error);
-        toast.error('Đặt hàng thất bại. Vui lòng thử lại.');
+        console.error("Error:", error);
+        toast.error("Đặt hàng thất bại. Vui lòng thử lại.");
         setLoading(false);
       });
   };
@@ -125,76 +136,76 @@ const BannerSlide = () => {
   const combos = [
     {
       id: 0,
-      name: 'COMBO TẾT APPLE 1',
+      name: "COMBO TẾT APPLE 1",
       price: 960000,
       originalPrice: 2070000,
-      image: '/combo-01-16.png',
+      image: "/combo-01-16.png",
       percent: 40,
       details: [
         {
-          name: 'ỐP LƯNG TRONG',
-          image: '/op-lung.png',
+          name: "ỐP LƯNG TRONG",
+          image: "/op-lung.png",
           options: [
             { name: 'Transparent Case for iPhone 16 6.1" 2024', price: 310000 },
             { name: 'Transparent Case for iPhone 16 6.3" 2024', price: 310000 },
             { name: 'Transparent Case for iPhone 16 6.7" 2024', price: 310000 },
             { name: 'Transparent Case for iPhone 16 6.9" 2024', price: 310000 },
-            { name: 'Ốp lưng Jinya Crystal 16', price: 310000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PLUS', price: 310000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PRO', price: 310000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PRO MAX', price: 310000 },
+            { name: "Ốp lưng Jinya Crystal 16", price: 310000 },
+            { name: "Ốp lưng Jinya Crystal 16 PLUS", price: 310000 },
+            { name: "Ốp lưng Jinya Crystal 16 PRO", price: 310000 },
+            { name: "Ốp lưng Jinya Crystal 16 PRO MAX", price: 310000 },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.1 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.1 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 310000,
             },
             {
-              name: '  Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.7 AIR FENDER - NUDE (TRANSPARENT)  ',
+              name: "  Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.7 AIR FENDER - NUDE (TRANSPARENT)  ",
               price: 310000,
             },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.3 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.3 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 310000,
             },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.9 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.9 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 310000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 (2024) 6.1 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 (2024) 6.1 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 340000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 plus (2024) 6.7 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 plus (2024) 6.7 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 340000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.3 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.3 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 340000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.9 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.9 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 340000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal 16 ',
+              name: " Miếng dán kính cao cấp Jcpal 16 ",
               price: 340000,
             },
             {
-              name: '  Miếng dán kính cao cấp Jcpal  16 PLUS ',
+              name: "  Miếng dán kính cao cấp Jcpal  16 PLUS ",
               price: 340000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal  16 PRO ',
+              name: " Miếng dán kính cao cấp Jcpal  16 PRO ",
               price: 340000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal  16 PRO MAX ',
+              name: " Miếng dán kính cao cấp Jcpal  16 PRO MAX ",
               price: 340000,
             },
             {
@@ -214,102 +225,102 @@ const BannerSlide = () => {
               price: 340000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16",
               price: 340000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Plus',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Plus",
               price: 340000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro",
               price: 340000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro Max',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro Max",
               price: 340000,
             },
           ],
         },
         {
-          name: 'CÓC',
-          image: '/coc-sac.png',
-          options: [{ name: ' SẠC NHANH 20W INNOSTYLE ', price: 310000 }],
+          name: "CÓC",
+          image: "/coc-sac.png",
+          options: [{ name: " SẠC NHANH 20W INNOSTYLE ", price: 310000 }],
         },
       ],
     },
     {
       id: 1,
-      name: 'COMBO TẾT APPLE 2',
+      name: "COMBO TẾT APPLE 2",
       price: 1060000,
       originalPrice: 2660000,
-      image: '/combo-02-16.png',
+      image: "/combo-02-16.png",
       percent: 60,
       details: [
         {
-          name: 'ỐP LƯNG TRONG',
-          image: '/op-lung.png',
+          name: "ỐP LƯNG TRONG",
+          image: "/op-lung.png",
           options: [
             { name: 'Transparent Case for iPhone 16 6.1" 2024', price: 290000 },
             { name: 'Transparent Case for iPhone 16 6.3" 2024', price: 290000 },
             { name: 'Transparent Case for iPhone 16 6.7" 2024', price: 290000 },
             { name: 'Transparent Case for iPhone 16 6.9" 2024', price: 290000 },
-            { name: 'Ốp lưng Jinya Crystal 16', price: 290000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PLUS', price: 290000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PRO', price: 290000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PRO MAX', price: 290000 },
+            { name: "Ốp lưng Jinya Crystal 16", price: 290000 },
+            { name: "Ốp lưng Jinya Crystal 16 PLUS", price: 290000 },
+            { name: "Ốp lưng Jinya Crystal 16 PRO", price: 290000 },
+            { name: "Ốp lưng Jinya Crystal 16 PRO MAX", price: 290000 },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.1 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.1 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 290000,
             },
             {
-              name: '  Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.7 AIR FENDER - NUDE (TRANSPARENT)  ',
+              name: "  Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.7 AIR FENDER - NUDE (TRANSPARENT)  ",
               price: 290000,
             },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.3 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.3 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 290000,
             },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.9 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.9 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 290000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 (2024) 6.1 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 (2024) 6.1 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 290000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 plus (2024) 6.7 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 plus (2024) 6.7 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 290000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.3 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.3 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 290000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.9 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.9 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 290000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal 16 ',
+              name: " Miếng dán kính cao cấp Jcpal 16 ",
               price: 290000,
             },
             {
-              name: '  Miếng dán kính cao cấp Jcpal  16 PLUS ',
+              name: "  Miếng dán kính cao cấp Jcpal  16 PLUS ",
               price: 290000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal  16 PRO ',
+              name: " Miếng dán kính cao cấp Jcpal  16 PRO ",
               price: 290000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal  16 PRO MAX ',
+              name: " Miếng dán kính cao cấp Jcpal  16 PRO MAX ",
               price: 290000,
             },
             {
@@ -329,160 +340,160 @@ const BannerSlide = () => {
               price: 290000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16",
               price: 290000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Plus',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Plus",
               price: 290000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro",
               price: 290000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro Max',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro Max",
               price: 290000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC CAMERA',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC CAMERA",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - MIDNIGHT (BLACK) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - MIDNIGHT (BLACK) ",
               price: 290000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - PEARL BLUE (PEARL BLUE) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - PEARL BLUE (PEARL BLUE) ",
               price: 290000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - GRAPE PINK (GRAPE PINK) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - GRAPE PINK (GRAPE PINK) ",
               price: 290000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - MIDNIGHT (BLACK) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - MIDNIGHT (BLACK) ",
               price: 290000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - TITANIUM (GREY) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - TITANIUM (GREY) ",
               price: 290000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - STERLING (SILVER) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - STERLING (SILVER) ",
               price: 290000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - TAUPE GOLD (TAUPE GOLD) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - TAUPE GOLD (TAUPE GOLD) ",
               price: 290000,
             },
             {
-              name: ' LENS CAMERA Protector for iPhone 16 Pro / 16 Pro Max 2024 ',
+              name: " LENS CAMERA Protector for iPhone 16 Pro / 16 Pro Max 2024 ",
               price: 290000,
             },
             {
-              name: ' LENS CAMERA Protector for iPhone 16 / 16 Plus 2024 ',
+              name: " LENS CAMERA Protector for iPhone 16 / 16 Plus 2024 ",
               price: 290000,
             },
             {
-              name: '  Lens Camera Jcpal 16 ',
+              name: "  Lens Camera Jcpal 16 ",
               price: 290000,
             },
             {
-              name: '  Lens Camera Jcpal 16 PLUS ',
+              name: "  Lens Camera Jcpal 16 PLUS ",
               price: 290000,
             },
             {
-              name: '  Lens Camera Jcpal 16 PRO  ',
+              name: "  Lens Camera Jcpal 16 PRO  ",
               price: 290000,
             },
             {
-              name: ' Lens Camera Jcpal 16 PRO MAX ',
+              name: " Lens Camera Jcpal 16 PRO MAX ",
               price: 290000,
             },
           ],
         },
         {
-          name: 'CÓC',
-          image: '/coc-sac.png',
-          options: [{ name: ' SẠC NHANH 20W INNOSTYLE ', price: 190000 }],
+          name: "CÓC",
+          image: "/coc-sac.png",
+          options: [{ name: " SẠC NHANH 20W INNOSTYLE ", price: 190000 }],
         },
       ],
     },
     {
       id: 2,
-      name: 'COMBO TẾT APPLE 3',
+      name: "COMBO TẾT APPLE 3",
       price: 1360000,
       originalPrice: 2660000,
-      image: '/combo-03-16.png',
+      image: "/combo-03-16.png",
       percent: 50,
       details: [
         {
-          name: 'ỐP LƯNG TRONG',
-          image: '/op-lung.png',
+          name: "ỐP LƯNG TRONG",
+          image: "/op-lung.png",
           options: [
             { name: 'Transparent Case for iPhone 16 6.1" 2024', price: 290000 },
             { name: 'Transparent Case for iPhone 16 6.3" 2024', price: 290000 },
             { name: 'Transparent Case for iPhone 16 6.7" 2024', price: 290000 },
             { name: 'Transparent Case for iPhone 16 6.9" 2024', price: 290000 },
-            { name: 'Ốp lưng Jinya Crystal 16', price: 290000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PLUS', price: 290000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PRO', price: 290000 },
-            { name: 'Ốp lưng Jinya Crystal 16 PRO MAX', price: 290000 },
+            { name: "Ốp lưng Jinya Crystal 16", price: 290000 },
+            { name: "Ốp lưng Jinya Crystal 16 PLUS", price: 290000 },
+            { name: "Ốp lưng Jinya Crystal 16 PRO", price: 290000 },
+            { name: "Ốp lưng Jinya Crystal 16 PRO MAX", price: 290000 },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.1 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.1 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 290000,
             },
             {
-              name: '  Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.7 AIR FENDER - NUDE (TRANSPARENT)  ',
+              name: "  Ốp lưng UNIQ HYBRID IPHONE 16 (2024) 6.7 AIR FENDER - NUDE (TRANSPARENT)  ",
               price: 290000,
             },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.3 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.3 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 290000,
             },
             {
-              name: ' Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.9 AIR FENDER - NUDE (TRANSPARENT) ',
+              name: " Ốp lưng UNIQ HYBRID IPHONE 16 PRO (2024) 6.9 AIR FENDER - NUDE (TRANSPARENT) ",
               price: 290000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 (2024) 6.1 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 (2024) 6.1 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 290000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 plus (2024) 6.7 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 plus (2024) 6.7 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 290000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.3 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.3 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 290000,
             },
             {
-              name: ' Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.9 GLASS SCREEN PROTECTOR - VIVID CLEAR ',
+              name: " Kính cường lực UNIQ OPTIX VIVID CLEAR IPHONE 16 PRO (2024) 6.9 GLASS SCREEN PROTECTOR - VIVID CLEAR ",
               price: 290000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal 16 ',
+              name: " Miếng dán kính cao cấp Jcpal 16 ",
               price: 290000,
             },
             {
-              name: '  Miếng dán kính cao cấp Jcpal  16 PLUS ',
+              name: "  Miếng dán kính cao cấp Jcpal  16 PLUS ",
               price: 290000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal  16 PRO ',
+              name: " Miếng dán kính cao cấp Jcpal  16 PRO ",
               price: 290000,
             },
             {
-              name: ' Miếng dán kính cao cấp Jcpal  16 PRO MAX ',
+              name: " Miếng dán kính cao cấp Jcpal  16 PRO MAX ",
               price: 290000,
             },
             {
@@ -502,86 +513,86 @@ const BannerSlide = () => {
               price: 290000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16",
               price: 290000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Plus',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Plus",
               price: 290000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro",
               price: 290000,
             },
             {
-              name: 'DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro Max',
+              name: "DEKEY 3D MASTER GLASS DELUXE iPhone 16 Pro Max",
               price: 290000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC CAMERA',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC CAMERA",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - MIDNIGHT (BLACK) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - MIDNIGHT (BLACK) ",
               price: 250000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - PEARL BLUE (PEARL BLUE) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - PEARL BLUE (PEARL BLUE) ",
               price: 250000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - GRAPE PINK (GRAPE PINK) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 (2024) 6.1/6.7 ALUMINIUM CAMERA LENS PROTECTOR - GRAPE PINK (GRAPE PINK) ",
               price: 250000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - MIDNIGHT (BLACK) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - MIDNIGHT (BLACK) ",
               price: 250000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - TITANIUM (GREY) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - TITANIUM (GREY) ",
               price: 250000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - STERLING (SILVER) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - STERLING (SILVER) ",
               price: 250000,
             },
             {
-              name: ' Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - TAUPE GOLD (TAUPE GOLD) ',
+              name: " Kính bảo vệ camera UNIQ OPTIX IPHONE 16 PRO (2024) 6.3/6.9 ALUMINIUM CAMERA LENS PROTECTOR - TAUPE GOLD (TAUPE GOLD) ",
               price: 250000,
             },
             {
-              name: ' LENS CAMERA Protector for iPhone 16 Pro / 16 Pro Max 2024 ',
+              name: " LENS CAMERA Protector for iPhone 16 Pro / 16 Pro Max 2024 ",
               price: 190000,
             },
             {
-              name: ' LENS CAMERA Protector for iPhone 16 / 16 Plus 2024 ',
+              name: " LENS CAMERA Protector for iPhone 16 / 16 Plus 2024 ",
               price: 190000,
             },
             {
-              name: '  Lens Camera Jcpal 16 ',
+              name: "  Lens Camera Jcpal 16 ",
               price: 190000,
             },
             {
-              name: '  Lens Camera Jcpal 16 PLUS ',
+              name: "  Lens Camera Jcpal 16 PLUS ",
               price: 190000,
             },
             {
-              name: '  Lens Camera Jcpal 16 PRO  ',
+              name: "  Lens Camera Jcpal 16 PRO  ",
               price: 190000,
             },
             {
-              name: ' Lens Camera Jcpal 16 PRO MAX ',
+              name: " Lens Camera Jcpal 16 PRO MAX ",
               price: 190000,
             },
           ],
         },
         {
-          name: 'CÓC',
-          image: '/coc-sac.png',
+          name: "CÓC",
+          image: "/coc-sac.png",
           options: [
-            { name: '  SẠC APPLE 20W USB-C MHJE3ZA/A ', price: 530000 },
+            { name: "  SẠC APPLE 20W USB-C MHJE3ZA/A ", price: 530000 },
           ],
         },
       ],
@@ -591,127 +602,127 @@ const BannerSlide = () => {
   const combos15 = [
     {
       id: 0,
-      name: 'COMBO SIÊU RẺ 1',
+      name: "COMBO SIÊU RẺ 1",
       price: 640000,
-      image: '/combo-01-15.png',
+      image: "/combo-01-15.png",
       details: [
         {
-          name: 'ỐP LƯNG TRONG',
-          image: '/op-lung.png',
+          name: "ỐP LƯNG TRONG",
+          image: "/op-lung.png",
           options: [
-            { name: ' Ốp Lưng JINYA Crystal iPhone 15 JA6524 ', price: 300000 },
+            { name: " Ốp Lưng JINYA Crystal iPhone 15 JA6524 ", price: 300000 },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Plus JA6526 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Plus JA6526 ",
               price: 300000,
             },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Pro JA6525 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Pro JA6525 ",
               price: 300000,
             },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Pro Max JA6527 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Pro Max JA6527 ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PLUS SOFT TRANSPARENT CASE – ST15B ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PLUS SOFT TRANSPARENT CASE – ST15B ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO SOFT TRANSPARENT CASE – ST15C ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO SOFT TRANSPARENT CASE – ST15C ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO MAX SOFT TRANSPARENT CASE – ST15D ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO MAX SOFT TRANSPARENT CASE – ST15D ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG IPHONE 15 MIPOW TEMPERED TRANSPARNET CASE – PS15A ',
+              name: " ỐP LƯNG IPHONE 15 MIPOW TEMPERED TRANSPARNET CASE – PS15A ",
               price: 300000,
             },
             {
-              name: '  ỐP LƯNG IPHONE 15 PLUS MIPOW TEMPERED TRANSPARNET CASE – PS15B  ',
+              name: "  ỐP LƯNG IPHONE 15 PLUS MIPOW TEMPERED TRANSPARNET CASE – PS15B  ",
               price: 300000,
             },
             {
-              name: '   ỐP LƯNG IPHONE 15 PRO MIPOW TEMPERED TRANSPARNET CASE – PS15C  ',
+              name: "   ỐP LƯNG IPHONE 15 PRO MIPOW TEMPERED TRANSPARNET CASE – PS15C  ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG IPHONE 15 PRO MAX MIPOW TEMPERED TRANSPARNET CASE – PS15D  ',
+              name: " ỐP LƯNG IPHONE 15 PRO MAX MIPOW TEMPERED TRANSPARNET CASE – PS15D  ",
               price: 300000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 - JCP4280 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 - JCP4280 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Pro - JCP4281 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Pro - JCP4281 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Plus - JCP4282 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Plus - JCP4282 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Pro Max - JCP4283 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Pro Max - JCP4283 ",
               price: 340000,
             },
             {
-              name: 'Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro Max - BJ532 ',
+              name: "Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro Max - BJ532 ",
               price: 340000,
             },
             {
-              name: '  Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro - BJ531 ',
+              name: "  Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro - BJ531 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Plus - BJ530 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Plus - BJ530 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 - BJ529 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 - BJ529 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro Max - BJ516 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro Max - BJ516 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro - BJ515 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro - BJ515 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Plus - BJ514 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Plus - BJ514 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 - BJ513 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 - BJ513 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 - BJ501 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 - BJ501 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PLUS - BJ502 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PLUS - BJ502 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO - BJ503 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO - BJ503 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504 ",
               price: 340000,
             },
             {
-              name: '  CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504  ',
+              name: "  CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504  ",
               price: 340000,
             },
           ],
@@ -720,292 +731,292 @@ const BannerSlide = () => {
     },
     {
       id: 1,
-      name: 'COMBO SIÊU RẺ 2',
+      name: "COMBO SIÊU RẺ 2",
       price: 880000,
-      image: '/combo-02-15.png',
+      image: "/combo-02-15.png",
       details: [
         {
-          name: 'CƯỜNG LỰC',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: '  Cường Lực Jcpal Preserver IPhone 15 - JCP4280  ',
+              name: "  Cường Lực Jcpal Preserver IPhone 15 - JCP4280  ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Pro - JCP4281  ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Pro - JCP4281  ",
               price: 340000,
             },
             {
-              name: '  Cường Lực Jcpal Preserver IPhone 15 Plus - JCP4282  ',
+              name: "  Cường Lực Jcpal Preserver IPhone 15 Plus - JCP4282  ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Pro Max - JCP4283  ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Pro Max - JCP4283  ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro Max - BJ532  ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro Max - BJ532  ",
               price: 340000,
             },
             {
-              name: '  Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro - BJ531 ',
+              name: "  Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro - BJ531 ",
               price: 340000,
             },
             {
-              name: '  Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Plus - BJ530  ',
+              name: "  Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Plus - BJ530  ",
               price: 340000,
             },
             {
-              name: '  Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 - BJ529  ',
+              name: "  Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 - BJ529  ",
               price: 340000,
             },
             {
-              name: '  Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro Max - BJ516  ',
+              name: "  Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro Max - BJ516  ",
               price: 340000,
             },
             {
-              name: '  Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro - BJ515 ',
+              name: "  Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro - BJ515 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Plus - BJ514 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Plus - BJ514 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 - BJ513 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 - BJ513 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 - BJ501 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 - BJ501 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PLUS - BJ502 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PLUS - BJ502 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO - BJ503 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO - BJ503 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504 ",
               price: 340000,
             },
           ],
         },
         {
-          name: 'CÓC',
-          image: '/coc-sac.png',
-          options: [{ name: ' SẠC APPLE 20W USB-C MHJE3ZA/A ', price: 540000 }],
+          name: "CÓC",
+          image: "/coc-sac.png",
+          options: [{ name: " SẠC APPLE 20W USB-C MHJE3ZA/A ", price: 540000 }],
         },
       ],
     },
     {
       id: 2,
-      name: 'COMBO SIÊU RẺ 3',
+      name: "COMBO SIÊU RẺ 3",
       price: 890000,
-      image: '/combo-03-15.png',
+      image: "/combo-03-15.png",
       details: [
         {
-          name: 'ỐP LƯNG TRONG',
-          image: '/op-lung.png',
+          name: "ỐP LƯNG TRONG",
+          image: "/op-lung.png",
           options: [
-            { name: ' Ốp Lưng JINYA Crystal iPhone 15 JA6524 ', price: 300000 },
+            { name: " Ốp Lưng JINYA Crystal iPhone 15 JA6524 ", price: 300000 },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Plus JA6526 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Plus JA6526 ",
               price: 300000,
             },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Pro JA6525 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Pro JA6525 ",
               price: 300000,
             },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Pro Max JA6527 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Pro Max JA6527 ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PLUS SOFT TRANSPARENT CASE – ST15B ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PLUS SOFT TRANSPARENT CASE – ST15B ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO SOFT TRANSPARENT CASE – ST15C ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO SOFT TRANSPARENT CASE – ST15C ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO MAX SOFT TRANSPARENT CASE – ST15D ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO MAX SOFT TRANSPARENT CASE – ST15D ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG IPHONE 15 MIPOW TEMPERED TRANSPARNET CASE – PS15A ',
+              name: " ỐP LƯNG IPHONE 15 MIPOW TEMPERED TRANSPARNET CASE – PS15A ",
               price: 300000,
             },
             {
-              name: '  ỐP LƯNG IPHONE 15 PLUS MIPOW TEMPERED TRANSPARNET CASE – PS15B ',
+              name: "  ỐP LƯNG IPHONE 15 PLUS MIPOW TEMPERED TRANSPARNET CASE – PS15B ",
               price: 300000,
             },
             {
-              name: '  ỐP LƯNG IPHONE 15 PRO MIPOW TEMPERED TRANSPARNET CASE – PS15C ',
+              name: "  ỐP LƯNG IPHONE 15 PRO MIPOW TEMPERED TRANSPARNET CASE – PS15C ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG IPHONE 15 PRO MAX MIPOW TEMPERED TRANSPARNET CASE – PS15D ',
+              name: " ỐP LƯNG IPHONE 15 PRO MAX MIPOW TEMPERED TRANSPARNET CASE – PS15D ",
               price: 300000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 - JCP4280 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 - JCP4280 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Pro - JCP4281 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Pro - JCP4281 ",
               price: 340000,
             },
             {
-              name: 'Cường Lực Jcpal Preserver IPhone 15 Plus - JCP4282 ',
+              name: "Cường Lực Jcpal Preserver IPhone 15 Plus - JCP4282 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Pro Max - JCP4283 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Pro Max - JCP4283 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro Max - BJ532 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro Max - BJ532 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro - BJ531 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro - BJ531 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Plus - BJ530 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Plus - BJ530 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 - BJ529 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 - BJ529 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro Max - BJ516 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro Max - BJ516 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro - BJ515 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro - BJ515 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Plus - BJ514 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Plus - BJ514 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 - BJ513 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 - BJ513 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 - BJ501 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 - BJ501 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PLUS - BJ502 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PLUS - BJ502 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO - BJ503 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO - BJ503 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504 ",
               price: 340000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC CAMERA',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC CAMERA",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: '  Lens Camera JCPAL Preserver Iphone 15/15 Plus - Silver - JCP4293 ',
+              name: "  Lens Camera JCPAL Preserver Iphone 15/15 Plus - Silver - JCP4293 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15/15 Plus - Black - JCP4294 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15/15 Plus - Black - JCP4294 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15/15 Plus - Blue - JCP4295 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15/15 Plus - Blue - JCP4295 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15/15 Plus - Pink - JCP4296 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15/15 Plus - Pink - JCP4296 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15/15 Plus - Yellow - JCP4297 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15/15 Plus - Yellow - JCP4297 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Pro Blue - JCP4299 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Pro Blue - JCP4299 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Pro Space Black - JCP4300 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Pro Space Black - JCP4300 ",
               price: 250000,
             },
             {
-              name: '  Lens Camera JCPAL Preserver Iphone 15 Pro Silver - JCP4301 ',
+              name: "  Lens Camera JCPAL Preserver Iphone 15 Pro Silver - JCP4301 ",
               price: 250000,
             },
             {
-              name: '  Lens Camera JCPAL Preserver Iphone 15 Pro Grey - JCP4302 ',
+              name: "  Lens Camera JCPAL Preserver Iphone 15 Pro Grey - JCP4302 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Promax Blue - JCP4304 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Promax Blue - JCP4304 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Promax Space Black - JCP4305 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Promax Space Black - JCP4305 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Promax Silver - JCP4306 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Promax Silver - JCP4306 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Promax Grey - JCP4307 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Promax Grey - JCP4307 ",
               price: 250000,
             },
             {
-              name: '  Dán cường lực bảo vệ camera MIPOW iPhone 15 |15 Plus BJ15A - GREEN ',
+              name: "  Dán cường lực bảo vệ camera MIPOW iPhone 15 |15 Plus BJ15A - GREEN ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 |15 Plus BJ15A - BLACK ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 |15 Plus BJ15A - BLACK ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - Titan Gray ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - Titan Gray ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - WHITE ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - WHITE ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - BLACK ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - BLACK ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - BLUE  ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - BLUE  ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - Titan Gray   ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - Titan Gray   ",
               price: 250000,
             },
           ],
@@ -1014,217 +1025,217 @@ const BannerSlide = () => {
     },
     {
       id: 3,
-      name: 'COMBO SIÊU RẺ 4',
+      name: "COMBO SIÊU RẺ 4",
       price: 1380000,
-      image: '/combo-04-15.png',
+      image: "/combo-04-15.png",
       details: [
         {
-          name: 'ỐP LƯNG TRONG',
-          image: '/op-lung.png',
+          name: "ỐP LƯNG TRONG",
+          image: "/op-lung.png",
           options: [
-            { name: ' Ốp Lưng JINYA Crystal iPhone 15 JA6524 ', price: 300000 },
+            { name: " Ốp Lưng JINYA Crystal iPhone 15 JA6524 ", price: 300000 },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Plus JA6526 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Plus JA6526 ",
               price: 300000,
             },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Pro JA6525 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Pro JA6525 ",
               price: 300000,
             },
             {
-              name: ' Ốp Lưng JINYA Crystal iPhone 15 Pro Max JA6527 ',
+              name: " Ốp Lưng JINYA Crystal iPhone 15 Pro Max JA6527 ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PLUS SOFT TRANSPARENT CASE – ST15B ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PLUS SOFT TRANSPARENT CASE – ST15B ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO SOFT TRANSPARENT CASE – ST15C ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO SOFT TRANSPARENT CASE – ST15C ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO MAX SOFT TRANSPARENT CASE – ST15D ',
+              name: " ỐP LƯNG TRONG SUỐT SILICON TPU IPHONE 15 PRO MAX SOFT TRANSPARENT CASE – ST15D ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG IPHONE 15 MIPOW TEMPERED TRANSPARNET CASE – PS15A ',
+              name: " ỐP LƯNG IPHONE 15 MIPOW TEMPERED TRANSPARNET CASE – PS15A ",
               price: 300000,
             },
             {
-              name: '  ỐP LƯNG IPHONE 15 PLUS MIPOW TEMPERED TRANSPARNET CASE – PS15B ',
+              name: "  ỐP LƯNG IPHONE 15 PLUS MIPOW TEMPERED TRANSPARNET CASE – PS15B ",
               price: 300000,
             },
             {
-              name: '  ỐP LƯNG IPHONE 15 PRO MIPOW TEMPERED TRANSPARNET CASE – PS15C ',
+              name: "  ỐP LƯNG IPHONE 15 PRO MIPOW TEMPERED TRANSPARNET CASE – PS15C ",
               price: 300000,
             },
             {
-              name: ' ỐP LƯNG IPHONE 15 PRO MAX MIPOW TEMPERED TRANSPARNET CASE – PS15D ',
+              name: " ỐP LƯNG IPHONE 15 PRO MAX MIPOW TEMPERED TRANSPARNET CASE – PS15D ",
               price: 300000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 - JCP4280 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 - JCP4280 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Pro - JCP4281 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Pro - JCP4281 ",
               price: 340000,
             },
             {
-              name: 'Cường Lực Jcpal Preserver IPhone 15 Plus - JCP4282 ',
+              name: "Cường Lực Jcpal Preserver IPhone 15 Plus - JCP4282 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Jcpal Preserver IPhone 15 Pro Max - JCP4283 ',
+              name: " Cường Lực Jcpal Preserver IPhone 15 Pro Max - JCP4283 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro Max - BJ532 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro Max - BJ532 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro - BJ531 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Pro - BJ531 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Plus - BJ530 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 Plus - BJ530 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 - BJ529 ',
+              name: " Cường Lực Mờ Chống Vân Tay Mipow Kingbull iPhone 15 - BJ529 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro Max - BJ516 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro Max - BJ516 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro - BJ515 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Pro - BJ515 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Plus - BJ514 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 Plus - BJ514 ",
               price: 340000,
             },
             {
-              name: ' Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 - BJ513 ',
+              name: " Cường Lực Chống Nhìn Trộm Mipow Kingbull IPhone 15 - BJ513 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 - BJ501 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 - BJ501 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PLUS - BJ502 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PLUS - BJ502 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO - BJ503 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO - BJ503 ",
               price: 340000,
             },
             {
-              name: ' CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504 ',
+              name: " CƯỜNG LỰC MIPOW KINGBULL PREMIUM IPHONE 15 PRO MAX - BJ504 ",
               price: 340000,
             },
           ],
         },
         {
-          name: 'CƯỜNG LỰC CAMERA',
-          image: '/cuong-luc.jpg',
+          name: "CƯỜNG LỰC CAMERA",
+          image: "/cuong-luc.jpg",
           options: [
             {
-              name: '  Lens Camera JCPAL Preserver Iphone 15/15 Plus - Silver - JCP4293 ',
+              name: "  Lens Camera JCPAL Preserver Iphone 15/15 Plus - Silver - JCP4293 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15/15 Plus - Black - JCP4294 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15/15 Plus - Black - JCP4294 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15/15 Plus - Blue - JCP4295 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15/15 Plus - Blue - JCP4295 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15/15 Plus - Pink - JCP4296 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15/15 Plus - Pink - JCP4296 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15/15 Plus - Yellow - JCP4297 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15/15 Plus - Yellow - JCP4297 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Pro Blue - JCP4299 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Pro Blue - JCP4299 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Pro Space Black - JCP4300 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Pro Space Black - JCP4300 ",
               price: 250000,
             },
             {
-              name: '  Lens Camera JCPAL Preserver Iphone 15 Pro Silver - JCP4301 ',
+              name: "  Lens Camera JCPAL Preserver Iphone 15 Pro Silver - JCP4301 ",
               price: 250000,
             },
             {
-              name: '  Lens Camera JCPAL Preserver Iphone 15 Pro Grey - JCP4302 ',
+              name: "  Lens Camera JCPAL Preserver Iphone 15 Pro Grey - JCP4302 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Promax Blue - JCP4304 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Promax Blue - JCP4304 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Promax Space Black - JCP4305 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Promax Space Black - JCP4305 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Promax Silver - JCP4306 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Promax Silver - JCP4306 ",
               price: 250000,
             },
             {
-              name: ' Lens Camera JCPAL Preserver Iphone 15 Promax Grey - JCP4307 ',
+              name: " Lens Camera JCPAL Preserver Iphone 15 Promax Grey - JCP4307 ",
               price: 250000,
             },
             {
-              name: '  Dán cường lực bảo vệ camera MIPOW iPhone 15 |15 Plus BJ15A - GREEN ',
+              name: "  Dán cường lực bảo vệ camera MIPOW iPhone 15 |15 Plus BJ15A - GREEN ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 |15 Plus BJ15A - BLACK ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 |15 Plus BJ15A - BLACK ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - Titan Gray ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - Titan Gray ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - WHITE ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - WHITE ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - BLACK ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - BLACK ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - BLUE  ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - BLUE  ",
               price: 250000,
             },
             {
-              name: ' Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - Titan Gray   ',
+              name: " Dán cường lực bảo vệ camera MIPOW iPhone 15 Pro |15 Pro Max BJ15B - Titan Gray   ",
               price: 250000,
             },
           ],
         },
         {
-          name: 'CÓC',
-          image: '/coc-sac.png',
-          options: [{ name: 'SẠC APPLE 20W USB-C MHJE3ZA/A', price: 490000 }],
+          name: "CÓC",
+          image: "/coc-sac.png",
+          options: [{ name: "SẠC APPLE 20W USB-C MHJE3ZA/A", price: 490000 }],
         },
       ],
     },
@@ -1250,12 +1261,12 @@ const BannerSlide = () => {
 
   const isAllOptionsSelected =
     modalData?.details?.every(
-      (item: any) => selectedOptions[item.name] !== undefined,
+      (item: any) => selectedOptions[item.name] !== undefined
     ) ?? false;
 
   const handleOptionChange = (itemIndex: number, value: string) => {
     const selectedItem = modalData.details[itemIndex].options.find(
-      (option: any) => option.name === value,
+      (option: any) => option.name === value
     );
 
     if (selectedItem) {
@@ -1265,7 +1276,7 @@ const BannerSlide = () => {
         (acc: number, item: any) => {
           return acc + (item.selectedPrice || 0);
         },
-        0,
+        0
       );
 
       setTotalPrice(newTotalPrice);
@@ -1276,11 +1287,90 @@ const BannerSlide = () => {
       }));
     }
   };
+  const handleClickLeatherCase = () => {
+    const LeatherCase = document.getElementById("item-leather-case");
+    if (LeatherCase) {
+      LeatherCase.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickApple = () => {
+    const Apple = document.getElementById("item-apple");
+    if (Apple) {
+      Apple.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickBackupCharger = () => {
+    const BackupCharger = document.getElementById("item-backup-charger");
+    if (BackupCharger) {
+      BackupCharger.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickLaptop = () => {
+    const Laptop = document.getElementById("item-laptop");
+    if (Laptop) {
+      Laptop.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickEarphone = () => {
+    const Earphone = document.getElementById("item-earphone");
+    if (Earphone) {
+      Earphone.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleClickSmartHome = () => {
+    const SmartHome = document.getElementById("item-smart-home");
+    if (SmartHome) {
+      SmartHome.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickWatch = () => {
+    const Watch = document.getElementById("item-watch");
+    if (Watch) {
+      Watch.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickChargingCable = () => {
+    const ChargingCable = document.getElementById("item-charging-cable");
+    if (ChargingCable) {
+      ChargingCable.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickUsb = () => {
+    const Usb = document.getElementById("item-usb");
+    if (Usb) {
+      Usb.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickLoudspeaker = () => {
+    const Loudspeaker = document.getElementById("item-loudspeaker");
+    if (Loudspeaker) {
+      Loudspeaker.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickOther = () => {
+    const Other = document.getElementById("item-other");
+    if (Other) {
+      Other.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickSamSung = () => {
+    const SamSung = document.getElementById("item-samsung");
+    if (SamSung) {
+      SamSung.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickStrength = () => {
+    const Strength = document.getElementById("item-strength");
+    if (Strength) {
+      Strength.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="banner-slide">
       <div className="container">
-        <div className='banner-swiper'>
+        <div className="banner-swiper">
           <Swiper
             modules={[Navigation, Autoplay]}
             spaceBetween={10}
@@ -1358,7 +1448,114 @@ const BannerSlide = () => {
           alt="banner-60-percent"
           className="banner-percent"
         />
-
+        <div>
+          <ul className="list-item-click">
+            <li className="item-click" onClick={handleClickLeatherCase}>
+              <Image
+                src={iconbaoda}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Bao da, ốp lưng</p>
+            </li>
+            <li className="item-click" onClick={handleClickStrength}>
+              <Image
+                src={iconcuongluc}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Cường lực</p>
+            </li>
+            <li className="item-click" onClick={handleClickBackupCharger}>
+              <Image
+                src={iconsacduphong}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Sạc dự phòng</p>
+            </li>
+            <li className="item-click" onClick={handleClickApple}>
+              <Image
+                src={iconapple}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Apple</p>
+            </li>
+            <li className="item-click" onClick={handleClickLaptop}>
+              <Image
+                src={iconlaptop}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Laptop/ Macbook</p>
+            </li>
+            <li className="item-click" onClick={handleClickEarphone}>
+              <Image
+                src={icontainghe}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Tai nghe</p>
+            </li>
+            <li className="item-click" onClick={handleClickWatch}>
+              <Image
+                src={icondongho}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Đồng hồ</p>
+            </li>
+            <li className="item-click" onClick={handleClickChargingCable}>
+              <Image
+                src={iconcapsac}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Cáp sạc</p>
+            </li>
+            <li className="item-click" onClick={handleClickUsb}>
+              <Image
+                src={iconthenho}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Thẻ nhớ, USB, Hub</p>
+            </li>
+            <li className="item-click" onClick={handleClickLoudspeaker}>
+              <Image
+                src={iconloa}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Loa</p>
+            </li>
+            <li className="item-click" onClick={handleClickSmartHome}>
+              <Image
+                src={iconsmarthome}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Smart Home</p>
+            </li>
+            <li className="item-click" onClick={handleClickOther}>
+              <Image
+                src={iconkhac}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Khác</p>
+            </li>
+            <li className="item-click" onClick={handleClickSamSung}>
+              <Image
+                src={iconbaoda}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">SamSung</p>
+            </li>
+          </ul>
+        </div>
         <h3 className="banner-slide-combo-title">COMBO PHỤ KIỆN iPHONE 16</h3>
 
         <div className="banner-slide-combo">
@@ -1441,7 +1638,7 @@ const BannerSlide = () => {
               <Form.Item<FieldType>
                 label="Họ và tên khách hàng"
                 name="username"
-                rules={[{ required: true, message: 'Vui lòng nhập họ và tên' }]}
+                rules={[{ required: true, message: "Vui lòng nhập họ và tên" }]}
               >
                 <Input />
               </Form.Item>
@@ -1450,10 +1647,10 @@ const BannerSlide = () => {
                 label="Số điện thoại"
                 name="phone"
                 rules={[
-                  { required: true, message: 'Vui lòng nhập số điện thoại' },
+                  { required: true, message: "Vui lòng nhập số điện thoại" },
                   {
                     pattern: /^\d{10}$/,
-                    message: 'Số điện thoại phải có 10 chữ số',
+                    message: "Số điện thoại phải có 10 chữ số",
                   },
                 ]}
               >
@@ -1507,7 +1704,7 @@ const BannerSlide = () => {
                   className="modal-btn"
                   disabled={!isAllOptionsSelected}
                 >
-                  {loading ? 'Đang đặt hàng...' : 'Đặt hàng ngay'}
+                  {loading ? "Đang đặt hàng..." : "Đặt hàng ngay"}
                 </Button>
               </Form.Item>
             </Form>
