@@ -27,7 +27,7 @@ function CardProduct({
     <div className="CardProduct swiper-slide swiper-slide-prev">
       <a
         href={`https://bachlongmobile.com/products/${url_key}`}
-        style={{ width: "100%" }}
+        style={{ width: "100%", textDecoration: "none" }}
       >
         <figure className="product__img">
           <img
