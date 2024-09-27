@@ -1442,13 +1442,6 @@ const BannerSlide = () => {
           </Swiper>
         </div>
 
-        <Image
-          src="/banner-60-percent.png"
-          width={1820}
-          height={1200}
-          alt="banner-60-percent"
-          className="banner-percent"
-        />
         <div>
           <ul className="list-item-click">
             <li className="item-click" onClick={handleClickLeatherCase}>

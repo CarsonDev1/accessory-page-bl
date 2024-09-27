@@ -3,6 +3,8 @@
   /* width: 235px; */
   border: 4px solid #f47700;
   border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
 }
 .swiper-slide {
   flex-shrink: 0;
@@ -13,7 +15,7 @@
 .swiper-slide {
   text-align: center;
   font-size: 14px;
-  background: #fff;
+
   display: flex;
   border-color: #f47700;
   justify-content: center;

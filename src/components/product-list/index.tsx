@@ -138,13 +138,13 @@ const ProductList: React.FC = () => {
     <div className="product-list">
       <div className="upgrade-list">
         <div className="container">
-          <Image
+          {/* <Image
             src="/banner-80-percent.png"
             width={1820}
             height={1200}
             alt="accessory-80-percent"
             className=""
-          />
+          /> */}
           <div className="upgrade">
             <div className="upgrade-header">
               <h3 className="banner-slide-combo-title">PHỤ KIỆN APPLE</h3>

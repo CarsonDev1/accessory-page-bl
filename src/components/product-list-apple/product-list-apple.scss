@@ -1,9 +1,12 @@
 .OldForNew-Section5-Container {
-  margin: auto;
+  margin: 0px auto;
   padding: 10px 0px;
-  background-color: #fefce3;
+  background: linear-gradient(180deg, #ffd503 0%, #f1f1f1 100%);
+  padding: 10px 10px !important;
+  border-radius: 15px;
 }
 .OldForNew-Section5 {
+  padding: 10px 0px;
   background-color: #fefce3;
 }
 .title-loai-pk span {
@@ -172,4 +175,7 @@
     font-weight: 500;
     min-width: 110px;
   }
+}
+.upgrade-list-combo {
+  background-color: red;
 }
