@@ -21,6 +21,7 @@ import iconthenho from "../../../public/icon-thenho.png";
 import iconloa from "../../../public/icon-loa.png";
 import iconsmarthome from "../../../public/icon-smart-home.png";
 import iconkhac from "../../../public/icon-khac.png";
+import iconSamsung from "../../../public/icon-samsung.png";
 import Image from "next/image";
 
 type FieldType = {
@@ -1318,12 +1319,12 @@ const BannerSlide = () => {
     }
   };
 
-  const handleClickSmartHome = () => {
-    const SmartHome = document.getElementById("item-smart-home");
-    if (SmartHome) {
-      SmartHome.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const handleClickSmartHome = () => {
+  //   const SmartHome = document.getElementById("item-smart-home");
+  //   if (SmartHome) {
+  //     SmartHome.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
   const handleClickWatch = () => {
     const Watch = document.getElementById("item-watch");
     if (Watch) {
@@ -1336,12 +1337,12 @@ const BannerSlide = () => {
       ChargingCable.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const handleClickUsb = () => {
-    const Usb = document.getElementById("item-usb");
-    if (Usb) {
-      Usb.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const handleClickUsb = () => {
+  //   const Usb = document.getElementById("item-usb");
+  //   if (Usb) {
+  //     Usb.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
   const handleClickLoudspeaker = () => {
     const Loudspeaker = document.getElementById("item-loudspeaker");
     if (Loudspeaker) {
@@ -1514,14 +1515,14 @@ const BannerSlide = () => {
               />
               <p className="item-click-txt">Cáp sạc</p>
             </li>
-            <li className="item-click" onClick={handleClickUsb}>
+            {/* <li className="item-click" onClick={handleClickUsb}>
               <Image
                 src={iconthenho}
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
               <p className="item-click-txt">Thẻ nhớ, USB, Hub</p>
-            </li>
+            </li> */}
             <li className="item-click" onClick={handleClickLoudspeaker}>
               <Image
                 src={iconloa}
@@ -1530,14 +1531,14 @@ const BannerSlide = () => {
               />
               <p className="item-click-txt">Loa</p>
             </li>
-            <li className="item-click" onClick={handleClickSmartHome}>
+            {/* <li className="item-click" onClick={handleClickSmartHome}>
               <Image
                 src={iconsmarthome}
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
               <p className="item-click-txt">Smart Home</p>
-            </li>
+            </li> */}
             <li className="item-click" onClick={handleClickOther}>
               <Image
                 src={iconkhac}
@@ -1548,7 +1549,7 @@ const BannerSlide = () => {
             </li>
             <li className="item-click" onClick={handleClickSamSung}>
               <Image
-                src={iconbaoda}
+                src={iconSamsung}
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
