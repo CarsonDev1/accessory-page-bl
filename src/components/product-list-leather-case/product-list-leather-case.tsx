@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../public/img-no-pro-matching.webp";
-
+import pklaptop from "../../../public/pklaptop_desk.webp";
 export interface Product {
   id: number;
   name: string;
@@ -147,11 +147,13 @@ const Section5: React.FC = () => {
   return (
     <div className="OldForNew-Section5" id="item-leather-case">
       <div className="container">
-        <div className="OldForNew-Section5-Container">
-          <div className="title-loai-pk" style={{ marginTop: "0" }}>
-            <span>Bao Da, Ốp Lưng</span>
-          </div>
+        <Image
+          src={pklaptop}
+          alt="no-products"
+          className="images-pk"
+        />
 
+        <div className="OldForNew-Section5-Container">
           {filteredData.length === 0 ? (
             <div className="no-products-message">
               <Image

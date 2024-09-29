@@ -24,14 +24,46 @@
   margin-top: 5px !important;
 } */
 .product__img {
-  padding-top: 10px;
+
 }
 .product__price__percent {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1;
+  background: #ff4530;
+ margin:  auto;
+ padding: 10px 20px;
+
+ display: flex;
+  border-radius: 5px;
  
 }
+.product__con-hang{ 
+  display: flex;  
+  color: #00ff15;
+  font-weight: bold;
+  font-size: 14px;
+  float: right;
+  width: max-content;
+  height: max-content;
+  padding: 5px;
+  border-radius: 5px;
+  margin:  10px 0;
+}
+.product__con-hang span{ 
+  padding: 5px;
+  border-radius: 5px;
+}
+.product__con-hang-img{
+  width: 24px;
+  height: 24px;
+}
+
 .product__discount {
   text-decoration: none;
   position: absolute;
@@ -72,28 +104,22 @@
 }
 .product__groupPrice {
   position: relative;
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   padding: 10px 5px;
   /* background: #f47700 !important; */
   line-height: 1;
   border-radius: 0px 0px 8px 8px;
 }
-.product__groupPrice:before {
-  position: absolute;
-  top: -4px;
-  content: "";
-  left: -4px;
-  width: calc(100% + 8px);
-  height: 4px;
-  background-image: url(https://old.bachlongmobile.com/media/page_skcustom/valentine/2020/line.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  filter: grayscale(1);
+.product__price {
+  font-weight: bold;
+  font-size: 16px;
+  color: #000;
 }
+
 .product__priceSpecial {
   color: red;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 .product__priceRegular {
@@ -102,7 +128,11 @@
   font-weight: bold;
   text-decoration: line-through;
 }
-
+.product__price_gach{
+  text-decoration: line-through;
+  font-size: 14px;
+  color: #000;
+}
 @media (max-width: 1000px) {
   .OldForNew-Section1-bg2 {
     display: block;
