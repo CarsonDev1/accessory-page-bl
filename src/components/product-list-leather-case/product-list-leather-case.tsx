@@ -2,16 +2,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "./product-list-leather-case.scss";
-// import { Carousel } from "antd";
 import CardProduct from "../CardProduct/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../public/img-no-pro-matching.webp";
+
 export interface Product {
   id: number;
   name: string;
@@ -90,38 +88,12 @@ async function fetchProductListDataBaoDa() {
   });
 
   const data = await response.json();
+  console.log("data", data);
   return data.data.products.items as Product[];
+
 }
 
 const Section5: React.FC = () => {
-  const settings = {
-    infinite: true,
-    autoplay: true,
-    dots: true,
-    arrows: true,
-    slidesToShow: 5,
-    rows: 1,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-    ],
-  };
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataBaoDa"],
     queryFn: fetchProductListDataBaoDa,
@@ -130,6 +102,8 @@ const Section5: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<string>("All");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [visibleProducts, setVisibleProducts] = useState<number>(10);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   useEffect(() => {
     if (activeTab === "All") {
@@ -140,7 +114,23 @@ const Section5: React.FC = () => {
       );
       setFilteredData(filtered || []);
     }
+    setVisibleProducts(10);
+    setIsExpanded(false);
   }, [activeTab, data]);
+
+  const toggleProducts = () => {
+    if (isExpanded) {
+      setVisibleProducts(10);
+      setIsExpanded(false);
+    } else {
+      setVisibleProducts(filteredData.length);
+      setIsExpanded(true);
+    }
+  };
+
+  const loadMore = () => {
+    setVisibleProducts((prevVisible) => prevVisible + 5);
+  };
 
   if (isLoading) {
     return (
@@ -172,45 +162,31 @@ const Section5: React.FC = () => {
               <span>Không có sản phẩm</span>
             </div>
           ) : (
-            <div className="OldForNew-Section5-ItemSlider">
-              <Swiper
-                modules={[Navigation]}
-                spaceBetween={10}
-                slidesPerView="auto"
-                speed={1000}
-                navigation
-                breakpoints={{
-                  300: {
-                    slidesPerView: 2,
-                  },
-                  576: {
-                    slidesPerView: 3,
-                  },
-                  850: {
-                    slidesPerView: 4,
-                  },
-                  1200: {
-                    slidesPerView: 5,
-                  },
-                }}
-              >
-                {filteredData.map((product, index) => (
-                  <SwiperSlide key={index}>
-                    <CardProduct
-                      key={product.id}
-                      name={product.name}
-                      url_key={product.url_key}
-                      image={product.image}
-                      price_range={product.price_range}
-                    />
-                  </SwiperSlide>
+            <>
+              <div className="OldForNew-Section5-ItemSlider">
+                {filteredData.slice(0, visibleProducts).map((product) => (
+                  <CardProduct
+                    key={product.id}
+                    name={product.name}
+                    url_key={product.url_key}
+                    image={product.image}
+                    price_range={product.price_range}
+                  />
                 ))}
-              </Swiper>
-            </div>
+              </div>
+              {filteredData.length > 10 && (
+                <div className="load-more-container">
+                  <button onClick={toggleProducts}>
+                    {isExpanded ? "Thu gọn" : "Xem thêm"}
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
     </div>
   );
 };
+
 export default Section5;

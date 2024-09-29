@@ -24,12 +24,16 @@ function CardProduct({
   price_range,
 }: Omit<Product, "id">) {
   return (
-    <div className="CardProduct swiper-slide swiper-slide-prev">
+    <div className="CardProduct">
       <a
         href={`https://bachlongmobile.com/products/${url_key}`}
         style={{ width: "100%", textDecoration: "none" }}
       >
+
         <figure className="product__img">
+          {/* <div className="product__price__percent">
+            <p className="product__price--percent-detail">Giảm&nbsp;17%</p>
+          </div> */}
           <img
             style={{
               objectFit: "contain",
@@ -41,8 +45,6 @@ function CardProduct({
             alt={name}
             src={image.url}
           />
-          {/* <div className="product__discount">0% </div>
-          <div className="sticker-combo-requare"></div> */}
         </figure>
         <div className="product__title" style={{ textDecoration: "none" }}>
           {name}
