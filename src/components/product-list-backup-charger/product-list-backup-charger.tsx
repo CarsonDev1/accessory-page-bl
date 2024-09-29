@@ -6,8 +6,7 @@ import "./product-list-backup-charger.scss";
 import CardProduct from "../CardProduct/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import pklaptop from "../../../public/pklaptop_desk.webp";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
@@ -130,6 +129,8 @@ const Section5: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<string>("All");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [visibleProducts, setVisibleProducts] = useState<number>(10);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   useEffect(() => {
     if (activeTab === "All") {
@@ -140,7 +141,23 @@ const Section5: React.FC = () => {
       );
       setFilteredData(filtered || []);
     }
+    setVisibleProducts(10);
+    setIsExpanded(false);
   }, [activeTab, data]);
+
+  const toggleProducts = () => {
+    if (isExpanded) {
+      setVisibleProducts(10);
+      setIsExpanded(false);
+    } else {
+      setVisibleProducts(filteredData.length);
+      setIsExpanded(true);
+    }
+  };
+
+  const loadMore = () => {
+    setVisibleProducts((prevVisible) => prevVisible + 5);
+  };
 
   if (isLoading) {
     return (
@@ -155,13 +172,15 @@ const Section5: React.FC = () => {
   }
 
   return (
-    <div className="OldForNew-Section5" id="item-backup-charger">
+    <div className="OldForNew-Section5" id="item-leather-case">
       <div className="container">
-        <div className="OldForNew-Section5-Container">
-          <div className="title-loai-pk" style={{ marginTop: "0" }}>
-            <span>Sạc Dự Phòng</span>
-          </div>
+        <Image
+          src={pklaptop}
+          alt="no-products"
+          className="images-pk"
+        />
 
+        <div className="OldForNew-Section5-Container">
           {filteredData.length === 0 ? (
             <div className="no-products-message">
               <Image
@@ -172,45 +191,31 @@ const Section5: React.FC = () => {
               <span>Không có sản phẩm</span>
             </div>
           ) : (
-            <div className="OldForNew-Section5-ItemSlider">
-              <Swiper
-                modules={[Navigation]}
-                spaceBetween={10}
-                slidesPerView="auto"
-                speed={1000}
-                navigation
-                breakpoints={{
-                  300: {
-                    slidesPerView: 2,
-                  },
-                  576: {
-                    slidesPerView: 3,
-                  },
-                  850: {
-                    slidesPerView: 4,
-                  },
-                  1200: {
-                    slidesPerView: 5,
-                  },
-                }}
-              >
-                {filteredData.map((product, index) => (
-                  <SwiperSlide key={index}>
-                    <CardProduct
-                      key={product.id}
-                      name={product.name}
-                      url_key={product.url_key}
-                      image={product.image}
-                      price_range={product.price_range}
-                    />
-                  </SwiperSlide>
+            <>
+              <div className="OldForNew-Section5-ItemSlider">
+                {filteredData.slice(0, visibleProducts).map((product) => (
+                  <CardProduct
+                    key={product.id}
+                    name={product.name}
+                    url_key={product.url_key}
+                    image={product.image}
+                    price_range={product.price_range}
+                  />
                 ))}
-              </Swiper>
-            </div>
+              </div>
+              {filteredData.length > 10 && (
+                <div className="load-more-container">
+                  <button onClick={toggleProducts}>
+                    {isExpanded ? "Thu gọn" : "Xem thêm"}
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
     </div>
   );
 };
+
 export default Section5;

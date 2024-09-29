@@ -37,13 +37,8 @@ function CardProduct({
             <p className="product__price--percent-detail">Giảm&nbsp;17%</p>
           </div>
           <img
-            style={{
-              objectFit: "contain",
-              maxWidth: "180px",
-              height: "180px",
-              display: "block",
-              margin: "auto",
-            }}
+
+            className="product__img-detail"
             alt={name}
             src={image.url}
           />
@@ -62,7 +57,7 @@ function CardProduct({
             {(price_range.minimum_price.final_price.value + 300000).toLocaleString()}
           </span>
           <div className="product__con-hang">
-            <Image src={iconconhang} alt=""  className="product__con-hang-img"/>
+            <Image src={iconconhang} alt="" className="product__con-hang-img" />
             <span className="product__con-hang-detail">Còn hàng</span>
           </div>
         </div>

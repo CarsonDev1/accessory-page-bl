@@ -4,7 +4,14 @@
   background-color: #fefce3;
 }
 .OldForNew-Section5 {
-  background-color: #fefce3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.images-pk{
+  width: 100%;
+  height: 100%;
+  margin: 20px auto;
 }
 .title-loai-pk span {
   background: #0f1630;
@@ -18,6 +25,20 @@
 .title-loai-pk {
   text-align: left;
   margin: 0px 0px 20px 0px;
+}
+.no-products-image {
+  width: 200px;
+  height: 200px;
+}
+.no-products-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.no-products-message span {
+  font-size: 18px;
+  font-weight: 600;
 }
 .OldForNew-Section5-tab {
   display: flex;
@@ -48,6 +69,9 @@
 .OldForNew-Section5-ItemSlider {
   margin: auto;
   align-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
 }
 
 .swiper-button-prev,
@@ -105,20 +129,7 @@
   right: 10px;
   transform: translateY(-50%) translateX(0);
 }
-.no-products-image {
-  width: 200px;
-  height: 200px;
-}
-.no-products-message {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.no-products-message span {
-  font-size: 18px;
-  font-weight: 600;
-}
+
 @media (max-width: 1440px) {
   .OldForNew-Section5-Container {
     margin: auto;
@@ -139,6 +150,9 @@
   .OldForNew-Section5-tab {
     gap: 6px;
   }
+  .OldForNew-Section5-ItemSlider {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .OldForNew-Section5-tabItemText {
     padding: 6px 12px;
     font-size: 13px;
@@ -146,6 +160,9 @@
   }
 }
 @media (max-width: 767px) {
+  .OldForNew-Section5-ItemSlider {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .OldForNew-Section5-tabItemText {
     padding: 6px 6px;
     font-size: 13px;
@@ -171,5 +188,24 @@
     margin: unset;
     font-weight: 500;
     min-width: 110px;
+  }
+}
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+}
+.load-more-container {
+  button {
+    background-color: #f47700;
+    color: white;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+  }
+  button:hover {
+    background-color: #ef373e;
   }
 }
