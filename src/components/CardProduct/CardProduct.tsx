@@ -32,7 +32,17 @@ function CardProduct({
         style={{ width: "100%", textDecoration: "none" }}
       >
         <div className="product__price__percent">
-          <p className="product__price--percent-detail">Giảm&nbsp;17%</p>
+          <p className="product__price--percent-detail">
+            Giảm&nbsp;
+            {Math.round(
+              ((price_range.minimum_price.final_price.value +
+                300000 -
+                price_range.minimum_price.final_price.value) /
+                (price_range.minimum_price.final_price.value + 300000)) *
+                100
+            )}
+            %
+          </p>
         </div>
         <figure className="product__img">
           <img className="product__img-detail" alt={name} src={image.url} />
