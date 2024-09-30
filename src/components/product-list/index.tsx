@@ -135,7 +135,7 @@ const ProductList: React.FC = () => {
   ];
 
   return (
-    <div className="product-list">
+    <div className="product-list" id="item-apple">
       <div className="upgrade-list">
         <div className="container">
           {/* <Image

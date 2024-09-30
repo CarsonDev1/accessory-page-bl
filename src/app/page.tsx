@@ -9,7 +9,7 @@ import ProductListSacDuPhong from "../components/product-list-backup-charger/pro
 import ProductListCapsac from "../components/product-list-charging-cable/product-list-charging-cable";
 import ProductListLoa from "../components/product-list-loudspeaker/product-list-loudspeaker";
 // import ProductListTheNho from "../components/product-list-usb/product-list-usb";
-import ProductListApple from "../components/product-list-apple/product-list-apple";
+// import ProductListApple from "../components/product-list-apple/product-list-apple";
 import ProductListLaptop from "../components/product-list-laptop/product-list-laptop";
 // import ProductListSmartHome from "../components/product-list-smart-home/product-list-smart-home";
 import ProductListSamsung from "../components/product-list-samsung/product-list-samsung";
@@ -20,7 +20,7 @@ export default function Home() {
       <Banner />
       <BannerSlide />
       <ProductList />
-      <ProductListApple />
+      {/* <ProductListApple /> */}
       <ProductListSamsung />
       <ProductListBaoda />
       <ProductListCuongLuc />
