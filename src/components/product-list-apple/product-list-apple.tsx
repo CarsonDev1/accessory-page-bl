@@ -145,7 +145,7 @@ const Section5: React.FC = () => {
 
   const toggleProducts = () => {
     if (isExpanded) {
-      setVisibleProducts(10);
+      setVisibleProducts(5);
       setIsExpanded(false);
     } else {
       setVisibleProducts(filteredData.length);
@@ -154,7 +154,7 @@ const Section5: React.FC = () => {
   };
 
   const loadMore = () => {
-    setVisibleProducts((prevVisible) => prevVisible + 5);
+    setVisibleProducts((prevVisible) => prevVisible + 5); // Thay đổi số lượng sản phẩm hiển thị thêm
   };
 
   if (isLoading) {
@@ -170,13 +170,9 @@ const Section5: React.FC = () => {
   }
 
   return (
-    <div className="OldForNew-Section5" id="item-leather-case">
+    <div className="OldForNew-Section5" id="item-apple">
       <div className="container">
-        <Image
-          src={pklaptop}
-          alt="no-products"
-          className="images-pk"
-        />
+        <Image src={pklaptop} alt="no-products" className="images-pk" />
 
         <div className="OldForNew-Section5-Container">
           {filteredData.length === 0 ? (
@@ -201,7 +197,7 @@ const Section5: React.FC = () => {
                   />
                 ))}
               </div>
-              {filteredData.length > 10 && (
+              {filteredData.length > visibleProducts && (
                 <div className="load-more-container">
                   <button onClick={toggleProducts}>
                     {isExpanded ? "Thu gọn" : "Xem thêm"}

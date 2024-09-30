@@ -458,15 +458,15 @@
   }
 }
 .icon-itemClick {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   @media screen and (max-width: 1200px) {
-    width: 60px;
-    height: 60px;
-  }
-  @media screen and (max-width: 992px) {
     width: 40px;
     height: 40px;
+  }
+  @media screen and (max-width: 992px) {
+    width: 30px;
+    height: 30px;
   }
 }
 .item-click-txt {
@@ -504,6 +504,7 @@
 }
 .item-click:hover {
   border: 1px solid #ffd82c;
+  cursor: pointer;
 }
 .list-item-click {
   display: grid;
@@ -516,7 +517,7 @@
   }
   @media screen and (max-width: 768px) {
     gap: 0.6rem;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(8, 1fr);
   }
   @media screen and (max-width: 600px) {
     gap: 0.3rem;

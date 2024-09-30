@@ -1,14 +1,16 @@
 .OldForNew-Section5-Container {
   margin: auto;
-  padding: 10px 0px;
-  background-color: #fefce3;
+  padding: 10px 10px;
+  background-color: #ffd503;
+  border-radius: 10px;
 }
 .OldForNew-Section5 {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  background-color: #fefce3;
 }
-.images-pk{
+.images-pk {
   width: 100%;
   height: 100%;
   margin: 20px auto;
@@ -194,7 +196,6 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
-
 }
 .load-more-container {
   button {
