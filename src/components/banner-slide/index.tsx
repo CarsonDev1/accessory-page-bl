@@ -1444,6 +1444,22 @@ const BannerSlide = () => {
 
         <div>
           <ul className="list-item-click">
+            <li className="item-click" onClick={handleClickApple}>
+              <Image
+                src={iconapple}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">Apple</p>
+            </li>
+            <li className="item-click" onClick={handleClickSamSung}>
+              <Image
+                src={iconSamsung}
+                alt="banner-slide-01"
+                className="icon-itemClick"
+              />
+              <p className="item-click-txt">SamSung</p>
+            </li>
             <li className="item-click" onClick={handleClickLeatherCase}>
               <Image
                 src={iconbaoda}
@@ -1467,23 +1483,15 @@ const BannerSlide = () => {
                 className="icon-itemClick"
               />
               <p className="item-click-txt">Sạc dự phòng</p>
-            </li>
-            <li className="item-click" onClick={handleClickApple}>
+            </li>{" "}
+            <li className="item-click" onClick={handleClickChargingCable}>
               <Image
-                src={iconapple}
+                src={iconcapsac}
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Apple</p>
-            </li>
-            <li className="item-click" onClick={handleClickLaptop}>
-              <Image
-                src={iconlaptop}
-                alt="banner-slide-01"
-                className="icon-itemClick"
-              />
-              <p className="item-click-txt">Laptop/ Macbook</p>
-            </li>
+              <p className="item-click-txt">Cáp sạc</p>
+            </li>{" "}
             <li className="item-click" onClick={handleClickEarphone}>
               <Image
                 src={icontainghe}
@@ -1491,7 +1499,7 @@ const BannerSlide = () => {
                 className="icon-itemClick"
               />
               <p className="item-click-txt">Tai nghe</p>
-            </li>
+            </li>{" "}
             <li className="item-click" onClick={handleClickWatch}>
               <Image
                 src={icondongho}
@@ -1500,13 +1508,13 @@ const BannerSlide = () => {
               />
               <p className="item-click-txt">Đồng hồ</p>
             </li>
-            <li className="item-click" onClick={handleClickChargingCable}>
+            <li className="item-click" onClick={handleClickLaptop}>
               <Image
-                src={iconcapsac}
+                src={iconlaptop}
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Cáp sạc</p>
+              <p className="item-click-txt">Laptop/ Macbook</p>
             </li>
             {/* <li className="item-click" onClick={handleClickUsb}>
               <Image
@@ -1539,14 +1547,6 @@ const BannerSlide = () => {
                 className="icon-itemClick"
               />
               <p className="item-click-txt">Khác</p>
-            </li>
-            <li className="item-click" onClick={handleClickSamSung}>
-              <Image
-                src={iconSamsung}
-                alt="banner-slide-01"
-                className="icon-itemClick"
-              />
-              <p className="item-click-txt">SamSung</p>
             </li>
           </ul>
         </div>

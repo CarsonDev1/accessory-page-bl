@@ -145,7 +145,7 @@ const Section5: React.FC = () => {
 
   const toggleProducts = () => {
     if (isExpanded) {
-      setVisibleProducts(5);
+      setVisibleProducts(10);
       setIsExpanded(false);
     } else {
       setVisibleProducts(filteredData.length);
@@ -154,7 +154,7 @@ const Section5: React.FC = () => {
   };
 
   const loadMore = () => {
-    setVisibleProducts((prevVisible) => prevVisible + 5); // Thay đổi số lượng sản phẩm hiển thị thêm
+    setVisibleProducts((prevVisible) => prevVisible + 5);
   };
 
   if (isLoading) {
@@ -197,7 +197,7 @@ const Section5: React.FC = () => {
                   />
                 ))}
               </div>
-              {filteredData.length > visibleProducts && (
+              {filteredData.length > 10 && (
                 <div className="load-more-container">
                   <button onClick={toggleProducts}>
                     {isExpanded ? "Thu gọn" : "Xem thêm"}

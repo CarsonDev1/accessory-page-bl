@@ -172,13 +172,9 @@ const Section5: React.FC = () => {
   }
 
   return (
-    <div className="OldForNew-Section5" id="item-leather-case">
+    <div className="OldForNew-Section5" id="item-strength">
       <div className="container">
-        <Image
-          src={pklaptop}
-          alt="no-products"
-          className="images-pk"
-        />
+        <Image src={pklaptop} alt="no-products" className="images-pk" />
 
         <div className="OldForNew-Section5-Container">
           {filteredData.length === 0 ? (

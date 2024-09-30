@@ -20,18 +20,19 @@ export default function Home() {
       <Banner />
       <BannerSlide />
       <ProductList />
+      <ProductListApple />
+      <ProductListSamsung />
       <ProductListBaoda />
       <ProductListCuongLuc />
       <ProductListSacDuPhong />
-      <ProductListTaiNghe />
-      <ProductListDongHo />
       <ProductListCapsac />
+      <ProductListTaiNghe />
+
       <ProductListLoa />
       {/* <ProductListTheNho /> */}
-      <ProductListApple />
       <ProductListLaptop />
       {/* <ProductListSmartHome /> */}
-      <ProductListSamsung />
+      <ProductListDongHo />
       <ProductListKhac />
     </div>
   );
