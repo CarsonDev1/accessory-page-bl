@@ -4,7 +4,7 @@ import ProductList from "@/components/product-list";
 import ProductListBaoda from "../components/product-list-leather-case/product-list-leather-case";
 import ProductListCuongLuc from "../components/product-list-strength/product-list-strength";
 // import ProductListTaiNghe from "../components/product-list-earphone/product-list-earphone";
-import ProductListDongHo from "../components/product-list-watch/product-list-watch";
+// import ProductListDongHo from "../components/product-list-watch/product-list-watch";
 import ProductListSacDuPhong from "../components/product-list-backup-charger/product-list-backup-charger";
 import ProductListCapsac from "../components/product-list-charging-cable/product-list-charging-cable";
 import ProductListLoa from "../components/product-list-loudspeaker/product-list-loudspeaker";
@@ -22,7 +22,7 @@ export default function Home() {
       <Banner />
       <BannerSlide />
             <ProductListBuyPhone />
-      <ProductListBuyIpad/>
+      {/* <ProductListBuyIpad/> */}
       <ProductList />
       {/* <ProductListApple /> */}
 
@@ -37,7 +37,7 @@ export default function Home() {
       {/* <ProductListTheNho /> */}
       <ProductListLaptop />
       {/* <ProductListSmartHome /> */}
-      <ProductListDongHo />
+      {/* <ProductListDongHo /> */}
       {/* <ProductListKhac /> */}
     </div>
   );

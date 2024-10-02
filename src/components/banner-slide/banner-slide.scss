@@ -14,18 +14,23 @@
   }
   .banner-slide-combo {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3.2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
     margin-bottom: 1.2rem;
     background: #261e17;
     padding: 4rem 2rem;
     border: 1px solid #a27d6d;
     border-radius: 1.2rem;
+        @media (max-width: 1200px) {
+              gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
     @media (max-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
     }
     @media (max-width: 576px) {
-      grid-template-columns: repeat(1, 1fr);
+  
+      grid-template-columns: repeat(2, 1fr);
     }
     &-title {
       text-align: center;
@@ -71,9 +76,9 @@
       }
     }
     &-button {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       background: linear-gradient(360deg, #d09e7b, #f3eae6);
-      padding: 0.8rem 2rem;
+      padding: 0.8rem 1.2rem;
       border-radius: 3.2rem;
       color: #3c2313;
       font-weight: 600;
@@ -98,6 +103,10 @@
       height: 20rem;
       scale: 0.9;
       transition: all 0.5s ease-in-out;
+       @media (max-width: 766px) {
+          width: 10rem;
+      height: 10rem;
+      }
       &:hover {
         scale: 1;
       }
@@ -508,12 +517,13 @@
 }
 .list-item-click {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 2rem;
   @media screen and (max-width: 1200px) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
   }
   @media screen and (max-width: 768px) {
     gap: 0.6rem;
@@ -521,6 +531,6 @@
   }
   @media screen and (max-width: 600px) {
     gap: 0.3rem;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }

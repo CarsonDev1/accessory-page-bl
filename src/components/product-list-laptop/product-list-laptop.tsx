@@ -66,10 +66,20 @@ price_range {
 }
 `;
 
-const variables = {
+const variablesCategory1 = {
   filter: {
     category_uid: {
-      eq: "NjU=",
+      eq: "NjU=", // First category
+    },
+  },
+  pageSize: 200,
+  currentPage: 1,
+};
+
+const variablesCategory2 = {
+  filter: {
+    category_uid: {
+      eq: "NjY=", // Second category
     },
   },
   pageSize: 200,
@@ -77,50 +87,39 @@ const variables = {
 };
 
 async function fetchProductListDataLaptop() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+  const response1 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       query,
-      variables,
+      variables: variablesCategory1,
     }),
   });
 
-  const data = await response.json();
-  return data.data.products.items as Product[];
+  const response2 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: variablesCategory2,
+    }),
+  });
+
+  const data1 = await response1.json();
+  const data2 = await response2.json();
+
+  // Merge the two sets of data
+  const productsCategory1 = data1.data.products.items as Product[];
+  const productsCategory2 = data2.data.products.items as Product[];
+
+  return [...productsCategory1, ...productsCategory2];
 }
 
 const Section5: React.FC = () => {
-  const settings = {
-    infinite: true,
-    autoplay: true,
-    dots: true,
-    arrows: true,
-    slidesToShow: 5,
-    rows: 1,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-    ],
-  };
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataLaptop"],
     queryFn: fetchProductListDataLaptop,
@@ -170,7 +169,6 @@ const Section5: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
-
   return (
     <div className="OldForNew-Section5" id="item-laptop">
       <div className="container">

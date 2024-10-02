@@ -139,9 +139,11 @@ interface ProductCombo16 {
   persen: string;
   items: {
     type: string
-    nameproduct: string;
+    items: {
+       nameproduct: string;
     priceorigin: number;
     comboprice: number;
+    }[]
   }[];
 }[]
 
@@ -154,7 +156,7 @@ const fetchData = async () => {
     });
     const data: ProductCombo16[] = await response.json();
   setFetchedData(data)
-   
+   console.log("data from", data)
   };
 
 useEffect(() => {
@@ -1294,11 +1296,13 @@ useEffect(() => {
     modalData?.details?.every(
       (item: any) => selectedOptions[item.name] !== undefined
     ) ?? false;
- console.log("dataa",fetchedData);
+ console.log("dataa",modalData);
   const handleOptionChange = (itemIndex: number, value: string) => {
-    const selectedItem = modalData.details[itemIndex].options.find(
+    const selectedItem = modalData?.details[itemIndex].options.find(
       (option: any) => option.name === value
     );
+    console.log('selected!!!!', selectedItem);
+    
 
     if (selectedItem) {
       modalData.details[itemIndex].selectedPrice = selectedItem.price;
@@ -1342,47 +1346,16 @@ useEffect(() => {
       Laptop.scrollIntoView({ behavior: "smooth" });
     }
   };
-  // const handleClickEarphone = () => {
-  //   const Earphone = document.getElementById("item-earphone");
-  //   if (Earphone) {
-  //     Earphone.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
-
-  // const handleClickSmartHome = () => {
-  //   const SmartHome = document.getElementById("item-smart-home");
-  //   if (SmartHome) {
-  //     SmartHome.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
-  const handleClickWatch = () => {
-    const Watch = document.getElementById("item-watch");
-    if (Watch) {
-      Watch.scrollIntoView({ behavior: "smooth" });
-    }
-  };
   const handleClickChargingCable = () => {
     const ChargingCable = document.getElementById("item-charging-cable");
     if (ChargingCable) {
       ChargingCable.scrollIntoView({ behavior: "smooth" });
     }
   };
-  // const handleClickUsb = () => {
-  //   const Usb = document.getElementById("item-usb");
-  //   if (Usb) {
-  //     Usb.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
   const handleClickLoudspeaker = () => {
     const Loudspeaker = document.getElementById("item-loudspeaker");
     if (Loudspeaker) {
       Loudspeaker.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-  const handleClickOther = () => {
-    const Other = document.getElementById("item-other");
-    if (Other) {
-      Other.scrollIntoView({ behavior: "smooth" });
     }
   };
   const handleClickSamSung = () => {
@@ -1534,14 +1507,14 @@ useEffect(() => {
               />
               <p className="item-click-txt">Tai nghe</p>
             </li>{" "} */}
-            <li className="item-click" onClick={handleClickWatch}>
+            {/* <li className="item-click" onClick={handleClickWatch}>
               <Image
                 src={icondongho}
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
               <p className="item-click-txt">Đồng hồ</p>
-            </li>
+            </li> */}
             <li className="item-click" onClick={handleClickLaptop}>
               <Image
                 src={iconlaptop}
@@ -1574,14 +1547,14 @@ useEffect(() => {
               />
               <p className="item-click-txt">Smart Home</p>
             </li> */}
-            <li className="item-click" onClick={handleClickOther}>
+            {/* <li className="item-click" onClick={handleClickOther}>
               <Image
                 src={iconkhac}
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
               <p className="item-click-txt">Khác</p>
-            </li>
+            </li> */}
           </ul>
         </div>
         <h3 className="banner-slide-combo-title">COMBO PHỤ KIỆN iPHONE 16</h3>
@@ -1640,7 +1613,7 @@ useEffect(() => {
             </div>
           ))}
         </div>
-      <Modal
+ <Modal
         visible={modalIsOpenTest}
         onCancel={closeModalTest}
         footer={false}
@@ -1653,36 +1626,46 @@ useEffect(() => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
-          >
+            >
+               <Form.Item<FieldType>
+                label="Họ và tên khách hàng"
+                name="username"
+                rules={[{ required: true, message: "Vui lòng nhập họ và tên" }]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item<FieldType>
+                label="Số điện thoại"
+                name="phone"
+                rules={[
+                  { required: true, message: "Vui lòng nhập số điện thoại" },
+                  {
+                    pattern: /^\d{10}$/,
+                    message: "Số điện thoại phải có 10 chữ số",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
             <div className="modal-content">
-              {selectedCombo.items.map((item, index) => (
-                <div key={index} className="modal-detail-item">
-                  <Image
-                    src="/combo-01-16.png"
-                    width={100}
-                    height={100}
-                    alt=""
-                    className="modal-item-image"
-                  />
-                  <div className="modal-item-wrap-select">
-                    <h4>{selectedCombo.combo}</h4>
-                    <Form.Item className="modal-select" name={item.nameproduct}>
-                      <Select
-                        placeholder={`Chọn ${item.type}`}
-                        onChange={(value) => handleOptionChange(index, value)}
-                      >
-                        <Select.Option key={index} value={item.type}>
-                          <div className="option-content">
-                            <span className="option-name">{item.nameproduct}</span>
-                            <span className="option-price">
-                              {formatPrice(item.comboprice)}
-                            </span>
-                          </div>
-                        </Select.Option>
-                      </Select>
-                    </Form.Item>
-                  </div>
-                </div>
+              {selectedCombo.items.map((item, index) => ( 
+                <Form.Item className="modal-select" key={`form-item-${index}`} name={item.type}>
+                  <Select
+                    placeholder={`Chọn ${item.type}`}
+                    onChange={(value) => handleOptionChange(index, value)}
+                  >
+                    {item.items.map((subItem, subIndex) => (
+                      <Select.Option key={`option-${index}-${subIndex}`} value={subItem.nameproduct}>
+                        <div className="option-content">
+                          <span className="option-name">{subItem.nameproduct}</span>
+                          <span className="option-price">{formatPrice(subItem.comboprice)}</span>
+                        </div>
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Form.Item>
               ))}
             </div>
             <div className="modal-price-wrap">
