@@ -6,7 +6,7 @@ import "./product-list-backup-charger.scss";
 import CardProduct from "../CardProduct/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
-import pklaptop from "../../../public/pklaptop_desk.webp";
+import pklaptop from "../../../public/sac du phong.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";

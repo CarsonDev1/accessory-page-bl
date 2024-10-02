@@ -36,6 +36,7 @@ const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
 
 const BannerSlide = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpenTest, setModalIsOpenTest] = useState(false);
   const [modalData, setModalData] = useState<any>(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -133,6 +134,33 @@ const BannerSlide = () => {
         setLoading(false);
       });
   };
+interface ProductCombo16 {
+  combo: string;
+  persen: string;
+  items: {
+    type: string
+    nameproduct: string;
+    priceorigin: number;
+    comboprice: number;
+  }[];
+}[]
+
+const [fetchedData, setFetchedData] = useState<ProductCombo16[]>([]);
+
+const fetchData = async () => {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbysamsKFA9Pbr0czRuXVDWKpnCo5BM3HxutpKXLPY_jemM6GZTBCkR6_5oe-nlnK92pbw/exec?id=iphone16',{
+      method: 'GET',
+
+    });
+    const data: ProductCombo16[] = await response.json();
+  setFetchedData(data)
+   
+  };
+
+useEffect(() => {
+  fetchData();
+}, []);
+
 
   const combos = [
     {
@@ -1259,12 +1287,14 @@ const BannerSlide = () => {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-
+  const closeModalTest = () => {
+    setModalIsOpenTest(false);
+  };
   const isAllOptionsSelected =
     modalData?.details?.every(
       (item: any) => selectedOptions[item.name] !== undefined
     ) ?? false;
-
+ console.log("dataa",fetchedData);
   const handleOptionChange = (itemIndex: number, value: string) => {
     const selectedItem = modalData.details[itemIndex].options.find(
       (option: any) => option.name === value
@@ -1312,12 +1342,12 @@ const BannerSlide = () => {
       Laptop.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const handleClickEarphone = () => {
-    const Earphone = document.getElementById("item-earphone");
-    if (Earphone) {
-      Earphone.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const handleClickEarphone = () => {
+  //   const Earphone = document.getElementById("item-earphone");
+  //   if (Earphone) {
+  //     Earphone.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
 
   // const handleClickSmartHome = () => {
   //   const SmartHome = document.getElementById("item-smart-home");
@@ -1356,6 +1386,7 @@ const BannerSlide = () => {
     }
   };
   const handleClickSamSung = () => {
+    fetchData()
     const SamSung = document.getElementById("item-samsung");
     if (SamSung) {
       SamSung.scrollIntoView({ behavior: "smooth" });
@@ -1366,8 +1397,11 @@ const BannerSlide = () => {
     if (Strength) {
       Strength.scrollIntoView({ behavior: "smooth" });
     }
-  };
-
+  };  const [selectedCombo, setSelectedCombo] = useState<ProductCombo16 | null>(null);
+  const handleClickTest = (combo: ProductCombo16) => {
+     setSelectedCombo(combo);
+  setModalIsOpenTest(true)
+}
   return (
     <div className="banner-slide">
       <div className="container">
@@ -1492,14 +1526,14 @@ const BannerSlide = () => {
               />
               <p className="item-click-txt">Cáp sạc</p>
             </li>{" "}
-            <li className="item-click" onClick={handleClickEarphone}>
+            {/* <li className="item-click" onClick={handleClickEarphone}>
               <Image
                 src={icontainghe}
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
               <p className="item-click-txt">Tai nghe</p>
-            </li>{" "}
+            </li>{" "} */}
             <li className="item-click" onClick={handleClickWatch}>
               <Image
                 src={icondongho}
@@ -1530,7 +1564,7 @@ const BannerSlide = () => {
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Loa</p>
+              <p className="item-click-txt">Loa, Tai nghe</p>
             </li>
             {/* <li className="item-click" onClick={handleClickSmartHome}>
               <Image
@@ -1552,43 +1586,32 @@ const BannerSlide = () => {
         </div>
         <h3 className="banner-slide-combo-title">COMBO PHỤ KIỆN iPHONE 16</h3>
 
-        <div className="banner-slide-combo">
-          {combos.map((combo) => (
-            <div
-              key={combo.id}
-              className="banner-slide-combo-wrap"
-              onClick={() => openModalWithCombo(combo.id)}
-            >
-              <div className="banner-slide-combo-card">
-                <div className="banner-slide-combo-header">
-                  <div className="combo-txt">
-                    <span>-{combo.percent}%</span>
-                  </div>
+      <div className="banner-slide-combo">
+        {fetchedData.map((combo, index) => (
+          <div
+            key={index}
+            className="banner-slide-combo-wrap"
+            onClick={() => handleClickTest(combo)} 
+          >
+            <div className="banner-slide-combo-card">
+              <div className="banner-slide-combo-header">
+                <div className="combo-txt">
+                  <span>-{combo.persen}</span>
                 </div>
-                <div className="banner-slide-combo-button">{combo.name}</div>
-                <Image
-                  src={combo.image}
-                  width={400}
-                  height={400}
-                  alt="banner-slide-combo-image"
-                  className="banner-slide-combo-image"
-                />
               </div>
-              <div className="banner-slide-combo-reduced">
-                <span> </span>
-                <span className="banner-slide-combo-reduced-pirce">
-                  {formatPrice(combo.originalPrice)}
-                </span>
-              </div>
-              <div className="banner-slide-combo-price">
-                <span className="banner-slide-combo-price-sub">Giá bán: </span>
-                <span className="banner-slide-combo-price-txt">
-                  {formatPrice(combo.price)}
-                </span>
-              </div>
+              <div className="banner-slide-combo-button">{combo.combo}</div>
+              <Image
+                src="/combo-01-16.png"
+                width={400}
+                height={400}
+                alt="banner-slide-combo-image"
+                className="banner-slide-combo-image"
+              />
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
+
 
         <h3 className="banner-slide-combo-title">COMBO PHỤ KIỆN iPHONE 15</h3>
 
@@ -1617,8 +1640,70 @@ const BannerSlide = () => {
             </div>
           ))}
         </div>
-
-        {modalIsOpen && modalData && (
+      <Modal
+        visible={modalIsOpenTest}
+        onCancel={closeModalTest}
+        footer={false}
+      >
+        {selectedCombo && (
+          <Form
+            name="basic"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 16 }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+          >
+            <div className="modal-content">
+              {selectedCombo.items.map((item, index) => (
+                <div key={index} className="modal-detail-item">
+                  <Image
+                    src="/combo-01-16.png"
+                    width={100}
+                    height={100}
+                    alt=""
+                    className="modal-item-image"
+                  />
+                  <div className="modal-item-wrap-select">
+                    <h4>{selectedCombo.combo}</h4>
+                    <Form.Item className="modal-select" name={item.nameproduct}>
+                      <Select
+                        placeholder={`Chọn ${item.type}`}
+                        onChange={(value) => handleOptionChange(index, value)}
+                      >
+                        <Select.Option key={index} value={item.type}>
+                          <div className="option-content">
+                            <span className="option-name">{item.nameproduct}</span>
+                            <span className="option-price">
+                              {formatPrice(item.comboprice)}
+                            </span>
+                          </div>
+                        </Select.Option>
+                      </Select>
+                    </Form.Item>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="modal-price-wrap">
+              <span>Tổng tiền: </span>
+              <h3 className="modal-price">{formatPrice(totalPrice)}</h3>
+            </div>
+            <Form.Item wrapperCol={{ span: 16 }} className="modal-btn-wrap">
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+                className="modal-btn"
+                disabled={!isAllOptionsSelected}
+              >
+                {loading ? 'Đang đặt hàng...' : 'Đặt hàng ngay'}
+              </Button>
+            </Form.Item>
+          </Form>
+        )}
+      </Modal>
+        {/* {modalIsOpen && modalData && (
           <Modal visible={modalIsOpen} onCancel={closeModal} footer={false}>
             <h2 className="modal-title">{modalData.name}</h2>
             <Form
@@ -1652,30 +1737,30 @@ const BannerSlide = () => {
               </Form.Item>
 
               <div className="modal-content">
-                {modalData.details.map((item: any, index: number) => (
+               {fetchedData.map((combo, index)=> (
                   <div key={index} className="modal-detail-item">
                     <Image
-                      src={item.image}
+                      src="/combo-01-16.png"
                       width={100}
                       height={100}
-                      alt={item.name}
+                      alt=""
                       className="modal-item-image"
                     />
                     <div className="modal-item-wrap-select">
-                      <h4>{item.name}</h4>
-                      <Form.Item className="modal-select" name={item.name}>
+                      <h4> {combo.combo}</h4>
+                      <Form.Item className="modal-select" name={combo?.items?.map(item => (item.nameproduct)).join(', ')}>
                         <Select
-                          placeholder={`Chọn ${item.name}`}
+                          placeholder={`Chọn ${combo?.items?.map(item => (item.nameproduct)).join(', ')}`}
                           onChange={(value) => handleOptionChange(index, value)}
                         >
-                          {item.options.map((option: any, optIndex: number) => (
-                            <Select.Option key={optIndex} value={option.name}>
+                          {combo.items.map((combos, index) => (
+                            <Select.Option key={index} value={combos.nameproduct}>
                               <div className="option-content">
                                 <span className="option-name">
-                                  {option.name}
+                                  {combos.nameproduct}
                                 </span>
                                 <span className="option-price">
-                                  {formatPrice(option.price)}
+                                  {formatPrice(combos.comboprice)}
                                 </span>
                               </div>
                             </Select.Option>
@@ -1703,7 +1788,7 @@ const BannerSlide = () => {
               </Form.Item>
             </Form>
           </Modal>
-        )}
+        )} */}
       </div>
     </div>
   );

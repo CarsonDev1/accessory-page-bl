@@ -6,7 +6,7 @@ import "./product-list-strength.css";
 import CardProduct from "../CardProduct/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
-import pklaptop from "../../../public/pklaptop_desk.webp";
+import pklaptop from "../../../public/Dan man hinh.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";

@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
 import "./product-list.scss";
-import pkApple from "../../../public/PK apple.png"
+
 export interface Product {
   id: number;
   name: string;
@@ -68,14 +68,14 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
   filter: {
     category_uid: {
-      eq: "MzIz",
+      eq: "MzI4",
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
 
-async function fetchProductListData() {
+async function fetchProductListDataBuyiPad() {
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
@@ -94,8 +94,8 @@ async function fetchProductListData() {
 
 const ProductList: React.FC = () => {
   const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListData"],
-    queryFn: fetchProductListData,
+    queryKey: ["productListDataiPad"],
+    queryFn: fetchProductListDataBuyiPad,
     staleTime: 300000,
   });
 
@@ -125,52 +125,17 @@ const ProductList: React.FC = () => {
     return <div>Error loading data</div>;
   }
 
-  const tabs = [
-    "All",
-    "Ốp lưng",
-    "Airpod",
-    "Apple Watch",
-    "Bộ kính dán",
-    "Sạc",
-  ];
+
 
   return (
-    <div className="product-list" id="item-apple">
+    <div className="product-list" >
       <div className="upgrade-list">
         <div className="container">
-          {/* <Image
-            src="/banner-80-percent.png"
-            width={1820}
-            height={1200}
-            alt="accessory-80-percent"
-            className=""
-          /> */}
           <div className="upgrade">
-              <Image src={pkApple} alt="no-products" className="images-pk" />
-
-            <div className="tabs">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={activeTab === tab ? "tab active" : "tab"}
-                  style={{
-                    color: activeTab === tab ? "white" : "#000",
-                    backgroundColor: activeTab === tab ? "#ef373e" : "#f1f1f1",
-                    border:
-                      activeTab === tab
-                        ? "1px solid #ef373e"
-                        : "1px solid #ccc",
-                    padding: "10px 20px",
-                    margin: "5px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
+            <div className="upgrade-header">
+              <h3 className="banner-slide-combo-title">iPad</h3>
             </div>
+
 
             <Swiper
               modules={[Navigation]}

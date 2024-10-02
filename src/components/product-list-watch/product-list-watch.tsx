@@ -6,7 +6,7 @@ import "./product-list-watch.scss";
 import CardProduct from "../CardProduct/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
-import pklaptop from "../../../public/pklaptop_desk.webp";
+import pklaptop from "../../../public/do choi cong nghe.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";

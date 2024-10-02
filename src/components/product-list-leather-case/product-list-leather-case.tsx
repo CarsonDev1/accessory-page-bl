@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../public/img-no-pro-matching.webp";
-import pklaptop from "../../../public/pklaptop_desk.webp";
+import pklaptop from "../../../public/Bao da op lung.png";
 export interface Product {
   id: number;
   name: string;

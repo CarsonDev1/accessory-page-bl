@@ -6,7 +6,7 @@ import "./product-list-loudspeaker.scss";
 import CardProduct from "../CardProduct/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
-import pklaptop from "../../../public/pklaptop_desk.webp";
+import pklaptop from "../../../public/loa tai gnhe.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
@@ -69,7 +69,7 @@ price_range {
 const variables = {
   filter: {
     category_uid: {
-      eq: "MjU=",
+      eq: "MTM3",
     },
   },
   pageSize: 200,
@@ -127,23 +127,25 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("All");
+  const [activeTab, setActiveTab] = useState<string>("Al");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
-    }
-    setVisibleProducts(10);
-    setIsExpanded(false);
-  }, [activeTab, data]);
+useEffect(() => {
+  if (activeTab === "All") {
+    setFilteredData(data || []);
+  } else {
+    const filtered = data?.filter((product) =>
+      product.name.toLowerCase().includes("loa") || 
+      product.name.toLowerCase().includes("tai nghe")
+    );
+    setFilteredData(filtered || []);
+  }
+  setVisibleProducts(10);
+  setIsExpanded(false);
+}, [activeTab, data]);
+
 
   const toggleProducts = () => {
     if (isExpanded) {
@@ -175,7 +177,6 @@ const Section5: React.FC = () => {
     <div className="OldForNew-Section5" id="item-loudspeaker">
       <div className="container">
         <Image src={pklaptop} alt="no-products" className="images-pk" />
-
         <div className="OldForNew-Section5-Container">
           {filteredData.length === 0 ? (
             <div className="no-products-message">
