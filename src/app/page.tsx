@@ -16,12 +16,16 @@ import ProductListSamsung from "../components/product-list-samsung/product-list-
 // import ProductListKhac from "../components/product-list-khac/product-list-khac";
 import ProductListBuyPhone from "../components/product-list-buy-one-apple/index";
 import ProductListBuyIpad from "../components/product-list-buy-one-samsung/index";
+import ComboIPhone16 from "../components/ComboIPhone16/ComboIPhone16"
+import ComboIPhone15 from "../components/ComboIPhone15/ComboIPhone15"
 export default function Home() {
   return (
     <div className="bg-page">
       <Banner />
       <BannerSlide />
-            <ProductListBuyPhone />
+      <ComboIPhone16 />
+      <ComboIPhone15 />
+      <ProductListBuyPhone />
       {/* <ProductListBuyIpad/> */}
       <ProductList />
       {/* <ProductListApple /> */}
