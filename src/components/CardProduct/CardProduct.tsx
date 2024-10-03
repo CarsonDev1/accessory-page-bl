@@ -33,7 +33,7 @@ function CardProduct({
       >
         <div className="product__price__percent">
           <p className="product__price--percent-detail">
-            Giảm&nbsp;
+            -&nbsp;
             {Math.round(
               ((price_range.minimum_price.final_price.value +
                 300000 -

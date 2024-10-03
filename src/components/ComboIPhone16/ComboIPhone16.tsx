@@ -140,7 +140,9 @@ const ComboIPhone16: React.FC = () => {
                         ))}
                     </div>
                     <Modal visible={modalIsOpenTest} onCancel={closeModalTest} footer={false}>
+                      
                         {selectedCombo && (
+                           
                             <Form
                                 form={form}
                                 name='basic'
@@ -150,6 +152,7 @@ const ComboIPhone16: React.FC = () => {
                                 onValuesChange={onValuesChange}
                                 autoComplete='off'
                             >
+                                <h2 className='title-modal-combo'>{selectedCombo.combo}</h2>
                                 <Form.Item<FieldType>
                                     label='Họ và tên khách hàng'
                                     name='username'
@@ -174,9 +177,10 @@ const ComboIPhone16: React.FC = () => {
 
                                 <div className='modal-content'>
                                     {selectedCombo.items.map((item, index) => (
+                                    <div key={`form-item-wrapper-${index}`}>
+                                            <h3>{item.type}:</h3>
                                         <Form.Item
                                             className='modal-select'
-                                            key={`form-item-${index}`}
                                             name={item.type}
                                             rules={[{ required: true, message: `Vui lòng chọn ${item.type}` }]}
                                         >
@@ -196,6 +200,7 @@ const ComboIPhone16: React.FC = () => {
                                                 ))}
                                             </Select>
                                         </Form.Item>
+                                            </div>
                                     ))}
                                 </div>
                                 <div className='modal-price-wrap'>

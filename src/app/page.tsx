@@ -29,14 +29,12 @@ export default function Home() {
       {/* <ProductListBuyIpad/> */}
       <ProductList />
       {/* <ProductListApple /> */}
-
-      <ProductListSamsung />
+      {/* <ProductListSamsung /> */}
       <ProductListBaoda />
       <ProductListCuongLuc />
       <ProductListSacDuPhong />
       <ProductListCapsac />
       {/* <ProductListTaiNghe /> */}
-
       <ProductListLoa />
       {/* <ProductListTheNho /> */}
       <ProductListLaptop />

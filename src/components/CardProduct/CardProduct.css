@@ -40,14 +40,14 @@
 }
 .product__price__percent {
   position: absolute;
-  width: 60px;
+  width: 50px;
   height: 30px;
-  color: #fff;
+  color: #ff4530;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
   line-height: 1;
-  background: #ff4530;
+border: 2px solid #ff4530;
   margin: auto;
   z-index: 100;
   justify-content: center;
@@ -178,19 +178,9 @@
 @media (max-width: 767px) {
   .product__price__percent {
     position: absolute;
-    width: 80px;
+    width: 50px;
     height: 30px;
-    color: #fff;
-    font-weight: bold;
     font-size: 12px;
-    text-align: center;
-    line-height: 1;
-    background: #ff4530;
-    margin: auto;
-    padding: 6px 10px;
-    z-index: 100;
-    display: flex;
-    border-radius: 5px;
   }
   .sticker-combo-requare {
     left: 55%;

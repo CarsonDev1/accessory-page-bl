@@ -93,34 +93,7 @@ async function fetchProductListDataCapsac() {
 }
 
 const Section5: React.FC = () => {
-  const settings = {
-    infinite: true,
-    autoplay: true,
-    dots: true,
-    arrows: true,
-    slidesToShow: 5,
-    rows: 1,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-    ],
-  };
+
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataCapsac"],
     queryFn: fetchProductListDataCapsac,
@@ -172,12 +145,20 @@ const Section5: React.FC = () => {
   }
 
   return (
-    <div className="OldForNew-Section5" id="item-charging-cable">
+    <div className="OldForNew-Section-charging-cable" id="item-charging-cable">
       <div className="container">
-        <Image src={pklaptop} alt="no-products" className="images-pk" />
 
-        <div className="OldForNew-Section5-Container">
-          {filteredData.length === 0 ? (
+
+        <div className="OldForNew-Section-Container-charging-cable">
+          <div className="header-table-combo-pk">
+             <div style={{paddingBottom:"10px"}}>
+            <h2 className="title-table-combo-pk">Phụ Kiện Cáp Sạc</h2>
+              </div>
+         
+          </div>
+         
+
+          {data && data.length === 0 ? (
             <div className="no-products-message">
               <Image
                 src={noProducts}
@@ -189,7 +170,7 @@ const Section5: React.FC = () => {
           ) : (
             <>
               <div className="OldForNew-Section5-ItemSlider">
-                {filteredData.slice(0, visibleProducts).map((product) => (
+                {data?.slice(0, visibleProducts).map((product) => (
                   <CardProduct
                     key={product.id}
                     name={product.name}
@@ -199,7 +180,8 @@ const Section5: React.FC = () => {
                   />
                 ))}
               </div>
-              {filteredData.length > 10 && (
+
+              {data && data.length > 10 && (
                 <div className="load-more-container">
                   <button onClick={toggleProducts}>
                     {isExpanded ? "Thu gọn" : "Xem thêm"}

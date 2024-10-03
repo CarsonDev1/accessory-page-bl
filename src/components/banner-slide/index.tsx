@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
-import { Button, Form, Input, Select, Modal, FormProps } from 'antd';
+import { Button, Form, Input, Select, Modal, FormProps, Carousel } from 'antd';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
@@ -23,7 +23,7 @@ import iconsmarthome from '../../../public/icon-smart-home.png';
 import iconkhac from '../../../public/icon-khac.png';
 import iconSamsung from '../../../public/icon-samsung.png';
 import Image from 'next/image';
-
+import bannerSlider from "../../../public/banner-pk-apple-1200-040624.png"
 type FieldType = {
 	username?: string;
 	phone?: string;
@@ -1367,87 +1367,78 @@ const BannerSlide = () => {
 	return (
 		<div className='banner-slide'>
 			<div className='container'>
-				<div className='banner-swiper'>
-					<Swiper
-						modules={[Navigation, Autoplay]}
-						spaceBetween={10}
-						slidesPerView='auto'
-						autoplay
-						speed={1000}
-						navigation
-						breakpoints={{
-							768: {
-								slidesPerView: 2,
-							},
-						}}
-					>
-						<SwiperSlide>
-							<Image
-								src='/banner-slide-01.png'
-								width={1400}
-								height={1200}
-								quality={100}
-								alt='banner-slide-01'
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Image
-								src='/banner-slide-02.png'
-								width={1400}
-								height={1200}
-								quality={100}
-								alt='banner-slide-02'
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Image
-								src='/banner-slide-03.png'
-								width={1400}
-								height={1200}
-								quality={100}
-								alt='banner-slide-03'
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Image
-								src='/banner-slide-04.jpg'
-								width={1400}
-								height={1200}
-								quality={100}
-								alt='banner-slide-04'
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Image
-								src='/banner-slide-05.png'
-								width={1400}
-								height={1200}
-								quality={100}
-								alt='banner-slide-05'
-							/>
-						</SwiperSlide>
-						<SwiperSlide>
-							<Image
-								src='/banner-slide-06.jpg'
-								width={1400}
-								height={1200}
-								quality={100}
-								alt='banner-slide-06'
-							/>
-						</SwiperSlide>
-					</Swiper>
-				</div>
+			 <div
+        className=""
+        style={{
+          display: "flex",
+          gap: "10px",
+          margin: "auto",
+          justifyContent: "center",
+          padding: "20px 0px",
+        }}
+      >
+        <div className="OldForNew-Section1-imageSliderBanner">
+          <Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
+            <div className="OldForNew-Section1-image">
+              <Image
+                src={bannerSlider}
+                alt=""
+                className="OldForNew-Section1-imageItem"
+              />
+            </div>
+            <div className="OldForNew-Section1-image">
+                <Image
+                src={bannerSlider}
+                alt=""
+                className="OldForNew-Section1-imageItem"
+              />
+            </div>
+            <div className="OldForNew-Section1-image">
+                <Image
+                src={bannerSlider}
+                alt=""
+                className="OldForNew-Section1-imageItem"
+              />
+            </div>
+          </Carousel>
+        </div>
+        <div className="OldForNew-Section1-imageSliderBanner">
+          <Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
+            <div className="OldForNew-Section1-image">
+                <Image
+                src={bannerSlider}
+                alt=""
+                className="OldForNew-Section1-imageItem"
+              />
+            </div>
+            <div className="OldForNew-Section1-image">
+                <Image
+                src={bannerSlider}
+                alt=""
+                className="OldForNew-Section1-imageItem"
+              />
+            </div>
+            <div className="OldForNew-Section1-image">
+               <Image
+                src={bannerSlider}
+                alt=""
+                className="OldForNew-Section1-imageItem"
+              />
+            </div>
+          </Carousel>
+        </div>
+      </div>
 
-				<div>
+				<div style={{padding:"20px 0px"}}>
 					<ul className='list-item-click'>
 						<li className='item-click' onClick={handleClickApple}>
 							<Image src={iconapple} alt='banner-slide-01' className='icon-itemClick' />
 							<p className='item-click-txt'>Apple</p>
 						</li>
-						<li className='item-click' onClick={handleClickSamSung}>
+						{/* <li className='item-click' onClick={handleClickSamSung}>
 							<Image src={iconSamsung} alt='banner-slide-01' className='icon-itemClick' />
 							<p className='item-click-txt'>SamSung</p>
-						</li>
+						</li> */}
 						<li className='item-click' onClick={handleClickLeatherCase}>
 							<Image src={iconbaoda} alt='banner-slide-01' className='icon-itemClick' />
 							<p className='item-click-txt'>Bao da, ốp lưng</p>
@@ -1496,233 +1487,8 @@ const BannerSlide = () => {
 							<Image src={iconloa} alt='banner-slide-01' className='icon-itemClick' />
 							<p className='item-click-txt'>Loa, Tai nghe</p>
 						</li>
-						{/* <li className="item-click" onClick={handleClickSmartHome}>
-              <Image
-                src={iconsmarthome}
-                alt="banner-slide-01"
-                className="icon-itemClick"
-              />
-              <p className="item-click-txt">Smart Home</p>
-            </li> */}
-						{/* <li className="item-click" onClick={handleClickOther}>
-              <Image
-                src={iconkhac}
-                alt="banner-slide-01"
-                className="icon-itemClick"
-              />
-              <p className="item-click-txt">Khác</p>
-            </li> */}
 					</ul>
 				</div>
-				<h3 className='banner-slide-combo-title'>COMBO PHỤ KIỆN iPHONE 16</h3>
-
-				<div className='banner-slide-combo'>
-					{fetchedData.map((combo, index) => (
-						<div key={index} className='banner-slide-combo-wrap' onClick={() => handleClickTest(combo)}>
-							<div className='banner-slide-combo-card'>
-								<div className='banner-slide-combo-header'>
-									<div className='combo-txt'>
-										<span>-{combo.persen}</span>
-									</div>
-								</div>
-								<div className='banner-slide-combo-button'>{combo.combo}</div>
-								<Image
-									src='/combo-01-16.png'
-									width={400}
-									height={400}
-									alt='banner-slide-combo-image'
-									className='banner-slide-combo-image'
-								/>
-							</div>
-						</div>
-					))}
-				</div>
-
-				<h3 className='banner-slide-combo-title'>COMBO PHỤ KIỆN iPHONE 15</h3>
-
-				<div className='banner-slide-combo15'>
-					{combos15.map((combo) => (
-						<div
-							key={combo.id}
-							className='banner-slide-combo15-wrap'
-							onClick={() => openModalWithCombo15(combo.id)}
-						>
-							<div className='banner-slide-combo15-card'>
-								<div className='banner-slide-combo15-button'>{combo.name}</div>
-								<Image
-									src={combo.image}
-									width={400}
-									height={400}
-									alt='banner-slide-combo15-image'
-									className='banner-slide-combo15-image'
-								/>
-								<div className='banner-slide-combo15-price'>
-									<span className='banner-slide-combo15-price-txt'>{formatPrice(combo.price)}</span>
-								</div>
-							</div>
-						</div>
-					))}
-				</div>
-				<Modal visible={modalIsOpenTest} onCancel={closeModalTest} footer={false}>
-					{selectedCombo && (
-						<Form
-							name='basic'
-							labelCol={{ span: 8 }}
-							wrapperCol={{ span: 16 }}
-							onFinish={onFinish}
-							onFinishFailed={onFinishFailed}
-							autoComplete='off'
-						>
-							<Form.Item<FieldType>
-								label='Họ và tên khách hàng'
-								name='username'
-								rules={[{ required: true, message: 'Vui lòng nhập họ và tên' }]}
-							>
-								<Input />
-							</Form.Item>
-
-							<Form.Item<FieldType>
-								label='Số điện thoại'
-								name='phone'
-								rules={[
-									{ required: true, message: 'Vui lòng nhập số điện thoại' },
-									{
-										pattern: /^\d{10}$/,
-										message: 'Số điện thoại phải có 10 chữ số',
-									},
-								]}
-							>
-								<Input />
-							</Form.Item>
-
-							<div className='modal-content'>
-								{selectedCombo.items.map((item, index) => (
-									<Form.Item className='modal-select' key={`form-item-${index}`} name={item.type}>
-										<Select
-											placeholder={`Chọn ${item.type}`}
-											onChange={(value) => handleOptionChange(index, value)}
-										>
-											{item.items.map((subItem, subIndex) => (
-												<Select.Option
-													key={`option-${index}-${subIndex}`}
-													value={subItem.nameproduct}
-												>
-													<div className='option-content'>
-														<span className='option-name'>{subItem.nameproduct}</span>
-														<span className='option-price'>
-															{formatPrice(subItem.comboprice)}
-														</span>
-													</div>
-												</Select.Option>
-											))}
-										</Select>
-									</Form.Item>
-								))}
-							</div>
-							<div className='modal-price-wrap'>
-								<span>Tổng tiền: </span>
-								<h3 className='modal-price'>{formatPrice(totalPrice)}</h3>
-							</div>
-							<Form.Item wrapperCol={{ span: 16 }} className='modal-btn-wrap'>
-								<Button
-									type='primary'
-									htmlType='submit'
-									loading={loading}
-									className='modal-btn'
-									disabled={!isAllOptionsSelected}
-								>
-									{loading ? 'Đang đặt hàng...' : 'Đặt hàng ngay'}
-								</Button>
-							</Form.Item>
-						</Form>
-					)}
-				</Modal>
-				{/* {modalIsOpen && modalData && (
-          <Modal visible={modalIsOpen} onCancel={closeModal} footer={false}>
-            <h2 className="modal-title">{modalData.name}</h2>
-            <Form
-              name="basic"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 16 }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-              autoComplete="off"
-            >
-              <Form.Item<FieldType>
-                label="Họ và tên khách hàng"
-                name="username"
-                rules={[{ required: true, message: "Vui lòng nhập họ và tên" }]}
-              >
-                <Input />
-              </Form.Item>
-
-              <Form.Item<FieldType>
-                label="Số điện thoại"
-                name="phone"
-                rules={[
-                  { required: true, message: "Vui lòng nhập số điện thoại" },
-                  {
-                    pattern: /^\d{10}$/,
-                    message: "Số điện thoại phải có 10 chữ số",
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-
-              <div className="modal-content">
-               {fetchedData.map((combo, index)=> (
-                  <div key={index} className="modal-detail-item">
-                    <Image
-                      src="/combo-01-16.png"
-                      width={100}
-                      height={100}
-                      alt=""
-                      className="modal-item-image"
-                    />
-                    <div className="modal-item-wrap-select">
-                      <h4> {combo.combo}</h4>
-                      <Form.Item className="modal-select" name={combo?.items?.map(item => (item.nameproduct)).join(', ')}>
-                        <Select
-                          placeholder={`Chọn ${combo?.items?.map(item => (item.nameproduct)).join(', ')}`}
-                          onChange={(value) => handleOptionChange(index, value)}
-                        >
-                          {combo.items.map((combos, index) => (
-                            <Select.Option key={index} value={combos.nameproduct}>
-                              <div className="option-content">
-                                <span className="option-name">
-                                  {combos.nameproduct}
-                                </span>
-                                <span className="option-price">
-                                  {formatPrice(combos.comboprice)}
-                                </span>
-                              </div>
-                            </Select.Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="modal-price-wrap">
-                <span>Tổng tiền: </span>
-                <h3 className="modal-price">{formatPrice(totalPrice)}</h3>
-              </div>
-              <Form.Item wrapperCol={{ span: 16 }} className="modal-btn-wrap">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  loading={loading}
-                  className="modal-btn"
-                  disabled={!isAllOptionsSelected}
-                >
-                  {loading ? "Đang đặt hàng..." : "Đặt hàng ngay"}
-                </Button>
-              </Form.Item>
-            </Form>
-          </Modal>
-        )} */}
 			</div>
 		</div>
 	);

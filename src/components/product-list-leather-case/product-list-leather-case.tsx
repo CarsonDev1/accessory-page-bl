@@ -145,16 +145,33 @@ const Section5: React.FC = () => {
   }
 
   return (
-    <div className="OldForNew-Section5" id="item-leather-case">
+     <div className="OldForNew-Section-leather-case" id="item-leather-case">
       <div className="container">
-        <Image
-          src={pklaptop}
-          alt="no-products"
-          className="images-pk"
-        />
+        {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
 
-        <div className="OldForNew-Section5-Container">
-          {filteredData.length === 0 ? (
+        <div className="OldForNew-Section-Container-leather-case">
+          <div className="header-table-combo-pk">
+             <div style={{paddingBottom:"10px"}}>
+            <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>
+              </div>
+          {/* <div style={{ display: "flex", gap: "10px", paddingBottom:"10px" }}>
+            <button
+              className={`btn-tab-buyPhone ${activeTab === "iPhone" ? "btn-tab-buyPhone_active" : ""}`} // Added 'red' class
+              onClick={() => setActiveTab("iPhone")}
+            >
+              Phụ kiện iPhone
+            </button>
+            <button
+              className={`btn-tab-buyPhone ${activeTab === "iPad" ? "btn-tab-buyPhone_active" : ""}`} // Added 'red' class
+              onClick={() => setActiveTab("iPad")}
+            >
+              Phụ kiện iPad
+            </button>
+          </div> */}
+          </div>
+         
+
+          {data && data.length === 0 ? (
             <div className="no-products-message">
               <Image
                 src={noProducts}
@@ -166,7 +183,7 @@ const Section5: React.FC = () => {
           ) : (
             <>
               <div className="OldForNew-Section5-ItemSlider">
-                {filteredData.slice(0, visibleProducts).map((product) => (
+                {data?.slice(0, visibleProducts).map((product) => (
                   <CardProduct
                     key={product.id}
                     name={product.name}
@@ -176,7 +193,8 @@ const Section5: React.FC = () => {
                   />
                 ))}
               </div>
-              {filteredData.length > 10 && (
+
+              {data && data.length > 10 && (
                 <div className="load-more-container">
                   <button onClick={toggleProducts}>
                     {isExpanded ? "Thu gọn" : "Xem thêm"}

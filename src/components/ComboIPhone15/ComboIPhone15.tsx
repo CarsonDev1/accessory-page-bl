@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import "./ComboIPhone15.scss"
 import Image from 'next/image';
 import { Button, Form, Input, message, Modal, Select } from 'antd';
-
+import imagesCombo15 from "../../../public/combo-03-15.png"
 interface ProductCombo16 {
     combo: string;
     items: {
@@ -123,7 +123,7 @@ const ComboIPhone15: React.FC = () => {
                             <div className='banner-slide-combo15-card'>
                                 <div className='banner-slide-combo15-button'>{combo.combo}</div>
                                 <Image
-                                    src="/coc-sac.png"
+                                    src={imagesCombo15}
                                     width={400}
                                     height={400}
                                     alt='banner-slide-combo15-image'
@@ -146,6 +146,7 @@ const ComboIPhone15: React.FC = () => {
                             onValuesChange={onValuesChange}
                             autoComplete='off'
                         >
+                                 <h2 className='title-modal-combo'>{selectedCombo.combo}</h2>
                             <Form.Item<FieldType>
                                 label='Họ và tên khách hàng'
                                 name='username'
@@ -169,31 +170,33 @@ const ComboIPhone15: React.FC = () => {
                             </Form.Item>
 
                             <div className='modal-content'>
-                                {selectedCombo.items.map((item, index) => (
-                                    <Form.Item
-                                        className='modal-select'
-                                        key={`form-item-${index}`}
-                                        name={item.type}
-                                        rules={[{ required: true, message: `Vui lòng chọn ${item.type}` }]}
-                                    >
-                                        <Select placeholder={`Chọn ${item.type}`}>
-                                            {item.items.map((subItem, subIndex) => (
-                                                <Select.Option
-                                                    key={`option-${index}-${subIndex}`}
-                                                    value={subItem.nameproduct}
-                                                >
-                                                    <div className='option-content'>
-                                                        <span className='option-name'>{subItem.nameproduct}</span>
-                                                        <span className='option-price'>
-                                                            {subItem.comboprice.toLocaleString()} VND
-                                                        </span>
-                                                    </div>
-                                                </Select.Option>
-                                            ))}
-                                        </Select>
-                                    </Form.Item>
-                                ))}
-                            </div>
+                                    {selectedCombo.items.map((item, index) => (
+                                    <div key={`form-item-wrapper-${index}`}>
+                                            <h3>{item.type}:</h3>
+                                        <Form.Item
+                                            className='modal-select'
+                                            name={item.type}
+                                            rules={[{ required: true, message: `Vui lòng chọn ${item.type}` }]}
+                                        >
+                                            <Select placeholder={`Chọn ${item.type}`}>
+                                                {item.items.map((subItem, subIndex) => (
+                                                    <Select.Option
+                                                        key={`option-${index}-${subIndex}`}
+                                                        value={subItem.nameproduct}
+                                                    >
+                                                        <div className='option-content'>
+                                                            <span className='option-name'>{subItem.nameproduct}</span>
+                                                            <span className='option-price'>
+                                                                {subItem.comboprice.toLocaleString()} VND
+                                                            </span>
+                                                        </div>
+                                                    </Select.Option>
+                                                ))}
+                                            </Select>
+                                        </Form.Item>
+                                            </div>
+                                    ))}
+                                </div>
                             <div className='modal-price-wrap'>
                                 <span>Tổng tiền: </span>
                                 <h3 className='modal-price'>{totalPrice.toLocaleString()} VND</h3>

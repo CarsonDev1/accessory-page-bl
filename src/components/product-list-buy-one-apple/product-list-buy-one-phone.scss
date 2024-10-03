@@ -1,8 +1,10 @@
 .OldForNew-Section5-Container {
   margin: auto;
   padding: 10px 10px;
-  background-color: #ffd503;
   border-radius: 10px;
+
+    background: rgb(255, 210, 64);
+    background: linear-gradient(180deg,rgb(255, 210, 61) 0%,var(--bg-gradient-white,rgba(255,255,255,1)) 90%);
 }
 .OldForNew-Section5 {
   display: flex;
@@ -218,8 +220,28 @@
   border-radius: 10px;
   color: #000;
   font-weight: 600;
+  @media (max-width: 767px) {
+    margin: auto;
+     padding: 10px 10px;
+  }
 }
 .btn-tab-buyPhone_active{
   background: red;
  color: #fff;
+}
+.title-table-combo-pk{
+  color: #000;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 10px 0;
+  @media (max-width: 1000px) {
+    text-align: center;
+  }
+}
+.header-table-combo-pk{
+  justify-content: space-between;
+  display: flex;
+@media (max-width: 1000px) {
+    display: block;
+  }
 }

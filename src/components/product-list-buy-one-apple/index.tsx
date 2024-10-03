@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../public/img-no-pro-matching.webp";
-
+import icon_fire from "../../../public/ic-fire.svg"
 export interface Product {
   id: number;
   name: string;
@@ -94,7 +94,7 @@ const fetchProductListDataBuyPhone = async (category_uid: string) => {
 
 const Section5: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("iPhone");
-  const [visibleProducts, setVisibleProducts] = useState<number>(10);
+  const [visibleProducts, setVisibleProducts] = useState<number>(15);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const categoryUid = activeTab === "iPhone" ? "MzI2" : "MzI4";
@@ -125,10 +125,14 @@ const Section5: React.FC = () => {
   return (
     <div className="OldForNew-Section5">
       <div className="container">
-        <Image src={pklaptop} alt="no-products" className="images-pk" />
+        {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
 
         <div className="OldForNew-Section5-Container">
-        <div style={{ display: "flex", gap: "10px", padding: "10px" }}>
+          <div className="header-table-combo-pk">
+             <div style={{paddingBottom:"10px"}}>
+            <h2 className="title-table-combo-pk">Phụ Kiện Mua 1 Tặng 1</h2>
+              </div>
+          <div style={{ display: "flex", gap: "10px", paddingBottom:"10px" }}>
             <button
               className={`btn-tab-buyPhone ${activeTab === "iPhone" ? "btn-tab-buyPhone_active" : ""}`} // Added 'red' class
               onClick={() => setActiveTab("iPhone")}
@@ -142,6 +146,8 @@ const Section5: React.FC = () => {
               Phụ kiện iPad
             </button>
           </div>
+          </div>
+         
 
           {data && data.length === 0 ? (
             <div className="no-products-message">

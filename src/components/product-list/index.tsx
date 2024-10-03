@@ -1,15 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import "./product-list.scss";
+import CardProduct from "../CardProduct/CardProduct";
+import { useQuery } from "@tanstack/react-query";
+import { Spin } from "antd";
+import pklaptop from "../../../public/sac du phong.png";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import { Spin } from "antd";
-import "./product-list.scss";
-import pkApple from "../../../public/PK apple.png"
+import Image from "next/image";
+import noProducts from "../../../public/img-no-pro-matching.webp";
+import icon_fire from "../../../public/ic-fire.svg"
 export interface Product {
   id: number;
   name: string;
@@ -28,54 +29,54 @@ export interface Product {
 }
 
 const query = `
- query getProducts(
-  $search: String
-  $filter: ProductAttributeFilterInput
-  $sort: ProductAttributeSortInput
-  $pageSize: Int
-  $currentPage: Int
+query getProducts(
+$search: String
+$filter: ProductAttributeFilterInput
+$sort: ProductAttributeSortInput
+$pageSize: Int
+$currentPage: Int
 ) {
-  products(
-    search: $search
-    filter: $filter
-    sort: $sort
-    pageSize: $pageSize
-    currentPage: $currentPage
-  ) {
-    items {
-      ...ProductInterfaceField
+products(
+  search: $search
+  filter: $filter
+  sort: $sort
+  pageSize: $pageSize
+  currentPage: $currentPage
+) {
+  items {
+    ...ProductInterfaceField
+  }
+}
+}
+fragment ProductInterfaceField on ProductInterface {
+id
+name
+url_key
+image {
+  url
+}
+price_range {
+  minimum_price {
+    final_price {
+      value
+      currency
     }
   }
 }
-fragment ProductInterfaceField on ProductInterface {
-  id
-  name
-  url_key
-  image {
-    url
-  }
-  price_range {
-    minimum_price {
-      final_price {
-        value
-        currency
-      }
-    }
-  }
 }
 `;
 
 const variables = {
   filter: {
     category_uid: {
-      eq: "MzIz",
+      eq: "NjQ=",
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
 
-async function fetchProductListData() {
+async function fetchProductListDataSacDuPhong() {
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
@@ -88,19 +89,48 @@ async function fetchProductListData() {
   });
 
   const data = await response.json();
-
   return data.data.products.items as Product[];
 }
 
-const ProductList: React.FC = () => {
+const Section5: React.FC = () => {
+  const settings = {
+    infinite: true,
+    autoplay: true,
+    dots: true,
+    arrows: true,
+    slidesToShow: 5,
+    rows: 1,
+    responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
+  };
   const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListData"],
-    queryFn: fetchProductListData,
+    queryKey: ["productListDataSacDuPhong"],
+    queryFn: fetchProductListDataSacDuPhong,
     staleTime: 300000,
   });
 
   const [activeTab, setActiveTab] = useState<string>("All");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [visibleProducts, setVisibleProducts] = useState<number>(10);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   useEffect(() => {
     if (activeTab === "All") {
@@ -111,7 +141,23 @@ const ProductList: React.FC = () => {
       );
       setFilteredData(filtered || []);
     }
+    setVisibleProducts(10);
+    setIsExpanded(false);
   }, [activeTab, data]);
+
+  const toggleProducts = () => {
+    if (isExpanded) {
+      setVisibleProducts(10);
+      setIsExpanded(false);
+    } else {
+      setVisibleProducts(filteredData.length);
+      setIsExpanded(true);
+    }
+  };
+
+  const loadMore = () => {
+    setVisibleProducts((prevVisible) => prevVisible + 5);
+  };
 
   if (isLoading) {
     return (
@@ -125,122 +171,70 @@ const ProductList: React.FC = () => {
     return <div>Error loading data</div>;
   }
 
-  const tabs = [
-    "All",
-    "Ốp lưng",
-    "Airpod",
-    "Apple Watch",
-    "Bộ kính dán",
-    "Sạc",
-  ];
 
   return (
-    <div className="product-list" id="item-apple">
-      <div className="upgrade-list">
-        <div className="container">
-          {/* <Image
-            src="/banner-80-percent.png"
-            width={1820}
-            height={1200}
-            alt="accessory-80-percent"
-            className=""
-          /> */}
-          <div className="upgrade">
-              <Image src={pkApple} alt="no-products" className="images-pk" />
+    <div className="OldForNew-Section-apple" id="item-apple">
+      <div className="container">
+        {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
 
-            <div className="tabs">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={activeTab === tab ? "tab active" : "tab"}
-                  style={{
-                    color: activeTab === tab ? "white" : "#000",
-                    backgroundColor: activeTab === tab ? "#ef373e" : "#f1f1f1",
-                    border:
-                      activeTab === tab
-                        ? "1px solid #ef373e"
-                        : "1px solid #ccc",
-                    padding: "10px 20px",
-                    margin: "5px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            <Swiper
-              modules={[Navigation]}
-              spaceBetween={10}
-              slidesPerView="auto"
-              speed={1000}
-              navigation
-              breakpoints={{
-                300: {
-                  slidesPerView: 2,
-                },
-                576: {
-                  slidesPerView: 3,
-                },
-                850: {
-                  slidesPerView: 4,
-                },
-                1200: {
-                  slidesPerView: 5,
-                },
-              }}
+        <div className="OldForNew-Section-Container-apple">
+          <div className="header-table-combo-pk">
+             <div style={{paddingBottom:"10px"}}>
+            <h2 className="title-table-combo-pk">Phụ Kiện Apple</h2>
+              </div>
+          {/* <div style={{ display: "flex", gap: "10px", paddingBottom:"10px" }}>
+            <button
+              className={`btn-tab-buyPhone ${activeTab === "iPhone" ? "btn-tab-buyPhone_active" : ""}`} // Added 'red' class
+              onClick={() => setActiveTab("iPhone")}
             >
-              {filteredData.map((product, index) => (
-                <SwiperSlide key={index}>
-                  <Link
-                    href={`https://bachlongmobile.com/products/${product.url_key}`}
-                    passHref
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    <div className="upgrade-item">
-                      <div className="upgrade-item-img">
-                        <Image
-                          src={product.image.url}
-                          width={1400}
-                          height={1200}
-                          quality={100}
-                          alt={`product-${index}`}
-                        />
-                      </div>
-                      <div className="upgrade-item-content">
-                        <h4 className="upgrade-item-content-tt">
-                          {product.name}
-                        </h4>
-                        <div className="upgrade-item-content-body">
-                          <span className="upgrade-item-content-body-tt">
-                            Giá:{" "}
-                          </span>
-                          <div className="upgrade-item-content-body-price">
-                            {product.price_range.minimum_price.final_price.value.toLocaleString(
-                              "vi-VN"
-                            )}{" "}
-                            {
-                              product.price_range.minimum_price.final_price
-                                .currency
-                            }
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+              Phụ kiện iPhone
+            </button>
+            <button
+              className={`btn-tab-buyPhone ${activeTab === "iPad" ? "btn-tab-buyPhone_active" : ""}`} // Added 'red' class
+              onClick={() => setActiveTab("iPad")}
+            >
+              Phụ kiện iPad
+            </button>
+          </div> */}
           </div>
+         
+
+          {data && data.length === 0 ? (
+            <div className="no-products-message">
+              <Image
+                src={noProducts}
+                alt="no-products"
+                className="no-products-image"
+              />
+              <span>Không có sản phẩm</span>
+            </div>
+          ) : (
+            <>
+              <div className="OldForNew-Section5-ItemSlider">
+                {data?.slice(0, visibleProducts).map((product) => (
+                  <CardProduct
+                    key={product.id}
+                    name={product.name}
+                    url_key={product.url_key}
+                    image={product.image}
+                    price_range={product.price_range}
+                  />
+                ))}
+              </div>
+
+              {data && data.length > 10 && (
+                <div className="load-more-container">
+                  <button onClick={toggleProducts}>
+                    {isExpanded ? "Thu gọn" : "Xem thêm"}
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default ProductList;
+export default Section5;

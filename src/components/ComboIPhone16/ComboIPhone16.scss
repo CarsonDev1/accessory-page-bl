@@ -16,7 +16,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    margin-bottom: 1.2rem;
+
     background: #261e17;
     padding: 4rem 2rem;
     border: 1px solid #a27d6d;
@@ -371,11 +371,11 @@
   width: 100% !important;
   margin-bottom: 0rem !important;
   overflow: hidden !important;
-  max-width: 40rem !important;
+  max-width: 60rem !important;
   height: 7rem;
 
   @media screen and (max-width: 768px) {
-    max-width: 20rem !important;
+    max-width: 30rem !important;
     margin-bottom: 1.2rem !important;
   }
 }
@@ -466,71 +466,10 @@
     font-size: 1.2rem;
   }
 }
-.icon-itemClick {
-  width: 50px;
-  height: 50px;
-  @media screen and (max-width: 1200px) {
-    width: 40px;
-    height: 40px;
-  }
-  @media screen and (max-width: 992px) {
-    width: 30px;
-    height: 30px;
-  }
-}
-.item-click-txt {
-  font-size: 20px;
-  font-weight: 500;
-  color: #333;
-  height: 40px;
-  @media screen and (max-width: 768px) {
-    font-size: 13px;
-    height: 30px;
-  }
-}
-.item-click {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  height: auto;
-  justify-content: center;
-  padding: 3.6rem 0.8rem;
+.title-modal-combo{
   text-align: center;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid #858585;
-  border-radius: 0.8rem;
-  transition: all 0.3s;
-  @media screen and (max-width: 1200px) {
-    padding: 2.4rem 0.4rem;
-  }
-  @media screen and (max-width: 992px) {
-    padding: 1.8rem 0.2rem;
-  }
-  @media screen and (max-width: 768px) {
-    padding: 0.5rem 0.1rem;
-  }
-}
-.item-click:hover {
-  border: 1px solid #ffd82c;
-  cursor: pointer;
-}
-.list-item-click {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 2rem;
-  @media screen and (max-width: 1200px) {
-    grid-template-columns: repeat(6, 1fr);
-      gap: 1rem;
-  }
-  @media screen and (max-width: 768px) {
-    gap: 0.6rem;
-    grid-template-columns: repeat(8, 1fr);
-  }
-  @media screen and (max-width: 600px) {
-    gap: 0.3rem;
-    grid-template-columns: repeat(4, 1fr);
-  }
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  padding: 10px 0px;
 }

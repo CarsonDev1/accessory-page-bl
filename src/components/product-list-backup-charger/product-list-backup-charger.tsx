@@ -89,38 +89,13 @@ async function fetchProductListDataSacDuPhong() {
   });
 
   const data = await response.json();
+  console.log("data sac du phong", data)
   return data.data.products.items as Product[];
+
 }
 
 const Section5: React.FC = () => {
-  const settings = {
-    infinite: true,
-    autoplay: true,
-    dots: true,
-    arrows: true,
-    slidesToShow: 5,
-    rows: 1,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-    ],
-  };
+
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataSacDuPhong"],
     queryFn: fetchProductListDataSacDuPhong,
@@ -172,11 +147,11 @@ const Section5: React.FC = () => {
   }
 
   return (
-    <div className="OldForNew-Section5" id="item-backup-charger">
+    <div className="OldForNew-Section-backup-charger" id="item-backup-charger">
       <div className="container">
-        <Image src={pklaptop} alt="no-products" className="images-pk" />
+      
 
-        <div className="OldForNew-Section5-Container">
+        <div className="OldForNew-Section-Container-backup-charger">
           {filteredData.length === 0 ? (
             <div className="no-products-message">
               <Image

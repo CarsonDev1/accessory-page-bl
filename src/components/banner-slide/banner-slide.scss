@@ -16,7 +16,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    margin-bottom: 1.2rem;
     background: #261e17;
     padding: 4rem 2rem;
     border: 1px solid #a27d6d;
@@ -341,86 +340,10 @@
   margin-bottom: 1.2rem;
 }
 
-.modal-form {
-  margin-top: 2rem !important;
-}
+// .modal-form {
+//   margin-top: 2rem !important;
+// }
 
-.modal-content {
-  background: white;
-  border-radius: 1.2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.modal-detail-item {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  width: 100%;
-  border: 1px solid #eee;
-  border-radius: 0.8rem;
-  padding: 1.2rem;
-  @media screen and (max-width: 768px) {
-    padding: 0.6rem;
-  }
-}
-
-.modal-select {
-  width: 100% !important;
-  margin-bottom: 0rem !important;
-  overflow: hidden !important;
-  max-width: 40rem !important;
-  height: 7rem;
-
-  @media screen and (max-width: 768px) {
-    max-width: 20rem !important;
-    margin-bottom: 1.2rem !important;
-  }
-}
-
-:where(.css-dev-only-do-not-override-qnu6hi).ant-select-single:not(
-    .ant-select-customize-input
-  )
-  .ant-select-selector
-  .ant-select-selection-search-input {
-  height: 4rem !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ant-select-selector {
-  padding: 3rem 0.8rem !important;
-  @media screen and (max-width: 768px) {
-    padding: 1rem !important;
-  }
-}
-
-.modal-item-image {
-  width: 5rem;
-  height: 5rem;
-  display: block;
-  object-fit: cover;
-}
-
-.modal-item-wrap-select {
-  width: 100%;
-}
-
-.modal-btn-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-price-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-}
 
 .modal-price {
   color: #c3011c;
@@ -428,24 +351,24 @@
   font-weight: 500;
 }
 
-.modal-btn {
-  margin-top: 1rem;
-  padding: 2rem !important;
-  background-color: #c3011c !important;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  font-size: 2rem !important;
-  scale: 0.9 !important;
-  transition: all 0.5s ease-in-out !important;
-  &:hover {
-    scale: 1 !important;
-  }
-}
+// .modal-btn {
+//   margin-top: 1rem;
+//   padding: 2rem !important;
+//   background-color: #c3011c !important;
+//   color: white;
+//   border: none;
+//   border-radius: 0.5rem;
+//   cursor: pointer;
+//   display: flex !important;
+//   justify-content: center !important;
+//   align-items: center !important;
+//   font-size: 2rem !important;
+//   scale: 0.9 !important;
+//   transition: all 0.5s ease-in-out !important;
+//   &:hover {
+//     scale: 1 !important;
+//   }
+// }
 
 .option-content {
   display: flex;
@@ -517,10 +440,10 @@
 }
 .list-item-click {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1rem;
   @media screen and (max-width: 1200px) {
     grid-template-columns: repeat(6, 1fr);
       gap: 1rem;
@@ -533,4 +456,10 @@
     gap: 0.3rem;
     grid-template-columns: repeat(4, 1fr);
   }
+}
+.OldForNew-Section1-imageSliderBanner {
+  width: 32vw;
+  @media (max-width: 1000px) {
+    width: 45vw;
+}
 }
