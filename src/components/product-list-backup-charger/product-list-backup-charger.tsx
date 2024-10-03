@@ -152,6 +152,9 @@ const Section5: React.FC = () => {
       
 
         <div className="OldForNew-Section-Container-backup-charger">
+          <div style={{paddingBottom:"10px"}}>
+            <h2 className="title-table-combo-pk">Phụ Kiện Sạc Dự Phòng</h2>
+              </div>
           {filteredData.length === 0 ? (
             <div className="no-products-message">
               <Image

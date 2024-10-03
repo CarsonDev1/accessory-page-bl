@@ -124,8 +124,6 @@ const ComboIPhone15: React.FC = () => {
                                 <div className='banner-slide-combo15-button'>{combo.combo}</div>
                                 <Image
                                     src={imagesCombo15}
-                                    width={400}
-                                    height={400}
                                     alt='banner-slide-combo15-image'
                                     className='banner-slide-combo15-image'
                                 />

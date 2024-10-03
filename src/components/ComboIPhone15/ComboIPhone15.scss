@@ -16,7 +16,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-
     background: #261e17;
     padding: 4rem 2rem;
     border: 1px solid #a27d6d;
@@ -29,7 +28,7 @@
       grid-template-columns: repeat(2, 1fr);
     }
     @media (max-width: 576px) {
-  
+         
       grid-template-columns: repeat(2, 1fr);
     }
     &-title {
@@ -155,13 +154,16 @@
     padding: 4rem 2rem;
     border-radius: 1.2rem;
     @media (max-width: 1200px) {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
     @media (max-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
     @media (max-width: 576px) {
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+        gap: 0.3rem;
+         padding: 4rem 0rem;
     }
     &-card {
       border-radius: 2rem;
@@ -174,6 +176,9 @@
       gap: 1.4rem;
       position: relative;
       width: 100%;
+        @media (max-width: 768px) {
+      width: 100%;
+    }
     }
     &-header {
       position: absolute;
@@ -223,6 +228,10 @@
       &:hover {
         scale: 1;
       }
+        @media (max-width: 767px) {
+      width: 10rem;
+      height: 10rem;
+    }
     }
     &-price {
       display: flex;
@@ -465,4 +474,10 @@
   @media screen and (max-width: 768px) {
     font-size: 1.2rem;
   }
+}
+.banner-slide-combo15-wrap{
+  width: 100%;
+    @media (max-width: 768px) {
+      width: 46vw;
+    }
 }

@@ -76,7 +76,7 @@ const variables = {
   currentPage: 1,
 };
 
-async function fetchProductListDataSacDuPhong() {
+async function fetchProductListDataAppleChinhHang() {
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
@@ -122,8 +122,8 @@ const Section5: React.FC = () => {
     ],
   };
   const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataSacDuPhong"],
-    queryFn: fetchProductListDataSacDuPhong,
+    queryKey: ["productListDataAppleChinhHang"],
+    queryFn: fetchProductListDataAppleChinhHang,
     staleTime: 300000,
   });
 

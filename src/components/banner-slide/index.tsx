@@ -1471,10 +1471,7 @@ const BannerSlide = () => {
               />
               <p className="item-click-txt">Đồng hồ</p>
             </li> */}
-						<li className='item-click' onClick={handleClickLaptop}>
-							<Image src={iconlaptop} alt='banner-slide-01' className='icon-itemClick' />
-							<p className='item-click-txt'>Đồ chơi công nghệ</p>
-						</li>
+						
 						{/* <li className="item-click" onClick={handleClickUsb}>
               <Image
                 src={iconthenho}
@@ -1486,6 +1483,10 @@ const BannerSlide = () => {
 						<li className='item-click' onClick={handleClickLoudspeaker}>
 							<Image src={iconloa} alt='banner-slide-01' className='icon-itemClick' />
 							<p className='item-click-txt'>Loa, Tai nghe</p>
+						</li>
+						<li className='item-click' onClick={handleClickLaptop}>
+							<Image src={iconlaptop} alt='banner-slide-01' className='icon-itemClick' />
+							<p className='item-click-txt'>Đồ chơi công nghệ</p>
 						</li>
 					</ul>
 				</div>

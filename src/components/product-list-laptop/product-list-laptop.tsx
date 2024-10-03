@@ -170,11 +170,12 @@ const Section5: React.FC = () => {
     return <div>Error loading data</div>;
   }
   return (
-    <div className="OldForNew-Section5" id="item-laptop">
+    <div className="OldForNew-Section-laptop" id="item-laptop">
       <div className="container">
-        <Image src={pklaptop} alt="no-products" className="images-pk" />
-
-        <div className="OldForNew-Section5-Container">
+        <div className="OldForNew-Section-Container-laptop">
+          <div style={{paddingBottom:"10px"}}>
+            <h2 className="title-table-combo-pk">Đồ Chơi Công Nghệ</h2>
+              </div>
           {filteredData.length === 0 ? (
             <div className="no-products-message">
               <Image
