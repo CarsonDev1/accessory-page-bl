@@ -189,4 +189,12 @@ border: 2px solid #ff4530;
     font-size: 15px;
     font-weight: bold;
   }
+  .product__img-detail {
+  max-width: 150px;
+  height: 150px;
+}
+.product__con-hang {
+  padding: 5px;
+  margin: 4px 0;
+}
 }

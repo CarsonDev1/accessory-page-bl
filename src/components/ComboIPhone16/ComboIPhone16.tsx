@@ -182,7 +182,7 @@ const ComboIPhone16: React.FC = () => {
                                         <Form.Item
                                             className='modal-select'
                                             name={item.type}
-                                            rules={[{ required: true, message: `Vui lòng chọn ${item.type}` }]}
+                                            // rules={[{ required: true, message: `Vui lòng chọn ${item.type}` }]}
                                         >
                                             <Select placeholder={`Chọn ${item.type}`}>
                                                 {item.items.map((subItem, subIndex) => (
