@@ -163,7 +163,7 @@
     @media (max-width: 576px) {
       grid-template-columns: repeat(2, 1fr);
         gap: 0.3rem;
-         padding: 4rem 0rem;
+         padding: 2rem 0rem;
     }
     &-card {
       border-radius: 2rem;
@@ -479,5 +479,19 @@
   width: 100%;
     @media (max-width: 768px) {
       width: 46vw;
+    }
+}
+.title-combo-15{
+    border-radius: 5px;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    padding: 30px 20px;
+    text-align: center;
+    text-shadow: 0 0 10px hsla(0, 0%, 100%, .8), 0 0 20px rgba(255, 153, 0, .8), 0 0 30px rgba(255, 153, 0, .6), 0 0 40px rgba(255, 153, 0, .4), 0 0 50px rgba(255, 153, 0, .3);
+    @media (max-width: 768px) {
+      font-size: 22px;
+      padding-top: 20px;;
     }
 }

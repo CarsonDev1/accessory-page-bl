@@ -118,7 +118,9 @@ const ComboIPhone16: React.FC = () => {
         <>
             <div className='banner-slide'>
                 <div className='container'>
+                     <h1 className='title-combo-16'>COMBO PHỤ KIỆN IPHONE 16 SERIES</h1>
                     <div className='banner-slide-combo'>
+                       
                         {fetchedData.map((combo, index) => (
                             <div key={index} className='banner-slide-combo-wrap' onClick={() => handleClickTest(combo)}>
                                 <div className='banner-slide-combo-card'>

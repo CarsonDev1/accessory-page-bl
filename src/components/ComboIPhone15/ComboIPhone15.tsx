@@ -39,7 +39,7 @@ const ComboIPhone15: React.FC = () => {
         );
         const data: ProductCombo16[] = await response.json();
         setFetchedData(data);
-        console.log('data from', data);
+        console.log('data from 15', data);
     };
 
     useEffect(() => {
@@ -114,6 +114,7 @@ const ComboIPhone15: React.FC = () => {
     return (
         <div className='banner-slide'>
             <div className='container'>
+                   <h1 className='title-combo-15'>COMBO PHỤ KIỆN IPHONE 15</h1>
                 <div className='banner-slide-combo15'>
                     {fetchedData.map((combo, index) => (
                         <div
