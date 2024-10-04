@@ -23,7 +23,7 @@ import iconsmarthome from '../../../public/icon-smart-home.png';
 import iconkhac from '../../../public/icon-khac.png';
 import iconSamsung from '../../../public/icon-samsung.png';
 import Image from 'next/image';
-import bannerSlider from "../../../public/banner-pk-apple-1200-040624.png"
+import bannerSlider from '../../../public/banner-pk-apple-1200-040624.png';
 type FieldType = {
 	username?: string;
 	phone?: string;
@@ -155,7 +155,6 @@ const BannerSlide = () => {
 		);
 		const data: ProductCombo16[] = await response.json();
 		setFetchedData(data);
-		console.log('data from', data);
 	};
 
 	useEffect(() => {
@@ -1290,7 +1289,6 @@ const BannerSlide = () => {
 	};
 	const isAllOptionsSelected =
 		modalData?.details?.every((item: any) => selectedOptions[item.name] !== undefined) ?? false;
-	console.log('dataa', modalData);
 	const handleOptionChange = (itemIndex: number, value: string) => {
 		const selectedItem = modalData?.details[itemIndex].options.find((option: any) => option.name === value);
 		console.log('selected!!!!', selectedItem);
@@ -1367,69 +1365,45 @@ const BannerSlide = () => {
 	return (
 		<div className='banner-slide'>
 			<div className='container'>
-			 <div
-        className=""
-        style={{
-          display: "flex",
-          gap: "10px",
-          margin: "auto",
-          justifyContent: "center",
-          padding: "20px 0px",
-        }}
-      >
-        <div className="OldForNew-Section1-imageSliderBanner">
-          <Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
-            <div className="OldForNew-Section1-image">
-              <Image
-                src={bannerSlider}
-                alt=""
-                className="OldForNew-Section1-imageItem"
-              />
-            </div>
-            <div className="OldForNew-Section1-image">
-                <Image
-                src={bannerSlider}
-                alt=""
-                className="OldForNew-Section1-imageItem"
-              />
-            </div>
-            <div className="OldForNew-Section1-image">
-                <Image
-                src={bannerSlider}
-                alt=""
-                className="OldForNew-Section1-imageItem"
-              />
-            </div>
-          </Carousel>
-        </div>
-        <div className="OldForNew-Section1-imageSliderBanner">
-          <Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
-            <div className="OldForNew-Section1-image">
-                <Image
-                src={bannerSlider}
-                alt=""
-                className="OldForNew-Section1-imageItem"
-              />
-            </div>
-            <div className="OldForNew-Section1-image">
-                <Image
-                src={bannerSlider}
-                alt=""
-                className="OldForNew-Section1-imageItem"
-              />
-            </div>
-            <div className="OldForNew-Section1-image">
-               <Image
-                src={bannerSlider}
-                alt=""
-                className="OldForNew-Section1-imageItem"
-              />
-            </div>
-          </Carousel>
-        </div>
-      </div>
+				<div
+					className=''
+					style={{
+						display: 'flex',
+						gap: '10px',
+						margin: 'auto',
+						justifyContent: 'center',
+						padding: '20px 0px',
+					}}
+				>
+					<div className='OldForNew-Section1-imageSliderBanner'>
+						<Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
+							<div className='OldForNew-Section1-image'>
+								<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
+							</div>
+							<div className='OldForNew-Section1-image'>
+								<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
+							</div>
+							<div className='OldForNew-Section1-image'>
+								<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
+							</div>
+						</Carousel>
+					</div>
+					<div className='OldForNew-Section1-imageSliderBanner'>
+						<Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
+							<div className='OldForNew-Section1-image'>
+								<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
+							</div>
+							<div className='OldForNew-Section1-image'>
+								<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
+							</div>
+							<div className='OldForNew-Section1-image'>
+								<Image src={bannerSlider} alt='' className='OldForNew-Section1-imageItem' />
+							</div>
+						</Carousel>
+					</div>
+				</div>
 
-				<div style={{padding:"20px 0px"}}>
+				<div style={{ padding: '20px 0px' }}>
 					<ul className='list-item-click'>
 						<li className='item-click' onClick={handleClickApple}>
 							<Image src={iconapple} alt='banner-slide-01' className='icon-itemClick' />
@@ -1471,7 +1445,6 @@ const BannerSlide = () => {
               />
               <p className="item-click-txt">Đồng hồ</p>
             </li> */}
-						
 						{/* <li className="item-click" onClick={handleClickUsb}>
               <Image
                 src={iconthenho}
