@@ -11,6 +11,7 @@ import 'swiper/css/navigation';
 import Image from 'next/image';
 import noProducts from '../../../public/img-no-pro-matching.webp';
 import icon_fire from '../../../public/ic-fire.svg';
+
 export interface Product {
 	id: number;
 	name: string;
@@ -69,7 +70,7 @@ price_range {
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'NjQ=',
+			eq: 'NjQ=', // Default to 'All'
 		},
 	},
 	pageSize: 200,
@@ -84,7 +85,7 @@ async function fetchProductListDataAppleChinhHang() {
 		},
 		body: JSON.stringify({
 			query,
-			variables,
+			variables, // Sử dụng biến đã cập nhật
 		}),
 	});
 
@@ -93,36 +94,8 @@ async function fetchProductListDataAppleChinhHang() {
 }
 
 const Section5: React.FC = () => {
-	const settings = {
-		infinite: true,
-		autoplay: true,
-		dots: true,
-		arrows: true,
-		slidesToShow: 5,
-		rows: 1,
-		responsive: [
-			{
-				breakpoint: 1440,
-				settings: {
-					slidesToShow: 4,
-				},
-			},
-			{
-				breakpoint: 850,
-				settings: {
-					slidesToShow: 3,
-				},
-			},
-			{
-				breakpoint: 767,
-				settings: {
-					slidesToShow: 2,
-				},
-			},
-		],
-	};
 	const { data, error, isLoading } = useQuery<Product[]>({
-		queryKey: ['productListDataAppleChinhHang'],
+		queryKey: ['productListDataAppleChinhHang', variables.filter.category_uid.eq], // Thêm category_uid vào queryKey
 		queryFn: fetchProductListDataAppleChinhHang,
 		staleTime: 300000,
 	});
@@ -142,6 +115,26 @@ const Section5: React.FC = () => {
 		setVisibleProducts(10);
 		setIsExpanded(false);
 	}, [activeTab, data]);
+
+	// Update the activeTab state to change the category_uid based on the selected tab
+	useEffect(() => {
+		switch (activeTab) {
+			case 'Cường Lực':
+				variables.filter.category_uid.eq = 'MzE1'; // Set for 'Cường Lực'
+				break;
+			case 'Bao da, Ốp lưng':
+				variables.filter.category_uid.eq = 'Njg='; // Set for 'Bao da, Ốp lưng'
+				break;
+			case 'AirPods':
+				variables.filter.category_uid.eq = 'Njk='; // Set for 'AirPods'
+				break;
+			case 'Cáp sạc':
+				variables.filter.category_uid.eq = 'NzI='; // Set for 'Cáp sạc'
+				break;
+			default:
+				variables.filter.category_uid.eq = 'NjQ='; // Default to 'All'
+		}
+	}, [activeTab]);
 
 	const toggleProducts = () => {
 		if (isExpanded) {
@@ -179,20 +172,46 @@ const Section5: React.FC = () => {
 						<div style={{ paddingBottom: '10px' }}>
 							<h2 className='title-table-combo-pk'>Phụ Kiện Apple</h2>
 						</div>
-						{/* <div style={{ display: "flex", gap: "10px", paddingBottom:"10px" }}>
-            <button
-              className={`btn-tab-buyPhone ${activeTab === "iPhone" ? "btn-tab-buyPhone_active" : ""}`} // Added 'red' class
-              onClick={() => setActiveTab("iPhone")}
-            >
-              Phụ kiện iPhone
-            </button>
-            <button
-              className={`btn-tab-buyPhone ${activeTab === "iPad" ? "btn-tab-buyPhone_active" : ""}`} // Added 'red' class
-              onClick={() => setActiveTab("iPad")}
-            >
-              Phụ kiện iPad
-            </button>
-          </div> */}
+						<div className='tab-button-table-combo-pk'>
+							<button
+								className={`btn-tab-buyPhone ${
+									activeTab === 'AirPods' ? 'btn-tab-buyPhone_active' : ''
+								}`}
+								onClick={() => setActiveTab('AirPods')}
+							>
+								AirPods
+							</button>
+							<button
+								className={`btn-tab-buyPhone ${
+									activeTab === 'Bao da, Ốp lưng' ? 'btn-tab-buyPhone_active' : ''
+								}`}
+								onClick={() => setActiveTab('Bao da, Ốp lưng')}
+							>
+								Bao da, Ốp lưng
+							</button>
+							<button
+								className={`btn-tab-buyPhone ${
+									activeTab === 'Cường Lực' ? 'btn-tab-buyPhone_active' : ''
+								}`}
+								onClick={() => setActiveTab('Cường Lực')}
+							>
+								Cường Lực
+							</button>
+							<button
+								className={`btn-tab-buyPhone ${
+									activeTab === 'Cáp sạc' ? 'btn-tab-buyPhone_active' : ''
+								}`}
+								onClick={() => setActiveTab('Cáp sạc')}
+							>
+								Cáp sạc
+							</button>
+							<button
+								className={`btn-tab-buyPhone ${activeTab === 'All' ? 'btn-tab-buyPhone_active' : ''}`}
+								onClick={() => setActiveTab('All')}
+							>
+								Tất cả
+							</button>
+						</div>
 					</div>
 
 					{data && data.length === 0 ? (

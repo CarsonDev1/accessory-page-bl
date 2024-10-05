@@ -1,31 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-import React, { useState, useEffect } from "react";
-import "./product-list-strength.css";
+'use client';
+import React, { useState, useEffect } from 'react';
+import './product-list-strength.css';
 // import { Carousel } from "antd";
-import CardProduct from "../CardProduct/CardProduct";
-import { useQuery } from "@tanstack/react-query";
-import { Spin } from "antd";
-import pklaptop from "../../../public/Dan man hinh.png";
-import "swiper/css";
-import "swiper/css/navigation";
-import Image from "next/image";
-import noProducts from "../../../public/img-no-pro-matching.webp";
+import CardProduct from '../CardProduct/CardProduct';
+import { useQuery } from '@tanstack/react-query';
+import { Spin } from 'antd';
+import pklaptop from '../../../public/Dan man hinh.png';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import Image from 'next/image';
+import noProducts from '../../../public/img-no-pro-matching.webp';
 export interface Product {
-  id: number;
-  name: string;
-  url_key: string;
-  image: {
-    url: string;
-  };
-  price_range: {
-    minimum_price: {
-      final_price: {
-        value: number;
-        currency: string;
-      };
-    };
-  };
+	id: number;
+	name: string;
+	url_key: string;
+	image: {
+		url: string;
+	};
+	price_range: {
+		minimum_price: {
+			final_price: {
+				value: number;
+				currency: string;
+			};
+		};
+	};
 }
 
 const query = `
@@ -67,155 +67,148 @@ price_range {
 `;
 
 const variables = {
-  filter: {
-    category_uid: {
-      eq: "MjQ=",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
+	filter: {
+		category_uid: {
+			eq: 'MjQ=',
+		},
+	},
+	pageSize: 200,
+	currentPage: 1,
 };
 
 async function fetchProductListDataCuongLuc() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
+	const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query,
+			variables,
+		}),
+	});
 
-  const data = await response.json();
-  return data.data.products.items as Product[];
+	const data = await response.json();
+	return data.data.products.items as Product[];
 }
 
 const Section5: React.FC = () => {
-  const settings = {
-    infinite: true,
-    autoplay: true,
-    dots: true,
-    arrows: true,
-    slidesToShow: 5,
-    rows: 1,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-    ],
-  };
-  const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataCuongLuc"],
-    queryFn: fetchProductListDataCuongLuc,
-    staleTime: 300000,
-  });
+	const { data, error, isLoading } = useQuery<Product[]>({
+		queryKey: ['productListDataCuongLuc', variables.filter.category_uid.eq],
+		queryFn: fetchProductListDataCuongLuc,
+		staleTime: 300000,
+	});
 
-  const [activeTab, setActiveTab] = useState<string>("All");
-  const [filteredData, setFilteredData] = useState<Product[]>([]);
-  const [visibleProducts, setVisibleProducts] = useState<number>(10);
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+	const [activeTab, setActiveTab] = useState<string>('All');
+	const [filteredData, setFilteredData] = useState<Product[]>([]);
+	const [visibleProducts, setVisibleProducts] = useState<number>(10);
+	const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
-    }
-    setVisibleProducts(10);
-    setIsExpanded(false);
-  }, [activeTab, data]);
+	useEffect(() => {
+		if (activeTab === 'All') {
+			setFilteredData(data || []);
+		} else {
+			const filtered = data?.filter((product) => product.name.toLowerCase().includes(activeTab.toLowerCase()));
+			setFilteredData(filtered || []);
+		}
+		setVisibleProducts(10);
+		setIsExpanded(false);
+	}, [activeTab, data]);
+	useEffect(() => {
+		switch (activeTab) {
+			case 'iPhone':
+				variables.filter.category_uid.eq = 'MTI3';
+				break;
+			case 'iPad':
+				variables.filter.category_uid.eq = 'MjQy';
+				break;
+			default:
+				variables.filter.category_uid.eq = 'MjQ=';
+		}
+	}, [activeTab]);
+	const toggleProducts = () => {
+		if (isExpanded) {
+			setVisibleProducts(10);
+			setIsExpanded(false);
+		} else {
+			setVisibleProducts(filteredData.length);
+			setIsExpanded(true);
+		}
+	};
 
-  const toggleProducts = () => {
-    if (isExpanded) {
-      setVisibleProducts(10);
-      setIsExpanded(false);
-    } else {
-      setVisibleProducts(filteredData.length);
-      setIsExpanded(true);
-    }
-  };
+	if (isLoading) {
+		return (
+			<div className='loading container-spin'>
+				<Spin />
+			</div>
+		);
+	}
 
-  const loadMore = () => {
-    setVisibleProducts((prevVisible) => prevVisible + 5);
-  };
+	if (error) {
+		return <div>Error loading data</div>;
+	}
 
-  if (isLoading) {
-    return (
-      <div className="loading container-spin">
-        <Spin />
-      </div>
-    );
-  }
+	return (
+		<div className='OldForNew-Section-strength' id='item-strength'>
+			<div className='container'>
+				<div className='OldForNew-Section-Container-strength'>
+					<div className='header-table-combo-pk'>
+						<div style={{ paddingBottom: '10px' }}>
+							<h2 className='title-table-combo-pk'>Phụ Kiện Cường Lực</h2>
+						</div>
+						<div style={{ display: 'flex', gap: '10px', paddingBottom: '10px' }}>
+							<button
+								className={`btn-tab-buyPhone ${
+									activeTab === 'iPhone' ? 'btn-tab-buyPhone_active' : ''
+								}`}
+								onClick={() => setActiveTab('iPhone')}
+							>
+								iPhone
+							</button>
+							<button
+								className={`btn-tab-buyPhone ${activeTab === 'iPad' ? 'btn-tab-buyPhone_active' : ''}`}
+								onClick={() => setActiveTab('iPad')}
+							>
+								iPad
+							</button>
+							<button
+								className={`btn-tab-buyPhone ${activeTab === 'All' ? 'btn-tab-buyPhone_active' : ''}`}
+								onClick={() => setActiveTab('All')}
+							>
+								Tất cả
+							</button>
+						</div>
+					</div>
+					{data && data.length === 0 ? (
+						<div className='no-products-message'>
+							<Image src={noProducts} alt='no-products' className='no-products-image' />
+							<span>Không có sản phẩm</span>
+						</div>
+					) : (
+						<>
+							<div className='OldForNew-Section5-ItemSlider'>
+								{data?.slice(0, visibleProducts).map((product) => (
+									<CardProduct
+										key={product.id}
+										name={product.name}
+										url_key={product.url_key}
+										image={product.image}
+										price_range={product.price_range}
+									/>
+								))}
+							</div>
 
-  if (error) {
-    return <div>Error loading data</div>;
-  }
-
-  return (
-    <div className="OldForNew-Section-strength" id="item-strength">
-      <div className="container">
-        <div className="OldForNew-Section-Container-strength">
-          <div className="header-table-combo-pk">
-             <div style={{paddingBottom:"10px"}}>
-            <h2 className="title-table-combo-pk">Phụ Kiện Cường Lực</h2>
-              </div>
-          </div>
-          {data && data.length === 0 ? (
-            <div className="no-products-message">
-              <Image
-                src={noProducts}
-                alt="no-products"
-                className="no-products-image"
-              />
-              <span>Không có sản phẩm</span>
-            </div>
-          ) : (
-            <>
-              <div className="OldForNew-Section5-ItemSlider">
-                {data?.slice(0, visibleProducts).map((product) => (
-                  <CardProduct
-                    key={product.id}
-                    name={product.name}
-                    url_key={product.url_key}
-                    image={product.image}
-                    price_range={product.price_range}
-                  />
-                ))}
-              </div>
-
-              {data && data.length > 10 && (
-                <div className="load-more-container">
-                  <button onClick={toggleProducts}>
-                    {isExpanded ? "Thu gọn" : "Xem thêm"}
-                  </button>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+							{data && data.length > 10 && (
+								<div className='load-more-container'>
+									<button onClick={toggleProducts}>{isExpanded ? 'Thu gọn' : 'Xem thêm'}</button>
+								</div>
+							)}
+						</>
+					)}
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Section5;
