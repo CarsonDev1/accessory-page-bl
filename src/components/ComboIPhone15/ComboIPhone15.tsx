@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 import './ComboIPhone15.scss';
 import Image from 'next/image';
 import { Button, Form, Input, message, Modal, Select } from 'antd';
-import imagesCombo15 from '../../../public/combo-03-15.png';
+import images1 from '../../../public/combo-01-15.png';
+import images2 from '../../../public/combo-02-15.png';
+import images3 from '../../../public/combo-03-15.png';
+import images4 from '../../../public/combo-04-15.png';
 interface ProductCombo16 {
 	combo: string;
 	items: {
@@ -111,7 +114,7 @@ const ComboIPhone15: React.FC = () => {
 			setTotalPrice(newTotalPrice);
 		}
 	};
-
+	const images = [images1, images2, images3, images4];
 	return (
 		<div className='banner-slide'>
 			<div className='container'>
@@ -122,7 +125,7 @@ const ComboIPhone15: React.FC = () => {
 							<div className='banner-slide-combo15-card'>
 								<div className='banner-slide-combo15-button'>{combo.combo}</div>
 								<Image
-									src={imagesCombo15}
+									src={images[index]}
 									alt='banner-slide-combo15-image'
 									className='banner-slide-combo15-image'
 								/>

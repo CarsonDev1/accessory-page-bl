@@ -253,7 +253,7 @@ const BannerSlide = () => {
 					</div>
 				</div>
 
-				<div style={{ padding: '20px 0px' }}>
+				<div>
 					<ul className='list-item-click'>
 						<li className='item-click' onClick={handleClickApple}>
 							<Image src={iconapple} alt='banner-slide-01' className='icon-itemClick' />

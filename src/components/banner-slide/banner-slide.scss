@@ -405,6 +405,7 @@
 	font-weight: 500;
 	color: #333;
 	height: 40px;
+	white-space: nowrap;
 	@media screen and (max-width: 768px) {
 		font-size: 13px;
 		height: 30px;
@@ -417,10 +418,6 @@
 	gap: 0.6rem;
 	height: auto;
 	justify-content: center;
-	padding: 1.6rem 0rem;
-	text-align: center;
-	transition: all 0.3s ease-in-out;
-	border: 1px solid #858585;
 	border-radius: 0.8rem;
 	transition: all 0.3s;
 	@media screen and (max-width: 1200px) {
@@ -434,7 +431,6 @@
 	}
 }
 .item-click:hover {
-	border: 1px solid #ffd82c;
 	cursor: pointer;
 }
 .list-item-click {
@@ -444,16 +440,16 @@
 	align-items: flex-start;
 	gap: 0.5rem;
 	@media screen and (max-width: 1200px) {
-		grid-template-columns: repeat(6, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 		gap: 0.8rem;
 	}
 	@media screen and (max-width: 768px) {
 		gap: 0.6rem;
-		grid-template-columns: repeat(8, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 	}
 	@media screen and (max-width: 600px) {
 		gap: 0.3rem;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
 .OldForNew-Section1-imageSliderBanner {

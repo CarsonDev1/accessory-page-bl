@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button, Form, Input, Modal, Select, message } from 'antd';
 import './ComboIPhone16.scss';
-
+import images1 from '../../../public/combo-01-16.png';
+import images2 from '../../../public/combo-02-16.png';
+import images3 from '../../../public/combo-03-16.png';
+import images4 from '../../../public/combo-04-16.png';
 interface ProductCombo16 {
 	combo: string;
 	persen: string;
@@ -118,7 +121,7 @@ const ComboIPhone16: React.FC = () => {
 			setTotalPrice(newTotalPrice);
 		}
 	};
-
+	const images = [images1, images2, images3, images4];
 	return (
 		<>
 			<div className='banner-slide'>
@@ -135,11 +138,12 @@ const ComboIPhone16: React.FC = () => {
 									</div>
 									<div className='banner-slide-combo-button'>{combo.combo}</div>
 									<Image
-										src='/combo-01-16.png'
+										src={images[index]}
 										width={400}
 										height={400}
-										alt='banner-slide-combo-image'
+										alt={combo.combo}
 										className='banner-slide-combo-image'
+										loading='lazy'
 									/>
 								</div>
 							</div>
