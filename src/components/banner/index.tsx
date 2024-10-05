@@ -7,7 +7,7 @@ const Banner = () => {
 	return (
 		<div className='banner'>
 			<picture>
-				<source media='(max-width: 768px)' srcSet='/banner-accessory-mobile.png' />
+				<source media='(max-width: 768px)' srcSet='/HEADER-MOBILE.jpg' />
 				<Image
 					src='/HEAD PK THANG 10 1920x500 0410.jpg'
 					width={1820}
