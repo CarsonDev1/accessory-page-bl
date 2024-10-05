@@ -95,7 +95,7 @@ async function fetchProductListDataSacDuPhong() {
 
 const Section5: React.FC = () => {
 	const { data, error, isLoading } = useQuery<Product[]>({
-		queryKey: ['productListDataSacDuPhong'],
+		queryKey: ['productListDataSacDuPhong', variables.filter.category_uid.eq],
 		queryFn: fetchProductListDataSacDuPhong,
 		staleTime: 300000,
 	});
@@ -115,7 +115,24 @@ const Section5: React.FC = () => {
 		setVisibleProducts(10);
 		setIsExpanded(false);
 	}, [activeTab, data]);
-
+	useEffect(() => {
+		switch (activeTab) {
+			case 'SamSung':
+				variables.filter.category_uid.eq = 'ODE=';
+				break;
+			case 'Pisen':
+				variables.filter.category_uid.eq = 'MjMz';
+				break;
+			case 'Innostyle':
+				variables.filter.category_uid.eq = 'MjMy';
+				break;
+			case 'Khác':
+				variables.filter.category_uid.eq = 'MjM0';
+				break;
+			default:
+				variables.filter.category_uid.eq = 'MTk=';
+		}
+	}, [activeTab]);
 	const toggleProducts = () => {
 		if (isExpanded) {
 			setVisibleProducts(10);
@@ -146,9 +163,43 @@ const Section5: React.FC = () => {
 		<div className='OldForNew-Section-backup-charger' id='item-backup-charger'>
 			<div className='container'>
 				<div className='OldForNew-Section-Container-backup-charger'>
-					<div style={{ paddingBottom: '10px' }}>
-						<h2 className='title-table-combo-pk'>Phụ Kiện Sạc Dự Phòng</h2>
+					<div className='header-table-combo-pk'>
+						<div style={{ paddingBottom: '10px' }}>
+							<h2 className='title-table-combo-pk'>Phụ Kiện Sạc Dự Phòng</h2>
+						</div>
+						<div className='tab-button-table-combo-pk'>
+							<button
+								className={`btn-tab-buyPhone ${
+									activeTab === 'SamSung' ? 'btn-tab-buyPhone_active' : ''
+								}`}
+								onClick={() => setActiveTab('SamSung')}
+							>
+								SamSung
+							</button>
+							<button
+								className={`btn-tab-buyPhone ${activeTab === 'Pisen' ? 'btn-tab-buyPhone_active' : ''}`}
+								onClick={() => setActiveTab('Pisen')}
+							>
+								Pisen
+							</button>
+							<button
+								className={`btn-tab-buyPhone ${
+									activeTab === 'Innostyle' ? 'btn-tab-buyPhone_active' : ''
+								}`}
+								onClick={() => setActiveTab('Innostyle')}
+							>
+								Innostyle
+							</button>
+
+							<button
+								className={`btn-tab-buyPhone ${activeTab === 'All' ? 'btn-tab-buyPhone_active' : ''}`}
+								onClick={() => setActiveTab('All')}
+							>
+								Tất cả
+							</button>
+						</div>
 					</div>
+
 					{filteredData.length === 0 ? (
 						<div className='no-products-message'>
 							<Image src={noProducts} alt='no-products' className='no-products-image' />

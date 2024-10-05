@@ -159,7 +159,7 @@ const Section5: React.FC = () => {
 						<div style={{ paddingBottom: '10px' }}>
 							<h2 className='title-table-combo-pk'>Phụ Kiện Bao Da, Ốp Lưng</h2>
 						</div>
-						<div style={{ display: 'flex', gap: '10px', paddingBottom: '10px' }}>
+						<div className='tab-button-table-combo-pk'>
 							<button
 								className={`btn-tab-buyPhone ${
 									activeTab === 'IPhone 16 Series' ? 'btn-tab-buyPhone_active' : ''

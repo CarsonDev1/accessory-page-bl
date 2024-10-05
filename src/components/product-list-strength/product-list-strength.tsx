@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import React, { useState, useEffect } from 'react';
-import './product-list-strength.css';
+import './product-list-strength.scss';
 // import { Carousel } from "antd";
 import CardProduct from '../CardProduct/CardProduct';
 import { useQuery } from '@tanstack/react-query';
@@ -156,7 +156,7 @@ const Section5: React.FC = () => {
 						<div style={{ paddingBottom: '10px' }}>
 							<h2 className='title-table-combo-pk'>Phụ Kiện Cường Lực</h2>
 						</div>
-						<div style={{ display: 'flex', gap: '10px', paddingBottom: '10px' }}>
+						<div className='tab-button-table-combo-pk'>
 							<button
 								className={`btn-tab-buyPhone ${
 									activeTab === 'iPhone' ? 'btn-tab-buyPhone_active' : ''
