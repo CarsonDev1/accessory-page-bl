@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import './BodyOldAutumn.scss';
 import Image from 'next/image';
 import icsSearch from '../../../public/ic-search.png';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { useQuery } from '@tanstack/react-query';
 import CardProduct from '../../components/CardProductOldAutumn/CardProductOldAutumn';
 import { Button, Modal, Pagination, Radio } from 'antd';
@@ -34,7 +33,6 @@ export interface Product {
 	};
 	loaisp: string;
 }
-const queryClient = new QueryClient();
 
 const BodyOldAutumn = () => {
 	const [phoneCondition, setPhoneCondition] = useState('normal');

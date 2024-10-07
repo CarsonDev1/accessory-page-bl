@@ -17,6 +17,7 @@ interface Product {
 interface ProductModalProps {
 	modalOpen: boolean;
 	onCancelModal: () => void;
+	selectedPrice: number;
 	selectedProduct: Product | null;
 }
 export interface ProductData {
@@ -36,7 +37,7 @@ export interface ProductData {
 		};
 	};
 }
-const ProductModal2: React.FC<ProductModalProps> = ({ modalOpen, selectedProduct, onCancelModal }) => {
+const ProductModal2: React.FC<ProductModalProps> = ({ modalOpen, selectedProduct, onCancelModal, selectedPrice }) => {
 	const [visibleProducts, setVisibleProducts] = useState<number>(10);
 	const [isExpanded, setIsExpanded] = useState<boolean>(false);
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -176,6 +177,7 @@ price_range {
 								name={product.name}
 								images={product.image.url}
 								price1={product.price_range.minimum_price.final_price.value}
+								selectedPrice={selectedPrice}
 							/>
 						))}
 					</div>

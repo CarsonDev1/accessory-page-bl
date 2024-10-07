@@ -7,8 +7,9 @@ export interface Product {
 	name: string;
 	images: string;
 	price1: number;
+	selectedPrice: number
 }
-function CardProduct({ name, images, price1 }: Omit<Product, 'id'>) {
+function CardProduct({ name, images, price1, selectedPrice }: Omit<Product, 'id'>) {
 	return (
 		<div className='CardProductOldAutumn2'>
 			<figure className='product__img'>
@@ -23,11 +24,11 @@ function CardProduct({ name, images, price1 }: Omit<Product, 'id'>) {
 			</div>
 			<div className='product__groupPrice' style={{ textAlign: 'center' }}>
 				<span className='product__price'>Giá thu: </span>
-				<span className='product__priceSpecial'>{price1.toLocaleString()} VND</span>
+				<span className='product__priceSpecial'>{selectedPrice.toLocaleString()} VND</span>
 			</div>
 			<div className='product__groupPrice' style={{ textAlign: 'center' }}>
 				<span className='product__price'>Trả thêm: </span>
-				<span className='product__priceSpecial'>{price1.toLocaleString()} VND</span>
+				<span className='product__priceSpecial'>{(price1 - selectedPrice).toLocaleString()} VND</span>
 			</div>
 		</div>
 	);

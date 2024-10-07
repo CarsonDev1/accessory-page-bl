@@ -140,6 +140,7 @@ const ProductModal1: React.FC<ProductModalProps> = ({
 				modalOpen={isModalOpen2}
 				selectedProduct={selectedProduct}
 				onCancelModal={() => setIsModalOpen2(false)}
+				selectedPrice={selectedPrice}
 			/>
 		</>
 	);
