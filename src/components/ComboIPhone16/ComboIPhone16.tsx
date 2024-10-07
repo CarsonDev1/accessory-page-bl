@@ -42,6 +42,7 @@ const ComboIPhone16: React.FC = () => {
 			}
 		);
 		const data: ProductCombo16[] = await response.json();
+		console.log('data 16', data);
 		setFetchedData(data);
 	};
 

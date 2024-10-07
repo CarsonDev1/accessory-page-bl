@@ -60,7 +60,13 @@
 	border-radius: 10px;
 	width: max-content;
 	height: max-content;
+	font-weight: 600;
 	color: #000;
+	white-space: nowrap;
+}
+.BodyOldAutumn-button.active {
+	background-color: red; // Màu đỏ cho nút đang hoạt động
+	color: white; // Màu chữ trắng
 }
 .BodyOldAutumn-tab-item {
 	display: grid;
@@ -68,3 +74,4 @@
 	margin: 0 auto;
 	grid-template-columns: repeat(5, 1fr);
 }
+// TradeInModal.scss
