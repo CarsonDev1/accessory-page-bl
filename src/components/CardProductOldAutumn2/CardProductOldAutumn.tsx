@@ -20,15 +20,15 @@ function CardProduct({ name, images, price1, selectedPrice }: Omit<Product, 'id'
 			</div>
 			<div className='CardProductOldAutumn2__groupPrice' style={{ textAlign: 'center' }}>
 				<p className='CardProductOldAutumn2__price'>Đang bán: </p>
-				<p className='CardProductOldAutumn2__priceSpecial'>{price1.toLocaleString()} VND</p>
+				<p className='CardProductOldAutumn2__priceSpecial'>{price1.toLocaleString()}VND</p>
 			</div>
 			<div className='CardProductOldAutumn2__groupPrice' style={{ textAlign: 'center' }}>
 				<p className='CardProductOldAutumn2__price'>Giá thu: </p>
-				<p className='CardProductOldAutumn2__priceSpecial'>{selectedPrice.toLocaleString()} VND</p>
+				<p className='CardProductOldAutumn2__priceSpecial'>{selectedPrice.toLocaleString()}VND</p>
 			</div>
 			<div className='CardProductOldAutumn2__groupPrice' style={{ textAlign: 'center' }}>
 				<p className='CardProductOldAutumn2__price'>Trả thêm: </p>
-				<p className='CardProductOldAutumn2__priceSpecial'>{(price1 - selectedPrice).toLocaleString()} VND</p>
+				<p className='CardProductOldAutumn2__priceSpecial'>{(price1 - selectedPrice).toLocaleString()}VND</p>
 			</div>
 		</div>
 	);

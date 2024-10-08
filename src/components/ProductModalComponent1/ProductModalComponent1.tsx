@@ -49,6 +49,12 @@ const ProductModal1: React.FC<ProductModalProps> = ({
 				setSelectedPrice(selectedProduct?.item.price1 || 0); // Default to price1
 		}
 	};
+	const phoneConditionDescriptions: { [key: string]: string } = {
+		warranty_mobile: 'Máy còn bảo hành Bạch Long Mobile, màn hình đẹp, thân máy đẹp',
+		warranty_scratch_light: 'Máy còn bảo hành Bạch Long Mobile, màn hình đẹp, thân máy trầy xước nhẹ',
+		normal: 'Máy hoạt động bình thường, màn hình đẹp, thân máy đẹp',
+	};
+	const selectedConditionText = phoneConditionDescriptions[phoneCondition] || '';
 	useEffect(() => {
 		if (selectedProduct) {
 			handlePriceChange(phoneCondition);
@@ -61,6 +67,7 @@ const ProductModal1: React.FC<ProductModalProps> = ({
 		setIsModalOpen2(true);
 		onCancel();
 	};
+	console.log('data modal 1', selectedConditionText);
 	return (
 		<>
 			<Modal visible={visible} onCancel={onCancel} footer={null} width={800}>
@@ -141,6 +148,7 @@ const ProductModal1: React.FC<ProductModalProps> = ({
 				selectedProduct={selectedProduct}
 				onCancelModal={() => setIsModalOpen2(false)}
 				selectedPrice={selectedPrice}
+				tinhtrangmay={selectedConditionText}
 			/>
 		</>
 	);

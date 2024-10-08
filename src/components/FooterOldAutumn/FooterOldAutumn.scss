@@ -1,0 +1,111 @@
+.FooterOldAutumn {
+	background-color: #ffffff; // Light yellow background
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+
+	&-mainSection {
+		margin-bottom: 20px;
+		&-info {
+			display: flex;
+		}
+	}
+
+	&-heading {
+		font-size: 18px;
+		font-weight: bold;
+		padding: 5px;
+	}
+
+	&-ctaButton {
+		background-color: #ffffff;
+		border: 1px solid red;
+		padding: 8px 16px;
+		border-radius: 4px;
+		color: red;
+		cursor: pointer;
+
+		&:hover {
+			background-color: red;
+			color: white;
+		}
+	}
+
+	&-description {
+		margin-bottom: 16px;
+		font-size: 14px;
+	}
+
+	&-benefits {
+		list-style: none;
+		padding: 0;
+		font-size: 14px;
+		margin-bottom: 16px;
+	}
+
+	&-supportText {
+		font-weight: bold;
+		margin-bottom: 16px;
+		font-size: 16px;
+	}
+
+	&-readMoreButton {
+		background-color: #ffffff;
+		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+		border: none;
+		padding: 10px 16px;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 14px;
+		border: 1px solid rgb(0, 68, 255);
+
+		&:hover {
+			background-color: #ddd;
+		}
+	}
+
+	&-extraSection {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		margin-top: 20px;
+
+		&-videoSection {
+			flex: 1;
+			margin-right: 20px;
+		}
+
+		&-contactSection {
+			flex: 1;
+			background-color: #ffeaea;
+			padding: 10px;
+			border-radius: 4px;
+
+			p {
+				font-size: 16px;
+				color: red;
+				font-weight: bold;
+			}
+
+			.FooterOldAutumn-hotline {
+				background-color: #fce5e5;
+				padding: 5px;
+				border-radius: 5px;
+				font-size: 18px;
+			}
+
+			ul {
+				margin-top: 10px;
+				list-style: none;
+				padding-left: 0;
+				font-size: 14px;
+
+				li {
+					margin-bottom: 5px;
+				}
+			}
+		}
+	}
+}
