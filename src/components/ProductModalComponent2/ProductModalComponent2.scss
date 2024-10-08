@@ -62,10 +62,9 @@
 	justify-content: center;
 	margin: 0 auto;
 	padding: 20px 10px;
-	overflow-x: auto;
-	white-space: nowrap;
-	::-webkit-scrollbar {
-		display: none;
+	flex-wrap: wrap;
+	@media (max-width: 767px) {
+		gap: 6px;
 	}
 }
 .BodyOldAutumn-titleModal {
@@ -135,6 +134,9 @@
 	color: #000;
 	white-space: nowrap;
 	border: 1px solid gray;
+	@media (max-width: 767px) {
+		padding: 5px 10px;
+	}
 }
 .modal-product2-button.active {
 	background-color: red; // Màu đỏ cho nút đang hoạt động

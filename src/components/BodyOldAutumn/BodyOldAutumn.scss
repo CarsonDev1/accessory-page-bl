@@ -48,15 +48,15 @@
 	height: 20px;
 }
 .BodyOldAutumn-tab-button {
+	width: 100%;
 	display: flex;
 	gap: 20px;
 	justify-content: center;
 	margin: 0 auto;
 	padding: 20px 0;
-	overflow-x: auto;
-	white-space: nowrap;
-	::-webkit-scrollbar {
-		display: none;
+	flex-wrap: wrap;
+	@media (max-width: 767px) {
+		gap: 10px;
 	}
 }
 .BodyOldAutumn-button {
