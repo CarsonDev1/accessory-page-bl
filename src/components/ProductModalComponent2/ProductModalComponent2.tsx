@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Modal, Radio } from 'antd';
+import { Modal, Spin } from 'antd';
 import Image from 'next/image';
 import './ProductModalComponent2.scss';
 import { useQuery } from '@tanstack/react-query';
@@ -38,8 +38,9 @@ export interface ProductData {
 	};
 }
 const ProductModal2: React.FC<ProductModalProps> = ({ modalOpen, selectedProduct, onCancelModal, selectedPrice }) => {
-	const [visibleProducts, setVisibleProducts] = useState<number>(10);
+	const [visibleProducts, setVisibleProducts] = useState<number>(9);
 	const [isExpanded, setIsExpanded] = useState<boolean>(false);
+	const [loading, setLoading] = useState(false);
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const query = `
 query getProducts(
@@ -82,6 +83,7 @@ price_range {
 	const [categoryUid, setCategoryUid] = useState<string>('Mjgx');
 
 	const fetchProductListDataBuyPhone = async (category_uid: string) => {
+		setLoading(true);
 		const variables = {
 			filter: {
 				category_uid: {
@@ -105,6 +107,7 @@ price_range {
 
 		const data = await response.json();
 		console.log('data máy mới', data);
+		setLoading(false);
 		return data.data.products.items as ProductData[];
 	};
 	const handleTabChange = (tab: string) => {
@@ -116,8 +119,17 @@ price_range {
 			case 'iPad':
 				setCategoryUid('NA=='); // Gán categoryUid cho iPad
 				break;
+			case 'Apple Watch':
+				setCategoryUid('Nw=='); // Gán categoryUid cho iPad
+				break;
 			case 'Samsung':
 				setCategoryUid('MzAy'); // Gán categoryUid cho Samsung
+				break;
+			case 'Laptop':
+				setCategoryUid('NQ=='); // Gán categoryUid cho Samsung
+				break;
+			case 'Macbook':
+				setCategoryUid('MTcx'); // Gán categoryUid cho Samsung
 				break;
 			default:
 				setCategoryUid('Mjgx'); // Gán mặc định
@@ -130,7 +142,7 @@ price_range {
 	});
 	const toggleProducts = () => {
 		if (isExpanded) {
-			setVisibleProducts(10);
+			setVisibleProducts(9);
 			setIsExpanded(false);
 		} else {
 			setVisibleProducts(data ? data.length : 0); // Check if data is defined
@@ -141,29 +153,57 @@ price_range {
 	return (
 		<Modal visible={modalOpen} onCancel={onCancelModal} footer={null} width={800}>
 			<h2 className='BodyOldAutumn-titleModal'>DANH SÁCH SẢN PHẨM ĐỔI MÁY</h2>
-			<div className='BodyOldAutumn-tab-button'>
-				<button className={`BodyOldAutumn-button`} onClick={() => handleTabChange('iPhone')}>
+			<div className='modal-product2-tab-button'>
+				<button
+					className={`modal-product2-button ${activeTab === 'iPhone' ? 'active' : ''}`}
+					onClick={() => handleTabChange('iPhone')}
+				>
 					iPhone
 				</button>
-				<button className={`BodyOldAutumn-button`} onClick={() => handleTabChange('Samsung')}>
+				<button
+					className={`modal-product2-button ${activeTab === 'Samsung' ? 'active' : ''}`}
+					onClick={() => handleTabChange('Samsung')}
+				>
 					Samsung
 				</button>
-				<button className={`BodyOldAutumn-button`} onClick={() => handleTabChange('Apple Watch')}>
+				<button
+					className={`modal-product2-button ${activeTab === 'Apple Watch' ? 'active' : ''}`}
+					onClick={() => handleTabChange('Apple Watch')}
+				>
 					Apple Watch
 				</button>
-				<button className={`BodyOldAutumn-button`} onClick={() => handleTabChange('iPad')}>
+				<button
+					className={`modal-product2-button ${activeTab === 'iPad' ? 'active' : ''}`}
+					onClick={() => handleTabChange('iPad')}
+				>
 					iPad
 				</button>
-				<button className={`BodyOldAutumn-button`} onClick={() => handleTabChange('Laptop')}>
+				<button
+					className={`modal-product2-button ${activeTab === 'Laptop' ? 'active' : ''}`}
+					onClick={() => handleTabChange('Laptop')}
+				>
 					Laptop
 				</button>
-				<button className={`BodyOldAutumn-button`} onClick={() => handleTabChange('Apple Watch')}>
-					Apple Watch
-				</button>
-				<button className={`BodyOldAutumn-button`} onClick={() => handleTabChange('Macbook')}>
+				<button
+					className={`modal-product2-button ${activeTab === 'Macbook' ? 'active' : ''}`}
+					onClick={() => handleTabChange('Macbook')}
+				>
 					Macbook
 				</button>
 			</div>
+			{loading && (
+				<div
+					className='loading container-spin flex items-center justify-center'
+					style={{
+						height: '200px',
+						margin: '0 auto',
+						display: 'flex',
+						justifyContent: 'center',
+					}}
+				>
+					<Spin />
+				</div>
+			)}
 			{data && data.length === 0 ? (
 				<div className='no-products-message'>
 					<span>Không có sản phẩm</span>
@@ -182,9 +222,11 @@ price_range {
 						))}
 					</div>
 
-					{data && data.length > 10 && (
-						<div className='load-more-container'>
-							<button onClick={toggleProducts}>{isExpanded ? 'Thu gọn' : 'Xem thêm'}</button>
+					{data && data.length > 9 && (
+						<div className='load-more-modal-product2'>
+							<button className='btn-load-more-modal-product2' onClick={toggleProducts}>
+								{isExpanded ? 'Thu gọn' : 'Xem thêm'}
+							</button>
 						</div>
 					)}
 				</>

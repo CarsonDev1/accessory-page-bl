@@ -53,6 +53,11 @@
 	justify-content: center;
 	margin: 0 auto;
 	padding: 20px 0;
+	overflow-x: auto;
+	white-space: nowrap;
+	::-webkit-scrollbar {
+		display: none;
+	}
 }
 .BodyOldAutumn-button {
 	background-color: #fff;
@@ -73,5 +78,14 @@
 	gap: 10px;
 	margin: 0 auto;
 	grid-template-columns: repeat(5, 1fr);
+	@media (max-width: 1199px) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	@media (max-width: 1000px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	@media (max-width: 767px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 // TradeInModal.scss

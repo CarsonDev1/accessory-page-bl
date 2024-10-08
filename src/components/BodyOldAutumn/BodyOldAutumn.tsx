@@ -5,7 +5,7 @@ import Image from 'next/image';
 import icsSearch from '../../../public/ic-search.png';
 import { useQuery } from '@tanstack/react-query';
 import CardProduct from '../../components/CardProductOldAutumn/CardProductOldAutumn';
-import { Button, Modal, Pagination, Radio } from 'antd';
+import { Spin, Modal, Pagination, Radio } from 'antd';
 import ProductModal from '../../components/ProductModalComponent1/ProductModalComponent1';
 export interface ProductData {
 	id: number;
@@ -46,6 +46,7 @@ const BodyOldAutumn = () => {
 	const [productType, setProductType] = useState<string>('iPhone');
 	const [selectedPrice, setSelectedPrice] = useState<number>(0);
 	const [priceForModal2, setPriceForModal2] = useState<number>(0);
+	const [loading, setLoading] = useState(false);
 	const handleChange = (value: string) => {
 		setSelectedSeries(value);
 		setProductType(value);
@@ -73,12 +74,14 @@ const BodyOldAutumn = () => {
 	};
 	useEffect(() => {
 		const fetchData = async () => {
+			setLoading(true);
 			const response = await fetch(
 				'https://script.google.com/macros/s/AKfycbyk9SIAxTIM--HkPzDuOYbWzplDnLC1n527jwOW4-0m-uHehJtjr_PcH8U1coh-4hs/exec'
 			);
 			const data = await response.json();
 			setFilteredProducts(data);
 			console.log('data thu cu', data);
+			setLoading(false);
 			return data;
 		};
 
@@ -166,6 +169,16 @@ const BodyOldAutumn = () => {
 							Phụ Kiện Apple
 						</button>
 					</div>
+					{loading && (
+						<div
+							className='loading container-spin flex items-center justify-center'
+							style={{
+								height: '300px',
+							}}
+						>
+							<Spin />
+						</div>
+					)}
 					<div className='BodyOldAutumn-tab-item'>
 						{currentProducts.map((product: any, index: number) => (
 							<div key={index} onClick={() => showModal(product)}>

@@ -1,12 +1,20 @@
 .BodyOldAutumn-container {
 	display: flex;
+	@media (max-width: 767px) {
+		display: block !important;
+	}
 }
-
 .BodyOldAutumn-left-section {
 	flex: 1;
 	img {
 		width: 300px;
 		height: 300px;
+		display: block;
+		margin: 0 auto;
+		@media (max-width: 767px) {
+			width: 150px !important;
+			height: 150px !important;
+		}
 	}
 	p {
 		font-weight: bold;
@@ -17,7 +25,9 @@
 .BodyOldAutumn-right-section {
 	flex: 3;
 	padding-left: 20px;
-
+	@media (max-width: 767px) {
+		padding-left: 0px !important;
+	}
 	h4 {
 		margin-top: 16px;
 		font-weight: bold;

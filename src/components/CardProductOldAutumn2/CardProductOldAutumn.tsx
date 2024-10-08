@@ -7,7 +7,7 @@ export interface Product {
 	name: string;
 	images: string;
 	price1: number;
-	selectedPrice: number
+	selectedPrice: number;
 }
 function CardProduct({ name, images, price1, selectedPrice }: Omit<Product, 'id'>) {
 	return (
@@ -18,17 +18,17 @@ function CardProduct({ name, images, price1, selectedPrice }: Omit<Product, 'id'
 			<div className='product__title' style={{ textDecoration: 'none' }}>
 				{name}
 			</div>
-			<div className='product__groupPrice' style={{ textAlign: 'center' }}>
-				<span className='product__price'>Đang bán: </span>
-				<span className='product__priceSpecial'>{price1.toLocaleString()} VND</span>
+			<div className='CardProductOldAutumn2__groupPrice' style={{ textAlign: 'center' }}>
+				<p className='CardProductOldAutumn2__price'>Đang bán: </p>
+				<p className='CardProductOldAutumn2__priceSpecial'>{price1.toLocaleString()} VND</p>
 			</div>
-			<div className='product__groupPrice' style={{ textAlign: 'center' }}>
-				<span className='product__price'>Giá thu: </span>
-				<span className='product__priceSpecial'>{selectedPrice.toLocaleString()} VND</span>
+			<div className='CardProductOldAutumn2__groupPrice' style={{ textAlign: 'center' }}>
+				<p className='CardProductOldAutumn2__price'>Giá thu: </p>
+				<p className='CardProductOldAutumn2__priceSpecial'>{selectedPrice.toLocaleString()} VND</p>
 			</div>
-			<div className='product__groupPrice' style={{ textAlign: 'center' }}>
-				<span className='product__price'>Trả thêm: </span>
-				<span className='product__priceSpecial'>{(price1 - selectedPrice).toLocaleString()} VND</span>
+			<div className='CardProductOldAutumn2__groupPrice' style={{ textAlign: 'center' }}>
+				<p className='CardProductOldAutumn2__price'>Trả thêm: </p>
+				<p className='CardProductOldAutumn2__priceSpecial'>{(price1 - selectedPrice).toLocaleString()} VND</p>
 			</div>
 		</div>
 	);
