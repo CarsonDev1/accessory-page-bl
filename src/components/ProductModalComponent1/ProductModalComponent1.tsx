@@ -102,7 +102,7 @@ const ProductModal1: React.FC<ProductModalProps> = ({
 										borderRadius: '5px',
 									}}
 								>
-									Máy còn bảo hành Bạch Long Mobile, màn hình đẹp, thân máy đẹp
+									[Loại 1] Máy hoạt động bình thường, Full chức năng, màn đẹp, thân máy đẹp.
 								</Radio.Button>
 								<Radio.Button
 									value='warranty_scratch_light'
@@ -114,13 +114,13 @@ const ProductModal1: React.FC<ProductModalProps> = ({
 										borderRadius: '5px',
 									}}
 								>
-									Máy còn bảo hành Bạch Long Mobile, màn hình đẹp, thân máy trầy xước nhẹ
+									[Loại 2] Máy hoạt động bình thường, màn đẹp, thân máy trầy xước nhẹ.
 								</Radio.Button>
 								<Radio.Button
 									value='normal'
 									style={{ height: '50px', width: '100%', lineHeight: 'unset', borderRadius: '5px' }}
 								>
-									Máy hoạt động bình thường, màn hình đẹp, thân máy đẹp
+									[Loại 3] Máy hoạt động bình thường, màn trầy nhẹ, thân máy cấn móp nhẹ.
 								</Radio.Button>
 							</Radio.Group>
 
