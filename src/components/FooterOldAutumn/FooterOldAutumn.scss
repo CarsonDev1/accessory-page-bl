@@ -5,9 +5,14 @@
 	flex-direction: column;
 
 	&-mainSection {
+		padding: 0;
 		margin-bottom: 20px;
 		&-info {
 			display: flex;
+			margin-bottom: 10px;
+			@media (max-width: 767px) {
+				display: block !important;
+			}
 		}
 	}
 
@@ -24,7 +29,11 @@
 		border-radius: 4px;
 		color: red;
 		cursor: pointer;
-
+		@media (max-width: 767px) {
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+		}
 		&:hover {
 			background-color: red;
 			color: white;
@@ -32,8 +41,16 @@
 	}
 
 	&-description {
-		margin-bottom: 16px;
-		font-size: 14px;
+		margin-bottom: 10px;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.5;
+		@media (max-width: 767px) {
+			font-size: 14px;
+		}
+		&-strong {
+			font-weight: 700;
+		}
 	}
 
 	&-benefits {
@@ -41,12 +58,19 @@
 		padding: 0;
 		font-size: 14px;
 		margin-bottom: 16px;
+		@media (max-width: 767px) {
+			font-size: 12px;
+		}
 	}
 
 	&-supportText {
 		font-weight: bold;
-		margin-bottom: 16px;
-		font-size: 16px;
+		padding: 10px 0;
+		font-size: 22px;
+		line-height: 1.5;
+		@media (max-width: 767px) {
+			font-size: 18px;
+		}
 	}
 
 	&-readMoreButton {
@@ -68,13 +92,15 @@
 
 	&-extraSection {
 		display: flex;
-		justify-content: space-between;
 		width: 100%;
-		margin-top: 20px;
+		gap: 20px;
+		justify-content: center;
+		margin: 20px auto;
+		@media (max-width: 767px) {
+			display: block;
+		}
 
 		&-videoSection {
-			flex: 1;
-			margin-right: 20px;
 		}
 
 		&-contactSection {
@@ -89,23 +115,58 @@
 				font-weight: bold;
 			}
 
-			.FooterOldAutumn-hotline {
-				background-color: #fce5e5;
-				padding: 5px;
-				border-radius: 5px;
-				font-size: 18px;
-			}
-
 			ul {
 				margin-top: 10px;
-				list-style: none;
-				padding-left: 0;
-				font-size: 14px;
-
-				li {
-					margin-bottom: 5px;
-				}
+				line-height: 1.5;
+				padding: 20px;
+				background-color: #ecfdf5;
+				border: 1px solid #10b981;
+				border-radius: 10px;
 			}
 		}
+	}
+}
+.FooterOldAutumn-contactSection-card {
+	background: linear-gradient(290deg, #ff661d -9.95%, #ec1e27 108.71%);
+	border-radius: 0.8rem;
+	overflow: hidden;
+	display: flex;
+	padding: 1.6rem 1.2rem;
+	span {
+		color: #000;
+		font-size: 2.4rem;
+		font-weight: 700;
+		line-height: 140%;
+		@media (max-width: 767px) {
+			font-size: 1.8rem;
+		}
+	}
+	.FooterOldAutumn-hotline {
+		color: #fad200;
+	}
+	.FooterOldAutumn-contactSection-card-images {
+		width: 30px;
+		height: 30px;
+		@media (max-width: 767px) {
+			width: 20px;
+			height: 20px;
+		}
+	}
+}
+.FooterOldAutumn-extraSection-videoSection-item {
+	width: 100%;
+	height: 100%;
+	@media (max-width: 767px) {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		margin: 10px auto !important;
+	}
+}
+.FooterOldAutumn-hotline-br {
+	display: block;
+	@media (max-width: 767px) {
+		display: none;
 	}
 }

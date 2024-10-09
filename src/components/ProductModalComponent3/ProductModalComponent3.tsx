@@ -123,6 +123,7 @@ const ProductModal3: React.FC<ProductModalProps> = ({
 		} finally {
 			setLoading(false);
 			openNotification('topRight');
+			onCancelModal();
 		}
 	};
 
