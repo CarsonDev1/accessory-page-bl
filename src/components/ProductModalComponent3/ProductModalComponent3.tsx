@@ -141,7 +141,7 @@ const ProductModal3: React.FC<ProductModalProps> = ({
 									<img src={selectedProduct?.image.url} alt='' className='productModal3-image' />
 								</div>
 								<p className='productModal3-priceInfo'>
-									<p className='productModal3-sellingStatus'>Đang bán</p>
+									<p className='productModal3-sellingStatus'>Giá bán</p>
 									<p className='productModal3-price'>
 										{new Intl.NumberFormat('vi-VN').format(
 											selectedProduct?.price_range.minimum_price.final_price.value || 0 // Fallback to 0
@@ -150,7 +150,7 @@ const ProductModal3: React.FC<ProductModalProps> = ({
 									</p>
 								</p>
 								<p className='productModal3-priceInfo'>
-									<p className='productModal3-oldPrice'>Thu cũ</p>
+									<p className='productModal3-oldPrice'>Giá thu</p>
 									<p className='productModal3-price'>
 										{new Intl.NumberFormat('vi-VN').format(selectedPrice)} VND.
 									</p>
