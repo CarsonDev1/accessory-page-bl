@@ -46,7 +46,7 @@ const ProductModal2: React.FC<ProductModalProps> = ({
 	selectedPrice,
 	tinhtrangmay,
 }) => {
-	const [visibleProducts, setVisibleProducts] = useState<number>(9);
+	const [visibleProducts, setVisibleProducts] = useState<number>(12);
 	const [isExpanded, setIsExpanded] = useState<boolean>(false);
 	const [loading, setLoading] = useState(false);
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -166,7 +166,7 @@ price_range {
 	console.log('data detail', selectedCard);
 	return (
 		<>
-			<Modal visible={modalOpen} onCancel={onCancelModal} footer={null} width={800}>
+			<Modal visible={modalOpen} onCancel={onCancelModal} footer={null} width={1000} centered>
 				<h2 className='BodyOldAutumn-titleModal'>DANH SÁCH SẢN PHẨM ĐỔI MÁY</h2>
 				<div className='modal-product2-tab-button'>
 					<button

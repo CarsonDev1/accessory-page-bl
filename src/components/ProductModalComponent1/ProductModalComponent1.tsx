@@ -70,7 +70,7 @@ const ProductModal1: React.FC<ProductModalProps> = ({
 	console.log('data modal 1', selectedConditionText);
 	return (
 		<>
-			<Modal visible={visible} onCancel={onCancel} footer={null} width={800}>
+			<Modal visible={visible} onCancel={onCancel} footer={null} width={800} centered>
 				<h2 className='BodyOldAutumn-titleModal'>CHƯƠNG TRÌNH THU CŨ ĐỔI MỚI</h2>
 				{selectedProduct && (
 					<div className='BodyOldAutumn-container'>

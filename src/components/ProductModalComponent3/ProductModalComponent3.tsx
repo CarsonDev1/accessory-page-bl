@@ -131,7 +131,7 @@ const ProductModal3: React.FC<ProductModalProps> = ({
 		<>
 			<Context.Provider value={contextValue}>
 				{contextHolder}
-				<Modal visible={modalOpen} onCancel={onCancelModal} footer={null} width={800}>
+				<Modal visible={modalOpen} onCancel={onCancelModal} footer={null} width={800} centered>
 					<div className='productModal3-container'>
 						{/* Left Column */}
 						<div className='productModal3-leftColumn'>
@@ -160,7 +160,7 @@ const ProductModal3: React.FC<ProductModalProps> = ({
 									<p className='productModal3-price'>
 										{new Intl.NumberFormat('vi-VN').format(
 											(selectedProduct?.price_range.minimum_price.final_price.value || 0) -
-												selectedPrice // Fallback to 0
+											selectedPrice // Fallback to 0
 										)}{' '}
 										VND.
 									</p>
