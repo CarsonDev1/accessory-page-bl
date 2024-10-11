@@ -1,0 +1,211 @@
+.header-BodyBNew {
+    background-color: #fffde6;
+
+    .BodyBNew-tab-list {
+        list-style-type: none;
+        padding: 0px 0px 0px 0px;
+        margin: 0px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        border-bottom: 1px solid gray;
+        border-top: 2px solid rgb(0, 0, 0);
+    }
+
+    .BodyBNew-tab-item {
+        padding: 15px 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 700;
+        border-top: 2px solid transparent;
+        border-bottom: 4px solid transparent;
+        transition: all 0.5s ease;
+
+        &:hover {
+            background-color: #e7e7e7;
+        }
+
+        &.active {
+            color: #007bff;
+            border-bottom: 4px solid #007bff;
+        }
+    }
+
+    &-titleNew {
+        color: #000;
+        font-size: 24px;
+        font-weight: 700;
+        padding: 10px 0 10px 0;
+
+    }
+
+    &-news-first-image {
+        display: block;
+        height: 100%;
+        position: relative;
+
+        img {
+            width: 100%;
+        }
+
+        &::after {
+            height: 100%;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(180deg, rgba(0, 4, 38, 0), #000426);
+            content: "";
+            width: 100%;
+        }
+    }
+
+
+}
+
+.header-BodyBNew-news-first-content {
+    bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    left: 5.7692307692%;
+    position: absolute;
+    right: 5.7692307692%;
+    z-index: 1;
+
+}
+
+.header-BodyBNew-news-first-tag {
+    align-items: center;
+    background: hsla(0, 0%, 100%, .4);
+    border-radius: .4rem;
+    display: flex;
+    justify-content: center;
+    padding: .4rem .8rem;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.header-BodyBNew-news-first-title {
+    line-height: 130%;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* Limit to 2 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.header-BodyBNew-line-clamp-2 {
+    -webkit-line-clamp: 2;
+}
+
+.header-BodyBNew-line-clamp-2 {
+    color: #fff !important;
+}
+
+.header-BodyBNew-news-first-created {
+    margin-top: 1.2rem;
+    display: flex;
+    gap: 6px;
+    color: #fff;
+
+}
+
+.header-BodyBNew-author {
+    align-items: center;
+    display: flex;
+    gap: .2rem;
+    position: relative;
+
+}
+
+.header-BodyBNew-icUser {
+    width: 14px;
+    height: 14px;
+}
+
+.header-BodyBNew-news-box {
+    display: flex;
+    margin: 40px 0px 10px 20px;
+
+
+    .header-BodyBNew-news-first-created2 {
+        color: #000;
+        display: flex;
+        padding: 6px 0px;
+        gap: 6px;
+    }
+}
+
+.header-BodyBNew-news-content {
+    margin-left: 10px;
+}
+
+.header-BodyBNew-news-image img {
+    width: 250px;
+    height: 125px;
+    border-radius: 10px;
+}
+
+.header-BodyBNew-line {
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    /* Limit to 2 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-BodyBNew-news-tag {
+    font-size: 12px;
+    color: #007bff;
+    font-weight: 400;
+    margin-bottom: 6px;
+}
+
+.header-BodyBNew-cardPostView {
+    width: 20vw;
+    padding: 0px 0px 20px 0px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+}
+
+.header-BodyBNew-cardPostView-img {
+    border-radius: 10px;
+    height: 150px;
+    width: 20vw;
+}
+
+.header-BodyBNew-cardPostView-title {
+    padding: 6px 0px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-height: 1.8;
+    /* Limit to 2 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.header-BodyBNew-cardPostView-tabInfo {
+    display: flex;
+    gap: 5px;
+    font-size: 14px;
+    color: #000;
+}
