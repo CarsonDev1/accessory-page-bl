@@ -10,9 +10,12 @@
     }
 
     .header-BodyBNew2-img {
-        height: 200px;
-        width: 400px;
+        height: 100%; // Đặt chiều cao 100% để ảnh đầy khung
+        width: 100%;
+        min-width: 350px;
+        max-width: 350px;
         border-radius: 20px;
+        object-fit: cover;
     }
 
     .header-BodyBNew2-cardPostView-tabInfo {
@@ -20,5 +23,42 @@
         gap: 5px;
         font-size: 14px;
         color: #000;
+    }
+
+    .header-BodyBNew2-titleSub {
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-height: 1.5;
+        /* Limit to 2 lines */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .header-BodyBNew2-cardPostView-view {
+        padding: 10px 0px;
+        font-size: 14px;
+        color: #000;
+    }
+
+    .header-BodyBNew2-cardPostView-load-more-button {
+        border: 2px solid red; // Viền đỏ
+        background-color: transparent; // Nền trong suốt
+        color: red; // Màu chữ đỏ
+        padding: 10px 20px; // Khoảng cách bên trong
+        cursor: pointer; // Con trỏ chuột khi hover
+        transition: background-color 0.3s, color 0.3s; // Hiệu ứng chuyển tiếp
+        border-radius: 10px;
+        margin: 10px auto;
+        justify-content: center;
+        display: flex;
+
+        &:hover {
+            background-color: red; // Màu nền khi hover
+            color: white; // Màu chữ khi hover
+        }
     }
 }

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import headerPC from "../../../../public/ảnh demo header.svg"
+import headerPC from "../../../../public/BnewPC.png"
 export default function HeaderBNew() {
     return (
         <div>

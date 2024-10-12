@@ -48,16 +48,7 @@
             width: 100%;
         }
 
-        &::after {
-            height: 100%;
-            left: 50%;
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(180deg, rgba(0, 4, 38, 0), #000426);
-            content: "";
-            width: 100%;
-        }
+
     }
 
 
@@ -101,8 +92,19 @@
 
 }
 
-.header-BodyBNew-line-clamp-2 {
+.header-BodyBNew-card-a {
     -webkit-line-clamp: 2;
+
+    &::after {
+        height: 100%;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(180deg, rgba(0, 4, 38, 0), #000426);
+        content: "";
+        width: 100%;
+    }
 }
 
 .header-BodyBNew-line-clamp-2 {

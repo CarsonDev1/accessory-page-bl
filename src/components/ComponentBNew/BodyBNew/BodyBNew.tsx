@@ -8,7 +8,7 @@ import icUser from "../../../../public/ic-user-4.svg";
 import { Author, BlogPost, queryBNew } from '../../../app/utils/utils';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import BodyBnew2 from "../BodyBNew2/BodyBNew2"
-// Import Swiper styles
+import { useRouter } from 'next/navigation'
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -18,10 +18,13 @@ import { Pagination } from 'swiper/modules';
 export default function BodyBNew() {
     const [activeTab, setActiveTab] = useState('Trang Chủ');
     const [activeTab2, setActiveTab2] = useState(19);
+    const router = useRouter();
+
 
     const tabIds: { [key: string]: number } = {
         'Trang Chủ': 19,
         'Tin Công Nghệ': 9,
+        'Khám Phá': 10,
         'Đánh Giá': 12,
         'Thủ Thuật, Q&A': 14,
         'Khuyến Mãi': 20,
@@ -109,6 +112,7 @@ export default function BodyBNew() {
     const tabs = [
         'Trang Chủ',
         'Tin Công Nghệ',
+        'Khám phá',
         'Đánh Giá',
         'Thủ Thuật, Q&A',
         'Khuyến Mãi',
@@ -126,7 +130,7 @@ export default function BodyBNew() {
                             className={`BodyBNew-tab-item ${activeTab === tab ? 'active' : ''}`}
                             onClick={() => {
                                 setActiveTab(tab);
-                                setActiveTab2(tabIds[tab]); // Set activeTab2 to the corresponding ID
+                                setActiveTab2(tabIds[tab]);
                             }}
                         >
                             {tab}
@@ -140,12 +144,12 @@ export default function BodyBNew() {
                         {newsData && newsData.length > 0 && (
                             <div className="header-BodyBNew-news-first-box">
                                 <h2 className='header-BodyBNew-titleNew'>Tin nổi bật</h2>
-                                <a className="header-BodyBNew-news-first-image" href={newsData[newsData.length - 1].post_url}>
-                                    <img alt={newsData[newsData.length - 1].title} src={newsData[newsData.length - 1].first_image} />
+                                <a className="header-BodyBNew-card-a" onClick={() => router.push(`/NewSub?data=${new URL(newsData[newsData.length - 1].post_url).pathname.split('/').pop()}`)}>
+                                    <img className='header-BodyBNew-news-first-image' alt={newsData[newsData.length - 1].title} src={newsData[newsData.length - 1].first_image} />
                                 </a>
                                 <div className="header-BodyBNew-news-first-content">
                                     <h1 className="header-BodyBNew-news-first-title header-BodyBNew-t-title header-BodyBNew-c-white relative">
-                                        <a className="header-BodyBNew-line-clamp-2" href={newsData[newsData.length - 1].post_url}>
+                                        <a className="header-BodyBNew-line-clamp-2" onClick={() => router.push(`/NewSub?data=${new URL(newsData[newsData.length - 1].post_url).pathname.split('/').pop()}`)}>
                                             {newsData[newsData.length - 1].title}
                                         </a>
                                     </h1>
@@ -169,10 +173,10 @@ export default function BodyBNew() {
                         )}
                     </Col>
                     <Col span={12}>
-                        {newsData && newsData.slice(-3, -1).map((post, index) => ( // Changed to slice last 4 items excluding the last one
+                        {newsData && newsData.slice(-3, -1).map((post, index) => (
                             <div key={index} className="header-BodyBNew-news-box">
                                 <div className="header-BodyBNew-news-image">
-                                    <a className="inner-img" href={post.post_url}>
+                                    <a className="inner-img" onClick={() => router.push(`/NewSub?data=${new URL(newsData[0].post_url).pathname.split('/').pop()}`)}>
                                         <img alt={post.title} src={post.first_image} />
                                     </a>
                                 </div>
