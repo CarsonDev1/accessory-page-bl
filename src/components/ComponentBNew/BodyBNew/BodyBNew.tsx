@@ -176,7 +176,7 @@ export default function BodyBNew() {
                                                 </div>
                                                 <span>{newsData[newsData.length - 1].author.name}</span>
                                                 <div>
-                                                    <span>{newsData[newsData.length - 1].creation_time}</span>
+                                                    <span>{new Date(newsData[newsData.length - 1].creation_time).toLocaleDateString()}</span>
                                                 </div>
 
 
@@ -212,7 +212,7 @@ export default function BodyBNew() {
                                                 </div>
                                                 <span>{post.author.name}</span>
                                                 <div>
-                                                    <span>{post.creation_time}</span>
+                                                    <span>{new Date(post.creation_time).toLocaleDateString()}</span>
                                                 </div>
                                             </div>
                                             <span >{post.views_count} lượt xem</span>
@@ -258,7 +258,8 @@ export default function BodyBNew() {
                                                             </div>
                                                             <span>{post.author.name}</span>
                                                             <div>
-                                                                <span>{post.creation_time}</span>
+                                                                <span>{new Date(post.creation_time).toLocaleDateString()}</span>
+
                                                             </div>
                                                         </div>
                                                     </div>

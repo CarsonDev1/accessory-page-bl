@@ -154,7 +154,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                                                 </div>
                                                 <span>{post.author.name}</span>
                                                 <div>
-                                                    <span>{post.creation_time}</span>
+                                                    <span>{new Date(post.creation_time).toLocaleDateString()}</span>
                                                 </div>
                                             </div>
                                             <p className='header-BodyBNew2-cardPostView-view'>{post.views_count} lượt xem</p>
