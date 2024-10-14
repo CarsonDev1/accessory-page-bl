@@ -6,7 +6,7 @@ import Image from 'next/image';
 import test from "../../../../public/test.png";
 import icUser from "../../../../public/ic-user-4.svg";
 import { BlogPost, queryBNew } from '../../../app/utils/utils';
-
+import { useRouter } from 'next/navigation'
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -15,7 +15,9 @@ interface ProductModalProps {
     activeTab2: number;
 }
 export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
+    const router = useRouter();
     const [newsData2, setNewsData2] = useState<BlogPost[] | null>(null);
+    const [newsData3, setNewsData3] = useState<BlogPost[] | null>(null);
     const [visibleCount, setVisibleCount] = useState(3); // State to track the number of visible posts
     const variablesNew = {
         filter: {
@@ -31,7 +33,35 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
             "DESC"
         ],
     };
+    const variablesProduct = {
+        "filter": {
+            "category_id": {
+                "eq": 26
+            }
+        },
+        "pageSize": 5,
+        "currentPage": 1,
+        "sortFiled": "publish_time",
+        "allPosts": false,
+        "sort": [
+            "DESC"
+        ]
+    }
 
+    async function fetchBlogPostsDataProduct() {
+        const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: queryBNew,
+                variables: variablesProduct,
+            }),
+        });
+        const data = await response.json();
+        setNewsData3(data.data.blogPosts.items);
+    }
     async function fetchBlogPostsDataNew() {
         let fetchedData: BlogPost[] = []; // Initialize an array to hold all fetched data
 
@@ -95,9 +125,10 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
     useEffect(() => {
         fetchBlogPostsDataNew();
         setVisibleCount(3);
+        fetchBlogPostsDataProduct()
     }, [activeTab2]);
 
-    console.log("New news data 2:>>>>>", newsData2);
+    console.log("New news data 3:>>>>>>>>>>>>>>>>>>", newsData3);
 
     return (
         <div className="header-BodyBNew2">
@@ -108,7 +139,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                         <Col span={14}>
                             {newsData2.slice(0, visibleCount).map((post, index) => (
                                 <div style={{ display: 'flex', marginBottom: "10px" }} key={index}>
-                                    <a style={{ display: 'flex' }} href={post.post_url}>
+                                    <a style={{ display: 'flex' }} onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
                                         <img className='header-BodyBNew2-img' src={post.first_image} alt='' />
                                         <div style={{ padding: "10px" }}>
                                             <h2 className='header-BodyBNew2-titleSub'>{post.title}</h2>
@@ -136,7 +167,37 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                             )}
                         </Col>
                         <Col span={10}>
-                            hello
+                            {newsData3 && newsData3.length > 0 ? (
+                                newsData3
+                                    .sort((a, b) => new Date(b.creation_time).getTime() - new Date(a.creation_time).getTime()) // Sort by creation_time descending
+                                    .map((post, index) => (
+                                        <div style={{ display: 'flex', marginBottom: "10px" }} key={index}>
+                                            <a style={{ display: 'flex' }} onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
+                                                <img className='header-BodyBNew2-imgProduct' src={post.first_image} alt='' />
+                                                <div style={{ padding: " 0px 10px" }}>
+                                                    <h2 className='header-BodyBNew2-titleSubProduct'>{post.title}</h2>
+                                                    {/* <div className="header-BodyBNew2-cardPostView-tabInfo">
+                                                        <div className="author">
+                                                            <Image
+                                                                alt="User icon"
+                                                                loading="lazy"
+                                                                className='header-BodyBNew2-icUser'
+                                                                src={icUser}
+                                                            />
+                                                        </div>
+                                                        <span>{post.author.name}</span>
+                                                        <div>
+                                                            <span>{post.creation_time}</span>
+                                                        </div>
+                                                    </div> */}
+                                                    <p className='header-BodyBNew2-cardPostView-view'>{post.views_count} lượt xem</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    ))
+                            ) : (
+                                <p>No data available</p> // Optional: message when no data is available
+                            )}
                         </Col>
                     </Row>
 

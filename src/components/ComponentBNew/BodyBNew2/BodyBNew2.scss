@@ -3,7 +3,7 @@
 
     .header-BodyBNew2-title {
         color: black;
-        font-size: 24px;
+        font-size: 28px;
         font-weight: 700;
         padding-bottom: 20px;
 
@@ -60,5 +60,26 @@
             background-color: red; // Màu nền khi hover
             color: white; // Màu chữ khi hover
         }
+    }
+
+    .header-BodyBNew2-imgProduct {
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+        height: 100px;
+        border-radius: 5px;
+    }
+
+    .header-BodyBNew2-titleSubProduct {
+        font-size: 18px;
+        font-weight: 600;
+        color: #000;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-height: 1.5;
+        /* Limit to 2 lines */
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }

@@ -35,7 +35,6 @@ export default function BodyBNew() {
     const [newsData, setNewsData] = useState<BlogPost[] | null>(null);
     const [newsData2, setNewsData2] = useState<BlogPost[] | null>(null);
 
-    // Define the variables for fetching data based on the active tabs
     const variables = {
         filter: {
             category_id: {
@@ -104,6 +103,7 @@ export default function BodyBNew() {
     useEffect(() => {
         fetchBlogPostsData(); // Fetch main posts when activeTab changes
         fetchBlogPostsDataNew(); // Fetch new posts based on activeTab2
+
     }, [activeTab, activeTab2]);
 
     console.log("Main news data:", newsData);
@@ -139,8 +139,8 @@ export default function BodyBNew() {
                 </ul>
             </nav>
             <div className="container">
-                <Row>
-                    <Col span={12}>
+                <Row className='header-BodyBNew-CardRow'>
+                    <Col span={14} className='header-BodyBNew-CardCol' >
                         {newsData && newsData.length > 0 && (
                             <div className="header-BodyBNew-news-first-box">
                                 <h2 className='header-BodyBNew-titleNew'>Tin nổi bật</h2>
@@ -172,18 +172,18 @@ export default function BodyBNew() {
                             </div>
                         )}
                     </Col>
-                    <Col span={12}>
-                        {newsData && newsData.slice(-3, -1).map((post, index) => (
+                    <Col span={10} className='header-BodyBNew-CardCol'>
+                        {newsData && newsData.slice(-4, -1).map((post, index) => (
                             <div key={index} className="header-BodyBNew-news-box">
                                 <div className="header-BodyBNew-news-image">
-                                    <a className="inner-img" onClick={() => router.push(`/NewSub?data=${new URL(newsData[0].post_url).pathname.split('/').pop()}`)}>
+                                    <a className="inner-img" onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
                                         <img alt={post.title} src={post.first_image} />
                                     </a>
                                 </div>
                                 <div className="header-BodyBNew-news-content">
                                     <div className="header-BodyBNew-news-tag">Tin công nghệ</div>
                                     <h2 className="news-title t16 fw-7 relative">
-                                        <a className="header-BodyBNew-line" href={post.post_url}>
+                                        <a className="header-BodyBNew-line" onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
                                             {post.title}
                                         </a>
                                     </h2>
@@ -211,30 +211,33 @@ export default function BodyBNew() {
                     <h2 className='header-BodyBNew-titleNew'>Tin xem nhiều nhất</h2>
                     <Swiper
                         slidesPerView={3.6}
-
+                        autoplay
                         modules={[Pagination]}
                         className="mySwiper"
                     >
                         {newsData2 && newsData2.sort((a, b) => b.views_count - a.views_count).map((post, index) => (
                             <SwiperSlide key={index}>
-                                <div className='header-BodyBNew-cardPostView'>
-                                    <img className='header-BodyBNew-cardPostView-img' src={post.first_image} alt={post.title} />
-                                    <h2 className='header-BodyBNew-cardPostView-title'>{post.title}</h2>
-                                    <div className="header-BodyBNew-cardPostView-tabInfo">
-                                        <div className="author">
-                                            <Image
-                                                alt="User icon"
-                                                loading="lazy"
-                                                className='header-BodyBNew-icUser'
-                                                src={icUser}
-                                            />
+                                <a onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
+
+
+                                    <div className='header-BodyBNew-cardPostView'>
+                                        <img className='header-BodyBNew-cardPostView-img' src={post.first_image} alt={post.title} />
+                                        <h2 className='header-BodyBNew-cardPostView-title'>{post.title}</h2>
+                                        <div className="header-BodyBNew-cardPostView-tabInfo">
+                                            <div className="author">
+                                                <Image
+                                                    alt="User icon"
+                                                    loading="lazy"
+                                                    className='header-BodyBNew-icUser'
+                                                    src={icUser}
+                                                />
+                                            </div>
+                                            <span>{post.author.name}</span>
+                                            <div>
+                                                <span>{post.creation_time}</span>
+                                            </div>
                                         </div>
-                                        <span>{post.author.name}</span>
-                                        <div>
-                                            <span>{post.creation_time}</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </div> </a>
                             </SwiperSlide>
                         ))}
                     </Swiper>
