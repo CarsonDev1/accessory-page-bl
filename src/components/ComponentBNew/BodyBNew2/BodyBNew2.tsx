@@ -135,8 +135,8 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
             {newsData2 && newsData2.length > 0 ? (
                 <>
                     <h2 className='header-BodyBNew2-title'>Tin tức mới nhất</h2>
-                    <Row>
-                        <Col span={14}>
+                    <Row className='header-BodyBNew2-cardRow'>
+                        <Col span={14} className='header-BodyBNew2-CardCol'>
                             {newsData2.slice(0, visibleCount).map((post, index) => (
                                 <div style={{ display: 'flex', marginBottom: "10px" }} key={index}>
                                     <a style={{ display: 'flex' }} onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
@@ -166,7 +166,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                                 <button onClick={loadMorePosts} className="header-BodyBNew2-cardPostView-load-more-button">Xem thêm</button>
                             )}
                         </Col>
-                        <Col span={10}>
+                        <Col span={10} className='header-BodyBNew2-CardCol'>
                             {newsData3 && newsData3.length > 0 ? (
                                 newsData3
                                     .sort((a, b) => new Date(b.creation_time).getTime() - new Date(a.creation_time).getTime()) // Sort by creation_time descending
