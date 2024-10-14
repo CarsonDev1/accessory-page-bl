@@ -119,7 +119,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
     }
 
     const loadMorePosts = () => {
-        setVisibleCount(prevCount => prevCount + 3); // Increase the count by 3
+        setVisibleCount(prevCount => prevCount + 5); // Increase the count by 3
     };
 
     useEffect(() => {

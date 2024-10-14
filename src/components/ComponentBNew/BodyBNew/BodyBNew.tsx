@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import './BodyBNew.scss';
 import { Col, Row, Spin } from 'antd';
 import Image from 'next/image';
-import test from "../../../../public/test.png";
 import icUser from "../../../../public/ic-user-4.svg";
 import { Author, BlogPost, queryBNew } from '../../../app/utils/utils';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,7 +12,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 // Import required modules
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 export default function BodyBNew() {
     const [activeTab, setActiveTab] = useState('Trang Chủ');
@@ -155,12 +154,12 @@ export default function BodyBNew() {
                                 {newsData && newsData.length > 0 && (
                                     <div className="header-BodyBNew-news-first-box">
                                         <h2 className='header-BodyBNew-titleNew'>Tin nổi bật</h2>
-                                        <a className="header-BodyBNew-card-a" onClick={() => router.push(`/NewSub?data=${new URL(newsData[newsData.length - 1].post_url).pathname.split('/').pop()}`)}>
+                                        <a className="header-BodyBNew-card-a" onClick={() => router.push(`/NewSub?data=${new URL(newsData[newsData.length - 1].post_url).pathname.split('/').pop()}&activeTab2=${activeTab2}`)}>
                                             <img className='header-BodyBNew-news-first-image' alt={newsData[newsData.length - 1].title} src={newsData[newsData.length - 1].first_image} />
                                         </a>
                                         <div className="header-BodyBNew-news-first-content">
                                             <h1 className="header-BodyBNew-news-first-title header-BodyBNew-t-title header-BodyBNew-c-white relative">
-                                                <a className="header-BodyBNew-line-clamp-2" onClick={() => router.push(`/NewSub?data=${new URL(newsData[newsData.length - 1].post_url).pathname.split('/').pop()}`)}>
+                                                <a className="header-BodyBNew-card-a2" onClick={() => router.push(`/NewSub?data=${new URL(newsData[newsData.length - 1].post_url).pathname.split('/').pop()}&activeTab2=${activeTab2}`)}>
                                                     {newsData[newsData.length - 1].title}
                                                 </a>
                                             </h1>
@@ -190,14 +189,14 @@ export default function BodyBNew() {
                                 {newsData && newsData.slice(-4, -1).map((post, index) => (
                                     <div key={index} className="header-BodyBNew-news-box">
                                         <div className="header-BodyBNew-news-image">
-                                            <a className="inner-img" onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
+                                            <a className="inner-img" onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}&activeTab2=${activeTab2}`)}>
                                                 <img alt={post.title} src={post.first_image} />
                                             </a>
                                         </div>
                                         <div className="header-BodyBNew-news-content">
                                             <div className="header-BodyBNew-news-tag">Tin công nghệ</div>
-                                            <h2 className="news-title t16 fw-7 relative">
-                                                <a className="header-BodyBNew-line" onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)} style={{ marginBottom: "6px" }}>
+                                            <h2 className="news-title relative">
+                                                <a className="inner-img" onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}&activeTab2=${activeTab2}`)}>
                                                     {post.title}
                                                 </a>
                                             </h2>
@@ -237,8 +236,8 @@ export default function BodyBNew() {
                                                 slidesPerView: 3.6,
                                             },
                                         }}
-                                        autoplay
-                                        modules={[Pagination]}
+                                        autoplay={{ delay: 3000 }}
+                                        modules={[Pagination, Autoplay]}
                                         className="mySwiper"
                                     >
                                         {newsData2.sort((a, b) => b.views_count - a.views_count).map((post, index) => (

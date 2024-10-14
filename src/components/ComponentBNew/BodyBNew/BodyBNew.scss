@@ -28,7 +28,7 @@
         overflow-x: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        width: 100vw;
+
 
 
         @media (max-width: 1240px) {
@@ -146,6 +146,7 @@
 .header-BodyBNew-card-a {
     position: relative;
     -webkit-line-clamp: 2;
+    color: #ffffff;
     overflow: hidden;
 
     &::after {
@@ -296,12 +297,17 @@
     color: #000;
 }
 
+.news-title a {
+    color: #000;
+}
+
 .loading-containerBnew {
     display: flex;
     justify-content: center;
-    /* Center horizontally */
     align-items: center;
-    /* Center vertically */
     height: 50vh;
-    /* Full height of the viewport */
+}
+
+.header-BodyBNew-card-a2 {
+    color: #ffffff;
 }
