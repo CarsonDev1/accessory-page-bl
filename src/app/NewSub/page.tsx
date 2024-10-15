@@ -346,9 +346,13 @@ export default function PostDetail() {
                         </p>
                       </div>
                     </div>
-                    <div className="html-content">
-                      {parse(`${newsData.filtered_content}`)}
-                    </div>
+                    <div
+                      className="test"
+                      contentEditable="false"
+                      dangerouslySetInnerHTML={{
+                        __html: `${newsData?.filtered_content}`,
+                      }}
+                    ></div>
                   </>
                 )}
               </div>
