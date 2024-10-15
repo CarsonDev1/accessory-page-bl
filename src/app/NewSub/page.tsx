@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { queryBNewDetail } from "../../app/utils/utils";
 import "./NewSub.scss";
 import icBachLong from "../../../public/ic-bachlong.webp";
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 import { BlogPost, queryBNew } from "../../app/utils/utils";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -309,84 +309,99 @@ export default function PostDetail() {
   return (
     <div className="NewSub-pageNew">
       <div className="container">
-        <Row className="NewSub-box-container">
-          <Col span={16} className="NewSub-box-container-Col">
-            <div className="NewSub-box-shadow">
-              <p className="NewSub-title">{newsData?.title}</p>
-              <div style={{ display: "flex", marginTop: "20px" }}>
-                <img
-                  className="NewSub-img-author"
-                  src={icBachLong.src}
-                  alt=""
-                />
-                <div style={{ padding: "10px" }}>
-                  <p style={{ paddingBottom: "6px" }}>
-                    {newsData?.author.name}
-                  </p>
-                  <p>
-                    {newsData?.update_time
-                      ? new Date(newsData.update_time).toLocaleDateString()
-                      : ""}
-                  </p>
-                </div>
+        {loading ? ( // Show spinner while loading
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <Spin size="large" /> {/* Ant Design Spin component */}
+          </div>
+        ) : (
+          <Row className="NewSub-box-container">
+            <Col span={16} className="NewSub-box-container-Col">
+              <div className="NewSub-box-shadow">
+                {newsData && ( // Render title only when newsData is available
+                  <>
+                    <p className="NewSub-title">{newsData.title}</p>
+                    <div style={{ display: "flex", marginTop: "20px" }}>
+                      <img
+                        className="NewSub-img-author"
+                        src={icBachLong.src}
+                        alt=""
+                      />
+                      <div style={{ padding: "10px" }}>
+                        <p style={{ paddingBottom: "6px" }}>
+                          {newsData.author.name}
+                        </p>
+                        <p>
+                          {newsData.update_time
+                            ? new Date(
+                                newsData.update_time
+                              ).toLocaleDateString()
+                            : ""}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="html-content">
+                      {parse(`${newsData.filtered_content}`)}
+                    </div>
+                  </>
+                )}
               </div>
-
-              {/* <div
-                contentEditable="false"
-                dangerouslySetInnerHTML={{
-                  __html: `${newsData?.filtered_content}`,
-                }}
-              ></div> */}
-              <div className="html-content">
-                {parse(`${newsData?.filtered_content}`)}
-              </div>
-            </div>
-          </Col>
-          <Col span={8} className="NewSub-box-container-Col">
-            <h2 className="newSubHot-newTitle" style={{ padding: "10px 10px" }}>
-              Tin liên quan
-            </h2>
-            {Array.isArray(newsData1) &&
-              newsData1.length > 0 && // Check if newsData1 has items
-              newsData1
-                .sort(
-                  (a, b) =>
-                    new Date(b.publish_time).getTime() -
-                    new Date(a.publish_time).getTime()
-                )
-                .slice(0, visibleItems) // Show only visible items
-                .map((post, index) => (
-                  <div
-                    key={index}
-                    className="NewSub-NewHot"
-                    onClick={() => handlePostClick(post.post_url)}
+            </Col>
+            <Col span={8} className="NewSub-box-container-Col">
+              <h2
+                className="newSubHot-newTitle"
+                style={{ padding: "10px 10px" }}
+              >
+                Tin liên quan
+              </h2>
+              {Array.isArray(newsData1) &&
+                newsData1.length > 0 && // Check if newsData1 has items
+                newsData1
+                  .sort(
+                    (a, b) =>
+                      new Date(b.publish_time).getTime() -
+                      new Date(a.publish_time).getTime()
+                  )
+                  .slice(0, visibleItems) // Show only visible items
+                  .map((post, index) => (
+                    <div
+                      key={index}
+                      className="NewSub-NewHot"
+                      onClick={() => handlePostClick(post.post_url)}
+                    >
+                      <img
+                        style={{ borderRadius: "10px" }}
+                        src={post.first_image}
+                        alt=""
+                      />
+                      <h3 className="NewSub-titleNewHot">{post.title}</h3>
+                    </div>
+                  ))}
+              {visibleItems <
+                (Array.isArray(newsData1) ? newsData1.length : 0) && ( // Check if there are more items to load
+                <div style={{ textAlign: "center", marginTop: "20px" }}>
+                  <button
+                    onClick={handleLoadMore}
+                    style={{
+                      color: "red",
+                      border: "1px solid red",
+                      padding: "10px 16px",
+                      borderRadius: "10px",
+                    }}
                   >
-                    <img
-                      style={{ borderRadius: "10px" }}
-                      src={post.first_image}
-                      alt=""
-                    />
-                    <h3 className="NewSub-titleNewHot">{post.title}</h3>
-                  </div>
-                ))}
-            {visibleItems <
-              (Array.isArray(newsData1) ? newsData1.length : 0) && ( // Check if there are more items to load
-              <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <button
-                  onClick={handleLoadMore}
-                  style={{
-                    color: "red",
-                    border: "1px solid red",
-                    padding: "10px 16px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  Xem thêm
-                </button>
-              </div>
-            )}
-          </Col>
-        </Row>
+                    Xem thêm
+                  </button>
+                </div>
+              )}
+            </Col>
+          </Row>
+        )}
         {newsData2 && newsData2.length > 0 && (
           <>
             <h2 className="newSubHot-newTitle">Tin xem nhiều nhất</h2>
