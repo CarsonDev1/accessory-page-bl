@@ -246,7 +246,9 @@
 .header-BodyBNew-cardPostView {
     width: 20vw;
     padding: 0px 0px 20px 0px;
-
+    @media (max-width: 1200px) {
+        width: 30vw;
+    }
     @media (max-width: 767px) {
         width: 45vw;
     }
@@ -269,7 +271,9 @@
     border-radius: 10px;
     height: 150px;
     width: 20vw;
-
+    @media (max-width: 1200px) {
+        width: 30vw;
+    }
     @media (max-width: 767px) {
         width: 45vw;
     }

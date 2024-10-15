@@ -109,7 +109,7 @@ export default function BodyBNew() {
 
     }, [activeTab, activeTab2]);
 
-    console.log("Main news data:", newsData);
+    console.log("Main news data:", );
     console.log("New news data:", newsData2);
 
     const tabs = [
@@ -225,17 +225,32 @@ export default function BodyBNew() {
                                 <>
                                     <h2 className='header-BodyBNew-titleNew'>Tin xem nhiều nhất</h2>
                                     <Swiper
-                                        breakpoints={{
-                                            240: {
-                                                slidesPerView: 2,
-                                            },
-                                            768: {
-                                                slidesPerView: 3,
-                                            },
-                                            1024: {
-                                                slidesPerView: 3.6,
-                                            },
-                                        }}
+                                      breakpoints={{
+                                        240: {
+                                            slidesPerView: 2,
+                                        },
+                                        768: {
+                                            slidesPerView: 3,
+                                        },
+                                        1024: {
+                                            slidesPerView: 3,
+                                        },
+                                        1141: {
+                                            slidesPerView: 3,
+                                        },
+                                        1200: {
+                                            slidesPerView: 4.6,
+                                        },
+                                        1300: {
+                                            slidesPerView: 4,
+                                        },
+                                        1500: {
+                                            slidesPerView: 3.6,
+                                        },
+                                        1700: {
+                                            slidesPerView: 3,
+                                        },
+                                    }}
                                         autoplay={{ delay: 3000 }}
                                         modules={[Pagination, Autoplay]}
                                         className="mySwiper"

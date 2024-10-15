@@ -168,34 +168,38 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                         </Col>
                         <Col span={10} className='header-BodyBNew2-CardCol'>
                             {newsData3 && newsData3.length > 0 ? (
-                                newsData3
-                                    .sort((a, b) => new Date(b.creation_time).getTime() - new Date(a.creation_time).getTime()) // Sort by creation_time descending
-                                    .map((post, index) => (
-                                        <div style={{ display: 'flex', marginBottom: "10px" }} key={index}>
-                                            <a style={{ display: 'flex' }} onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
-                                                <img className='header-BodyBNew2-imgProduct' src={post.first_image} alt='' />
-                                                <div style={{ padding: " 0px 10px" }}>
-                                                    <h2 className='header-BodyBNew2-titleSubProduct'>{post.title}</h2>
-                                                    {/* <div className="header-BodyBNew2-cardPostView-tabInfo">
-                                                        <div className="author">
-                                                            <Image
-                                                                alt="User icon"
-                                                                loading="lazy"
-                                                                className='header-BodyBNew2-icUser'
-                                                                src={icUser}
-                                                            />
-                                                        </div>
-                                                        <span>{post.author.name}</span>
-                                                        <div>
-                                                            <span>{post.creation_time}</span>
-                                                        </div>
-                                                    </div> */}
-                                                    <p className='header-BodyBNew2-cardPostView-view'>{post.views_count} lượt xem</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    ))
+                                <>
+                                    <h2 className="" style={{fontSize:"18px", fontWeight:"700",padding:"10px 0"}}>Tin tức về sản phẩm</h2> {/* Title added when data is available */}
+                                    {newsData3
+                                        .sort((a, b) => new Date(b.creation_time).getTime() - new Date(a.creation_time).getTime()) // Sort by creation_time descending
+                                        .map((post, index) => (
+                                            <div style={{ display: 'flex', marginBottom: "10px" }} key={index}>
+                                                <a style={{ display: 'flex' }} onClick={() => router.push(`/NewSub?data=${new URL(post.post_url).pathname.split('/').pop()}`)}>
+                                                    <img className='header-BodyBNew2-imgProduct' src={post.first_image} alt='' />
+                                                    <div style={{ padding: " 0px 10px" }}>
+                                                        <h2 className='header-BodyBNew2-titleSubProduct'>{post.title}</h2>
+                                                        {/* <div className="header-BodyBNew2-cardPostView-tabInfo">
+                                                            <div className="author">
+                                                                <Image
+                                                                    alt="User icon"
+                                                                    loading="lazy"
+                                                                    className='header-BodyBNew2-icUser'
+                                                                    src={icUser}
+                                                                />
+                                                            </div>
+                                                            <span>{post.author.name}</span>
+                                                            <div>
+                                                                <span>{post.creation_time}</span>
+                                                            </div>
+                                                        </div> */}
+                                                        <p className='header-BodyBNew2-cardPostView-view'>{post.views_count} lượt xem</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        ))}
+                                </>
                             ) : (
+                                // Title will not be displayed if there is no data
                                 <p>No data available</p> // Optional: message when no data is available
                             )}
                         </Col>
