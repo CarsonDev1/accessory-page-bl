@@ -391,7 +391,7 @@ export default function PostDetail() {
                 className="newSubHot-newTitle"
                 style={{ padding: "10px 10px" }}
               >
-                Tin liên quan
+                Tin mới nhất
               </h2>
               {Array.isArray(newsData1) &&
                 newsData1.length > 0 && // Check if newsData1 has items
