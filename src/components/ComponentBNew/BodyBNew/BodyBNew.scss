@@ -281,11 +281,19 @@
   color: #000;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-height: 1.8;
+  -webkit-line-clamp: 2;
+  line-height: 1.6;
   /* Limit to 2 lines */
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 60px;
+  @media (max-width: 767px) {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.1;
+    -webkit-line-clamp: 3;
+    height: 50px;
+  }
 }
 
 .header-BodyBNew-cardPostView-tabInfo {
@@ -308,4 +316,7 @@
 
 .header-BodyBNew-card-a2 {
   color: #ffffff;
+  &:hover {
+    color: #ffffff;
+  }
 }

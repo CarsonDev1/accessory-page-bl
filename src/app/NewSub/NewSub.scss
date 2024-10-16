@@ -81,11 +81,19 @@
   color: #000;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-height: 1.8;
+  -webkit-line-clamp: 2;
+  line-height: 1.6;
   /* Limit to 2 lines */
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 60px;
+  @media (max-width: 767px) {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.1;
+    -webkit-line-clamp: 3;
+    height: 50px;
+  }
 }
 
 .NewSubHot-cardPostView-tabInfo {
@@ -93,9 +101,24 @@
   gap: 5px;
   font-size: 14px;
   color: #000;
+  span {
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
+  }
+  img {
+    width: 15px;
+    height: 15px;
+  }
 }
 .newSubHot-container {
   width: 25vw;
+  @media (max-width: 1240px) {
+    width: 50vw;
+  }
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 }
 .NewSub-NewHot-titleNewHot {
   padding: 6px 0px;
@@ -216,6 +239,10 @@
   }
 
   p {
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
     span {
       img {
         width: 100% !important;
