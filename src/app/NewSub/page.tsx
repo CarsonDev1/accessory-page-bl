@@ -135,7 +135,7 @@ export default function PostDetail() {
   const [newsData, setNewsData] = useState<BlogPosts | null>(null);
   const [activeTab2, setActiveTab2] = useState(19);
   const [newsData1, setNewsData1] = useState<BlogPost | null>(null);
-  const [visibleItems, setVisibleItems] = useState(5); // New state for visible items
+  const [visibleItems, setVisibleItems] = useState(3); // New state for visible items
   const [newsData2, setNewsData2] = useState<BlogPost[] | null>(null);
   const [newsData3, setNewsData3] = useState<BlogPost[] | null>(null);
   const [loading, setLoading] = useState(true);
@@ -386,55 +386,61 @@ export default function PostDetail() {
                 )}
               </div>
             </Col>
-            <Col span={8} className="NewSub-box-container-Col">
-              <h2
-                className="newSubHot-newTitle"
-                style={{ padding: "10px 10px" }}
-              >
-                Tin mới nhất
-              </h2>
-              {Array.isArray(newsData1) &&
-                newsData1.length > 0 && // Check if newsData1 has items
-                newsData1
-                  .sort(
-                    (a, b) =>
-                      new Date(b.publish_time).getTime() -
-                      new Date(a.publish_time).getTime()
-                  )
-                  .slice(0, visibleItems) // Show only visible items
-                  .map((post, index) => (
-                    <div
-                      key={index}
-                      className="NewSub-NewHot"
-                      onClick={() => handlePostClick(post.post_url)}
+            <Col
+              span={8}
+              className="NewSub-box-container-Col"
+              style={{ position: "relative" }}
+            >
+              <div className="sticky-col">
+                <h2
+                  className="newSubHot-newTitle"
+                  style={{ padding: "0px 10px 10px" }}
+                >
+                  Tin mới nhất
+                </h2>
+                {Array.isArray(newsData1) &&
+                  newsData1.length > 0 && // Check if newsData1 has items
+                  newsData1
+                    .sort(
+                      (a, b) =>
+                        new Date(b.publish_time).getTime() -
+                        new Date(a.publish_time).getTime()
+                    )
+                    .slice(0, visibleItems) // Show only visible items
+                    .map((post, index) => (
+                      <div
+                        key={index}
+                        className="NewSub-NewHot"
+                        onClick={() => handlePostClick(post.post_url)}
+                      >
+                        <img
+                          style={{ borderRadius: "10px" }}
+                          src={post.first_image}
+                          alt=""
+                        />
+                        <h3 className="NewSub-titleNewHot">{post.title}</h3>
+                      </div>
+                    ))}
+
+                <div style={{ textAlign: "center", marginTop: "0px" }}>
+                  <Link href="/TinTuc">
+                    <button
+                      style={{
+                        color: "red",
+                        border: "1px solid red",
+                        padding: "10px 16px",
+                        borderRadius: "10px",
+                      }}
                     >
-                      <img
-                        style={{ borderRadius: "10px" }}
-                        src={post.first_image}
-                        alt=""
-                      />
-                      <h3 className="NewSub-titleNewHot">{post.title}</h3>
-                    </div>
-                  ))}
-              {visibleItems <
-                (Array.isArray(newsData1) ? newsData1.length : 0) && ( // Check if there are more items to load
-                <div style={{ textAlign: "center", marginTop: "20px" }}>
-                  <button
-                    onClick={handleLoadMore}
-                    style={{
-                      color: "red",
-                      border: "1px solid red",
-                      padding: "10px 16px",
-                      borderRadius: "10px",
-                    }}
-                  >
-                    Xem thêm
-                  </button>
+                      Xem thêm
+                    </button>
+                  </Link>
                 </div>
-              )}
+              </div>
             </Col>
           </Row>
         )}
+
         {newsData2 && newsData2.length > 0 && (
           <>
             <h2 className="newSubHot-newTitle">Tin xem nhiều nhất</h2>
@@ -510,6 +516,7 @@ export default function PostDetail() {
             </Swiper>
           </>
         )}
+
         <div className="newSubHot-container">
           {Array.isArray(newsData3) &&
             newsData3.length > 0 && ( // Check if newsData3 has items

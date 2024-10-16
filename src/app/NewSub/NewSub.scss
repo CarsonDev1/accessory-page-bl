@@ -275,9 +275,27 @@
           border: 1px solid black;
           img {
             width: 100% !important;
+            height: auto !important;
           }
         }
       }
     }
+  }
+}
+.newSubHot-NewsColSlider {
+  @media (max-width: 767px) {
+    max-width: 100% !important;
+  }
+}
+.sticky-col {
+  margin-top: -20px;
+  position: sticky !important; // Đặt vị trí thành sticky
+  top: 0 !important; // Bám ở ! trên cùng
+  z-index: 10; // Đảm bảo nó nằm trên các phần tử khác
+  @media (max-width: 767px) {
+    margin-top: 10px;
+    position: unset !important; // Đặt vị trí thành sticky
+    top: unset !important; // Bám ở ! trên cùng
+    z-index: 10;
   }
 }
