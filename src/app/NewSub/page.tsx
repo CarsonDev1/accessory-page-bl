@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { queryBNewDetail } from "../../app/utils/utils";
 import "./NewSub.scss";
 import icBachLong from "../../../public/ic-bachlong.webp";
-import { Col, Row, Spin } from "antd";
+import { Col, Row, Spin, Breadcrumb } from "antd";
 import { BlogPost, queryBNew } from "../../app/utils/utils";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -14,6 +14,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import icUser from "../../../public/ic-user-4.svg";
 import parse from "html-react-parser";
+import Link from "next/link";
 export interface Author {
   author_id: number;
   author_url: string;
@@ -309,6 +310,34 @@ export default function PostDetail() {
   return (
     <div className="NewSub-pageNew">
       <div className="container">
+        <Breadcrumb
+          items={[
+            {
+              title: <Link href="https://bachlongmobile.com/">Trang Chủ</Link>,
+            },
+            {
+              title: <Link href="/TinTuc">Tin tức</Link>,
+            },
+            {
+              title: (
+                <Link
+                  href=""
+                  style={
+                    {
+                      // whiteSpace: "nowrap",
+                      // overflow: "hidden",
+                      // textOverflow: "ellipsis",
+                      // display: "block",
+                      // maxWidth: "100%",
+                    }
+                  }
+                >
+                  {newsData?.title || "Loading..."}
+                </Link>
+              ), // Chỉ hiển thị dòng đầu tiên
+            },
+          ]}
+        />
         {loading ? ( // Show spinner while loading
           <div
             style={{
@@ -347,7 +376,7 @@ export default function PostDetail() {
                       </div>
                     </div>
                     <div
-                      className="test"
+                      className="test-css-NewsSub"
                       contentEditable="false"
                       dangerouslySetInnerHTML={{
                         __html: `${newsData?.filtered_content}`,
@@ -433,7 +462,7 @@ export default function PostDetail() {
                   slidesPerView: 3.6,
                 },
                 1700: {
-                  slidesPerView: 3,
+                  slidesPerView: 3.15,
                 },
               }}
               autoplay={{ delay: 3000 }}

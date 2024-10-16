@@ -13,6 +13,7 @@ import "swiper/css/pagination";
 import logo from "../../../../public/logo-nav.png";
 // Import required modules
 import { Pagination, Autoplay } from "swiper/modules";
+import Link from "next/link";
 
 export default function BodyBNew() {
   const [activeTab, setActiveTab] = useState("Trang Chủ");
@@ -128,7 +129,10 @@ export default function BodyBNew() {
     <div className="header-BodyBNew">
       <nav>
         <ul className="BodyBNew-tab-list">
-          <img src={logo.src} alt="Logo" className="BodyBNew-tab-list-img" />
+          <Link href="https://bachlongmobile.com/">
+            <img src={logo.src} alt="Logo" className="BodyBNew-tab-list-img" />
+          </Link>
+
           {tabs.map((tab) => (
             <li
               key={tab}
@@ -311,7 +315,7 @@ export default function BodyBNew() {
                           slidesPerView: 3.6,
                         },
                         1700: {
-                          slidesPerView: 3,
+                          slidesPerView: 3.15,
                         },
                       }}
                       autoplay={{ delay: 3000 }}
@@ -329,7 +333,7 @@ export default function BodyBNew() {
                                     post.post_url
                                   ).pathname
                                     .split("/")
-                                    .pop()}`
+                                    .pop()}&activeTab2=${activeTab2}`
                                 )
                               }
                             >

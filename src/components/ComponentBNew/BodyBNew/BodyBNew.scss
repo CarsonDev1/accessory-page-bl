@@ -46,6 +46,8 @@
     height: 40px;
     margin: 10px 110px;
     width: 200px;
+    cursor: pointer;
+    object-fit: cover;
     @media (max-width: 1300px) {
       display: none;
     }

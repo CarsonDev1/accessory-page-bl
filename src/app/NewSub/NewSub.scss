@@ -189,7 +189,7 @@
     }
   }
 }
-.test {
+.test-css-NewsSub {
   h1 {
     font-size: 20px;
     font-weight: 700;
@@ -264,6 +264,10 @@
       }
     }
   }
+  img {
+    width: 100% !important;
+    height: 100% !important;
+  }
   table {
     tbody {
       tr {
@@ -271,7 +275,6 @@
           border: 1px solid black;
           img {
             width: 100% !important;
-            // height: auto !important;
           }
         }
       }
