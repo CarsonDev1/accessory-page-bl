@@ -161,14 +161,6 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                       </div>
                     )
                   )}
-              {visibleCount < newsData2.length && (
-                <button
-                  onClick={loadMorePosts}
-                  className="header-BodyBNew2-cardPostView-load-more-button"
-                >
-                  Xem thêm
-                </button>
-              )}
             </Col>
             <Col span={10} className="header-BodyBNew2-CardCol">
               <div style={{ position: "relative" }}>
