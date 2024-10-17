@@ -196,6 +196,9 @@ export default function BodyBNew() {
                               {post.title}
                             </a>
                           </h2>
+                          <p style={{ padding: "6px 0px", color: "blue" }}>
+                            {post.categories[0].meta_title}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -238,6 +241,9 @@ export default function BodyBNew() {
                             {newsData[0].title}
                           </a>
                         </h1>
+                        <p style={{ padding: "6px 0px", color: "blue" }}>
+                          {newsData[0].categories[0].meta_title}
+                        </p>
                         <div className="header-BodyBNew-news-first-created">
                           <div className="author">
                             <Image
@@ -297,6 +303,9 @@ export default function BodyBNew() {
                               {post.title}
                             </a>
                           </h2>
+                          <p style={{ padding: "6px 0px", color: "blue" }}>
+                            {post.categories[0].meta_title}
+                          </p>
                           {/* <div className="header-BodyBNew-news-first-created2">
                             <div className="author">
                               <Image
