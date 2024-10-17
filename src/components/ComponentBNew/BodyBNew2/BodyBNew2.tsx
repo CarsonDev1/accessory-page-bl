@@ -22,22 +22,26 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
   const variablesNew = {
     filter: {
       category_id: {
-        eq: activeTab2, // Updated to handle multiple IDs
+        eq: activeTab2, // này truyền cứng id của danh mục bài viết
+      },
+      is_featured: {
+        eq: 1, //set cứng là 1 để để ra bài viết nổi bật
       },
     },
-    pageSize: 100,
+    pageSize: 1000,
     currentPage: 1,
     sortFiled: "publish_time",
     allPosts: false,
     sort: ["DESC"],
   };
+
   const variablesProduct = {
     filter: {
       category_id: {
         eq: 26,
       },
     },
-    pageSize: 5,
+    pageSize: 1000,
     currentPage: 1,
     sortFiled: "publish_time",
     allPosts: false,
@@ -62,71 +66,22 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
     setNewsData3(data.data.blogPosts.items);
   }
   async function fetchBlogPostsDataNew() {
-    let fetchedData: BlogPost[] = []; // Initialize an array to hold all fetched data
-
-    if (activeTab2 === 19) {
-      const categoryIds = [9, 10, 12, 14, 20, 27, 21]; // Đảm bảo ID 9 có trong danh sách
-      const fetchPromises = categoryIds.map(async (id) => {
-        const response = await fetch(
-          "https://beta-api.bachlongmobile.com/graphql",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              query: queryBNew,
-              variables: {
-                filter: {
-                  category_id: { eq: id }, // Fetch for each category ID
-                },
-                pageSize: 500,
-                currentPage: 1,
-                sortFiled: "publish_time",
-                allPosts: false,
-                sort: ["DESC"],
-              },
-            }),
-          }
-        );
-        const data = await response.json();
-        return data.data.blogPosts.items; // Return the fetched items
-      });
-
-      // Wait for all fetch promises to resolve
-      const results = await Promise.all(fetchPromises);
-      fetchedData = results.flat(); // Flatten the array of arrays
-    } else {
-      // Use variablesNew only for other activeTab2 values
-      const response = await fetch(
-        "https://beta-api.bachlongmobile.com/graphql",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            query: queryBNew,
-            variables: variablesNew,
-          }),
-        }
-      );
-      const data = await response.json();
-      fetchedData = data.data.blogPosts.items; // Use the single fetch result
-    }
-
-    // Remove duplicates based on post_id
-    const uniquePosts = Array.from(
-      new Map(fetchedData.map((post) => [post.post_id, post])).values()
+    const response = await fetch(
+      "https://beta-api.bachlongmobile.com/graphql",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: queryBNew,
+          variables: variablesNew,
+        }),
+      }
     );
-
-    // Sắp xếp theo ngày gần đây nhất
-    uniquePosts.sort(
-      (a, b) =>
-        new Date(b.creation_time).getTime() -
-        new Date(a.creation_time).getTime()
-    );
-    setNewsData2(uniquePosts); // Set the combined data
+    const data = await response.json();
+    console.log("dataaaa", data);
+    setNewsData2(data.data.blogPosts.items);
   }
 
   const loadMorePosts = () => {
@@ -145,56 +100,65 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
     <div className="header-BodyBNew2">
       {newsData2 && newsData2.length > 0 ? (
         <>
-          <h2 className="header-BodyBNew2-title">Tin tức mới nhất</h2>
+          <h2 className="header-BodyBNew2-title">Tin tức nổi bật</h2>
           <Row className="header-BodyBNew2-cardRow">
             <Col span={14} className="header-BodyBNew2-CardCol">
-              {newsData2.slice(0, visibleCount).map((post, index) => (
-                <div
-                  style={{ display: "flex", marginBottom: "10px" }}
-                  key={index}
-                >
-                  <a
-                    style={{ display: "flex" }}
-                    onClick={() =>
-                      router.push(
-                        `/NewSub?data=${new URL(post.post_url).pathname
-                          .split("/")
-                          .pop()}&activeTab2=${activeTab2}`
-                      )
-                    }
+              {newsData2
+                .sort(
+                  (a, b) =>
+                    new Date(b.creation_time).getTime() -
+                    new Date(a.creation_time).getTime()
+                ) // Sort by creation_time descending
+                .slice(0, visibleCount)
+                .map((post, index) => (
+                  <div
+                    style={{ display: "flex", marginBottom: "10px" }}
+                    key={index}
                   >
-                    <img
-                      className="header-BodyBNew2-img"
-                      src={post.first_image}
-                      alt=""
-                    />
-                    <div style={{ padding: "10px" }}>
-                      <h2 className="header-BodyBNew2-titleSub">
-                        {post.title}
-                      </h2>
-                      <div className="header-BodyBNew2-cardPostView-tabInfo">
-                        <div className="author">
-                          <Image
-                            alt="User icon"
-                            loading="lazy"
-                            className="header-BodyBNew2-icUser"
-                            src={icUser}
-                          />
+                    <a
+                      style={{ display: "flex" }}
+                      onClick={() =>
+                        router.push(
+                          `/NewSub?page=${new URL(post.post_url).pathname
+                            .split("/")
+                            .pop()}`
+                        )
+                      }
+                    >
+                      <img
+                        className="header-BodyBNew2-img"
+                        src={post.first_image}
+                        alt=""
+                      />
+                      <div style={{ padding: "10px" }}>
+                        <h2 className="header-BodyBNew2-titleSub">
+                          {post.title}
+                        </h2>
+                        <div className="header-BodyBNew2-cardPostView-tabInfo">
+                          <div className="author">
+                            <Image
+                              alt="User icon"
+                              loading="lazy"
+                              className="header-BodyBNew2-icUser"
+                              src={icUser}
+                            />
+                          </div>
+                          <span>{post.author.name}</span>
+                          <div>
+                            <span>
+                              {new Date(
+                                post.creation_time
+                              ).toLocaleDateString()}
+                            </span>
+                          </div>
                         </div>
-                        <span>{post.author.name}</span>
-                        <div>
-                          <span>
-                            {new Date(post.creation_time).toLocaleDateString()}
-                          </span>
-                        </div>
+                        <p className="header-BodyBNew2-cardPostView-view">
+                          {post.views_count} lượt xem
+                        </p>
                       </div>
-                      <p className="header-BodyBNew2-cardPostView-view">
-                        {post.views_count} lượt xem
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              ))}
+                    </a>
+                  </div>
+                ))}
               {visibleCount < newsData2.length && (
                 <button
                   onClick={loadMorePosts}
@@ -233,9 +197,9 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                           style={{ display: "flex" }}
                           onClick={() =>
                             router.push(
-                              `/NewSub?data=${new URL(post.post_url).pathname
+                              `/NewSub?page=${new URL(post.post_url).pathname
                                 .split("/")
-                                .pop()}&activeTab2=${activeTab2}`
+                                .pop()}`
                             )
                           }
                         >

@@ -38,13 +38,10 @@ export default function BodyBNew() {
   const variables = {
     filter: {
       category_id: {
-        eq: tabIds[activeTab],
-      },
-      is_featured: {
-        eq: 1,
+        eq: tabIds[activeTab], // Updated to handle multiple IDs
       },
     },
-    pageSize: 20,
+    pageSize: 100,
     currentPage: 1,
     sortFiled: "publish_time",
     allPosts: false,
@@ -158,132 +155,173 @@ export default function BodyBNew() {
       ) : (
         <>
           <div className="container">
-            <Row className="header-BodyBNew-CardRow">
-              <Col span={14} className="header-BodyBNew-CardCol">
-                {newsData && newsData.length > 0 && (
-                  <div className="header-BodyBNew-news-first-box">
-                    <h2 className="header-BodyBNew-titleNew">Tin nổi bật</h2>
-                    <a
-                      className="header-BodyBNew-card-a"
-                      onClick={() =>
-                        router.push(
-                          `/NewSub?data=${new URL(
-                            newsData[newsData.length - 1].post_url
-                          ).pathname
-                            .split("/")
-                            .pop()}&activeTab2=${activeTab2}`
-                        )
-                      }
-                    >
-                      <img
-                        className="header-BodyBNew-news-first-image"
-                        alt={newsData[newsData.length - 1].title}
-                        src={newsData[newsData.length - 1].first_image}
-                      />
-                    </a>
-                    <div className="header-BodyBNew-news-first-content">
-                      <h1 className="header-BodyBNew-news-first-title header-BodyBNew-t-title header-BodyBNew-c-white relative">
-                        <a
-                          className="header-BodyBNew-card-a2"
-                          onClick={() =>
-                            router.push(
-                              `/NewSub?data=${new URL(
-                                newsData[newsData.length - 1].post_url
-                              ).pathname
-                                .split("/")
-                                .pop()}&activeTab2=${activeTab2}`
-                            )
-                          }
-                        >
-                          {newsData[newsData.length - 1].title}
-                        </a>
-                      </h1>
-                      <div className="header-BodyBNew-news-first-created">
-                        <div className="author">
-                          <Image
-                            alt="User icon"
-                            loading="lazy"
-                            className="header-BodyBNew-icUser"
-                            src={icUser}
-                          />
-                        </div>
-                        <span>{newsData[newsData.length - 1].author.name}</span>
-                        <div>
-                          <span>
-                            {new Date(
-                              newsData[newsData.length - 1].creation_time
-                            ).toLocaleDateString()}
-                          </span>
-                        </div>
-
-                        <span>
-                          {newsData[newsData.length - 1].views_count} lượt xem
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </Col>
-              <Col span={10} className="header-BodyBNew-CardCol">
-                {newsData &&
-                  newsData.slice(-4, -1).map((post, index) => (
-                    <div key={index} className="header-BodyBNew-news-box">
-                      <div className="header-BodyBNew-news-image">
-                        <a
-                          className="inner-img"
-                          onClick={() =>
-                            router.push(
-                              `/NewSub?data=${new URL(post.post_url).pathname
-                                .split("/")
-                                .pop()}&activeTab2=${activeTab2}`
-                            )
-                          }
-                        >
-                          <img alt={post.title} src={post.first_image} />
-                        </a>
-                      </div>
-                      <div className="header-BodyBNew-news-content">
-                        <div className="header-BodyBNew-news-tag">
-                          Tin công nghệ
-                        </div>
-                        <h2 className="news-title relative">
+            <div className="header-BodyBNew-CardRow-test">
+              <div className="header-BodyBNew-CardRow">
+                <div className="header-BodyBNew-CardRow-col-6">
+                  {newsData &&
+                    newsData.slice(-5, -3).map((post, index) => (
+                      <div key={index} className="header-BodyBNew-news-box">
+                        <div className="header-BodyBNew-news-image">
                           <a
                             className="inner-img"
                             onClick={() =>
                               router.push(
-                                `/NewSub?data=${new URL(post.post_url).pathname
+                                `/NewSub?page=${new URL(post.post_url).pathname
                                   .split("/")
-                                  .pop()}&activeTab2=${activeTab2}`
+                                  .pop()}`
                               )
                             }
                           >
-                            {post.title}
+                            <img alt={post.title} src={post.first_image} />
                           </a>
-                        </h2>
-                        <div className="header-BodyBNew-news-first-created2">
+                        </div>
+                        <div className="header-BodyBNew-news-content">
+                          <h2 className="news-title relative">
+                            <a
+                              className="inner-img"
+                              onClick={() =>
+                                router.push(
+                                  `/NewSub?page=${new URL(
+                                    post.post_url
+                                  ).pathname
+                                    .split("/")
+                                    .pop()}`
+                                )
+                              }
+                            >
+                              {post.title}
+                            </a>
+                          </h2>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+                <div className="header-BodyBNew-CardCol">
+                  {newsData && newsData.length > 0 && (
+                    <div className="header-BodyBNew-news-first-box">
+                      <a
+                        className="header-BodyBNew-card-a"
+                        onClick={() =>
+                          router.push(
+                            `/NewSub?page=${new URL(
+                              newsData[newsData.length - 1].post_url
+                            ).pathname
+                              .split("/")
+                              .pop()}`
+                          )
+                        }
+                      >
+                        <img
+                          className="header-BodyBNew-news-first-image"
+                          alt={newsData[newsData.length - 1].title}
+                          src={newsData[newsData.length - 1].first_image}
+                        />
+                      </a>
+                      <div className="header-BodyBNew-news-first-content">
+                        <h1 className="header-BodyBNew-news-first-title header-BodyBNew-t-title header-BodyBNew-c-white relative">
+                          <a
+                            className="header-BodyBNew-card-a2"
+                            onClick={() =>
+                              router.push(
+                                `/NewSub?page=${new URL(
+                                  newsData[newsData.length - 1].post_url
+                                ).pathname
+                                  .split("/")
+                                  .pop()}`
+                              )
+                            }
+                          >
+                            {newsData[newsData.length - 1].title}
+                          </a>
+                        </h1>
+                        <div className="header-BodyBNew-news-first-created">
                           <div className="author">
                             <Image
-                              alt=""
+                              alt="User icon"
                               loading="lazy"
                               className="header-BodyBNew-icUser"
                               src={icUser}
                             />
                           </div>
-                          <span>{post.author.name}</span>
+                          <span>
+                            {newsData[newsData.length - 1].author.name}
+                          </span>
                           <div>
                             <span>
                               {new Date(
-                                post.creation_time
+                                newsData[newsData.length - 1].creation_time
                               ).toLocaleDateString()}
                             </span>
                           </div>
+
+                          <span>
+                            {newsData[newsData.length - 1].views_count} lượt xem
+                          </span>
                         </div>
-                        <span>{post.views_count} lượt xem</span>
                       </div>
                     </div>
-                  ))}
-              </Col>
-            </Row>
+                  )}
+                </div>
+                <div className="header-BodyBNew-CardCol2">
+                  {newsData &&
+                    newsData.slice(-3, -1).map((post, index) => (
+                      <div key={index} className="header-BodyBNew-news-box">
+                        <div className="header-BodyBNew-news-image">
+                          <a
+                            className="inner-img"
+                            onClick={() =>
+                              router.push(
+                                `/NewSub?page=${new URL(post.post_url).pathname
+                                  .split("/")
+                                  .pop()}`
+                              )
+                            }
+                          >
+                            <img alt={post.title} src={post.first_image} />
+                          </a>
+                        </div>
+                        <div className="header-BodyBNew-news-content">
+                          <h2 className="news-title relative">
+                            <a
+                              className="inner-img"
+                              onClick={() =>
+                                router.push(
+                                  `/NewSub?page=${new URL(
+                                    post.post_url
+                                  ).pathname
+                                    .split("/")
+                                    .pop()}`
+                                )
+                              }
+                            >
+                              {post.title}
+                            </a>
+                          </h2>
+                          {/* <div className="header-BodyBNew-news-first-created2">
+                            <div className="author">
+                              <Image
+                                alt=""
+                                loading="lazy"
+                                className="header-BodyBNew-icUser"
+                                src={icUser}
+                              />
+                            </div>
+                            <span>{post.author.name}</span>
+                            <div>
+                              <span>
+                                {new Date(
+                                  post.creation_time
+                                ).toLocaleDateString()}
+                              </span>
+                            </div>
+                          </div> */}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+
             <div className="header-BodyBNew-newHot">
               {newsData2 &&
                 newsData2.length > 0 && ( // Check if newsData2 has items
@@ -329,11 +367,11 @@ export default function BodyBNew() {
                             <a
                               onClick={() =>
                                 router.push(
-                                  `/NewSub?data=${new URL(
+                                  `/NewSub?page=${new URL(
                                     post.post_url
                                   ).pathname
                                     .split("/")
-                                    .pop()}&activeTab2=${activeTab2}`
+                                    .pop()}`
                                 )
                               }
                             >

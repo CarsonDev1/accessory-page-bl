@@ -155,7 +155,7 @@ export default function PostDetail() {
     if (typeof window !== "undefined") {
       // Check if running in the browser
       const queryParams = new URLSearchParams(window.location.search);
-      const dataValue = queryParams.get("data");
+      const dataValue = queryParams.get("page");
       const activeTab2Value = queryParams.get("activeTab2");
       setDataParam(dataValue);
       setActiveTab2(activeTab2Value ? parseInt(activeTab2Value) : 19);
@@ -304,7 +304,7 @@ export default function PostDetail() {
   const handlePostClick = (postUrl: string) => {
     const newDataParam = new URL(postUrl).pathname.split("/").pop() || "";
     setDataParam(newDataParam); // Update dataParam immediately
-    router.push(`/NewSub?data=${newDataParam}`);
+    router.push(`/NewSub?page=${newDataParam}`); // Updated to remove activeTab2 from the URL
     setVisibleItems(5);
   };
   return (
