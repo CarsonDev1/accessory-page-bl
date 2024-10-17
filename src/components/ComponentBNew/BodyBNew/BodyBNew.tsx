@@ -170,7 +170,9 @@ export default function BodyBNew() {
                             className="inner-img"
                             onClick={() =>
                               router.push(
-                                `/NewSub?page=${new URL(post.post_url).pathname
+                                `/chi-tiet-tin-tuc?page=${new URL(
+                                  post.post_url
+                                ).pathname
                                   .split("/")
                                   .pop()}`
                               )
@@ -185,7 +187,7 @@ export default function BodyBNew() {
                               className="inner-img"
                               onClick={() =>
                                 router.push(
-                                  `/NewSub?page=${new URL(
+                                  `/chi-tiet-tin-tuc?page=${new URL(
                                     post.post_url
                                   ).pathname
                                     .split("/")
@@ -210,8 +212,8 @@ export default function BodyBNew() {
                         className="header-BodyBNew-card-a"
                         onClick={() =>
                           router.push(
-                            `/NewSub?page=${new URL(
-                              newsData[newsData.length].post_url
+                            `/chi-tiet-tin-tuc?page=${new URL(
+                              newsData[0].post_url
                             ).pathname
                               .split("/")
                               .pop()}`
@@ -230,7 +232,7 @@ export default function BodyBNew() {
                             className="header-BodyBNew-card-a2"
                             onClick={() =>
                               router.push(
-                                `/NewSub?page=${new URL(
+                                `/chi-tiet-tin-tuc?page=${new URL(
                                   newsData[newsData.length].post_url
                                 ).pathname
                                   .split("/")
@@ -277,7 +279,9 @@ export default function BodyBNew() {
                             className="inner-img"
                             onClick={() =>
                               router.push(
-                                `/NewSub?page=${new URL(post.post_url).pathname
+                                `/chi-tiet-tin-tuc?page=${new URL(
+                                  post.post_url
+                                ).pathname
                                   .split("/")
                                   .pop()}`
                               )
@@ -292,7 +296,7 @@ export default function BodyBNew() {
                               className="inner-img"
                               onClick={() =>
                                 router.push(
-                                  `/NewSub?page=${new URL(
+                                  `/chi-tiet-tin-tuc?page=${new URL(
                                     post.post_url
                                   ).pathname
                                     .split("/")
@@ -378,7 +382,7 @@ export default function BodyBNew() {
                             <a
                               onClick={() =>
                                 router.push(
-                                  `/NewSub?page=${new URL(
+                                  `/chi-tiet-tin-tuc?page=${new URL(
                                     post.post_url
                                   ).pathname
                                     .split("/")

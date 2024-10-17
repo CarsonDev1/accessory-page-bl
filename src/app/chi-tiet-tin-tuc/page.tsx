@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { queryBNewDetail } from "../../app/utils/utils";
+import { queryBNewDetail } from "../utils/utils";
 import "./NewSub.scss";
 import icBachLong from "../../../public/ic-bachlong.webp";
 import { Col, Row, Spin, Breadcrumb } from "antd";
-import { BlogPost, queryBNew } from "../../app/utils/utils";
+import { BlogPost, queryBNew } from "../utils/utils";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -304,7 +304,7 @@ export default function PostDetail() {
   const handlePostClick = (postUrl: string) => {
     const newDataParam = new URL(postUrl).pathname.split("/").pop() || "";
     setDataParam(newDataParam); // Update dataParam immediately
-    router.push(`/NewSub?page=${newDataParam}`); // Updated to remove activeTab2 from the URL
+    router.push(`/chi-tiet-tin-tuc?page=${newDataParam}`); // Updated to remove activeTab2 from the URL
     setVisibleItems(5);
   };
   return (
@@ -517,7 +517,7 @@ export default function PostDetail() {
           </>
         )}
 
-        <div className="newSubHot-container">
+        {/* <div className="newSubHot-container">
           {Array.isArray(newsData3) &&
             newsData3.length > 0 && ( // Check if newsData3 has items
               <>
@@ -568,7 +568,7 @@ export default function PostDetail() {
                 )}
               </>
             )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

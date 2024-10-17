@@ -96,13 +96,32 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
   }, [activeTab2]);
 
   console.log("New news data 3:>>>>>>>>>>>>>>>>>>", newsData2);
+  const [scrolled, setScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrolled]);
   return (
     <div className="header-BodyBNew2">
       {newsData2 && newsData2.length > 0 ? (
         <>
           <h2 className="header-BodyBNew2-title">TIN TỨC MỚI NHẤT</h2>
-          <Row className="header-BodyBNew2-cardRow">
+          <Row
+            className="header-BodyBNew2-cardRow"
+            style={{
+              position: "relative", // Thay đổi từ "fixed" thành "relative"
+            }}
+          >
             <Col span={14} className="header-BodyBNew2-CardCol">
               {newsData2 &&
                 newsData2.slice(5, newsData2.length).map(
@@ -118,7 +137,9 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                         style={{ display: "flex" }}
                         onClick={() =>
                           router.push(
-                            `/NewSub?page=${new URL(post.post_url).pathname
+                            `/chi-tiet-tin-tuc?page=${new URL(
+                              post.post_url
+                            ).pathname
                               .split("/")
                               .pop()}`
                           )
@@ -161,67 +182,76 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
                   )
                 )}
             </Col>
-            <Col span={10} className="header-BodyBNew2-CardCol">
-              <div style={{ position: "relative" }}>
-                {newsData3 && newsData3.length > 0 ? (
-                  <>
-                    <h2
-                      className=""
-                      style={{
-                        fontSize: "18px",
-                        fontWeight: "700",
-                        padding: "10px 0",
-                      }}
-                    >
-                      ƯU ĐÃI THANH TOÁN
-                    </h2>
-                    {newsData3
-                      .slice(0, visibleCountProduct)
-                      .map((post, index) => (
-                        <div
-                          style={{
-                            display: "flex",
-                            marginBottom: "10px",
-                          }}
-                          key={index}
-                        >
-                          <a
-                            style={{ display: "flex" }}
-                            onClick={() =>
-                              router.push(
-                                `/NewSub?page=${new URL(post.post_url).pathname
-                                  .split("/")
-                                  .pop()}`
-                              )
-                            }
+            <Col
+              span={10}
+              className="header-BodyBNew2-CardCol"
+              style={{ position: "sticky", top: "0px", height: "max-content" }}
+            >
+              <div>
+                <div>
+                  {newsData3 && newsData3.length > 0 ? (
+                    <>
+                      <h2
+                        className=""
+                        style={{
+                          fontSize: "18px",
+                          fontWeight: "700",
+                          padding: "10px 0",
+                        }}
+                      >
+                        ƯU ĐÃI THANH TOÁN
+                      </h2>
+                      {newsData3
+                        .slice(0, visibleCountProduct)
+                        .map((post, index) => (
+                          <div
+                            style={{
+                              display: "flex",
+                              marginBottom: "10px",
+                            }}
+                            key={index}
+                            className="sticky-col-item"
                           >
-                            <img
-                              className="header-BodyBNew2-imgProduct"
-                              src={post.first_image}
-                              alt=""
-                            />
-                            <div style={{ padding: " 0px 10px" }}>
-                              <h2 className="header-BodyBNew2-titleSubProduct">
-                                {post.title}
-                              </h2>
-                              <p className="header-BodyBNew2-cardPostView-view">
-                                {post.views_count} lượt xem
-                              </p>
-                            </div>
-                          </a>
-                        </div>
-                      ))}
-                    {visibleCountProduct < newsData3.length && (
-                      <Link href="https://bachlongmobile.com/promotion/">
-                        <button className="header-BodyBNew2-cardPostView-load-more-button">
-                          Xem thêm
-                        </button>
-                      </Link>
-                    )}
-                  </>
-                ) : (
-                  <p>No data available</p>
-                )}
+                            <a
+                              style={{ display: "flex" }}
+                              onClick={() =>
+                                router.push(
+                                  `/chi-tiet-tin-tuc?page=${new URL(
+                                    post.post_url
+                                  ).pathname
+                                    .split("/")
+                                    .pop()}`
+                                )
+                              }
+                            >
+                              <img
+                                className="header-BodyBNew2-imgProduct"
+                                src={post.first_image}
+                                alt=""
+                              />
+                              <div style={{ padding: " 0px 10px" }}>
+                                <h2 className="header-BodyBNew2-titleSubProduct">
+                                  {post.title}
+                                </h2>
+                                <p className="header-BodyBNew2-cardPostView-view">
+                                  {post.views_count} lượt xem
+                                </p>
+                              </div>
+                            </a>
+                          </div>
+                        ))}
+                      {visibleCountProduct < newsData3.length && (
+                        <Link href="https://bachlongmobile.com/promotion/">
+                          <button className="header-BodyBNew2-cardPostView-load-more-button">
+                            Xem thêm
+                          </button>
+                        </Link>
+                      )}
+                    </>
+                  ) : (
+                    <p>No data available</p>
+                  )}
+                </div>
               </div>
             </Col>
           </Row>

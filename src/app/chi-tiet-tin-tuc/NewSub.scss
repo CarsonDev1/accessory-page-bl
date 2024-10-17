@@ -290,7 +290,7 @@
 .sticky-col {
   margin-top: -20px;
   position: sticky !important; // Đặt vị trí thành sticky
-  top: 0 !important; // Bám ở ! trên cùng
+  top: 0px !important; // Bám ở ! trên cùng
   z-index: 10; // Đảm bảo nó nằm trên các phần tử khác
   @media (max-width: 767px) {
     margin-top: 10px;
