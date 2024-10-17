@@ -180,7 +180,7 @@
 
 .header-BodyBNew-news-box {
   display: block;
-  margin: 10px 0px 10px 20px;
+  margin: 10px 0px 10px 10px;
 
   @media (max-width: 1240px) {
     margin: 10px 0px 00px 0px;
@@ -266,7 +266,8 @@
 
 .header-BodyBNew-cardPostView-img {
   border-radius: 10px;
-  height: 150px;
+  height: 200px;
+  min-height: 200px;
   width: 20vw;
   @media (max-width: 1200px) {
     width: 30vw;

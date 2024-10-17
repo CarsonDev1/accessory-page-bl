@@ -51,16 +51,23 @@ export default function BodyBNew() {
   const variablesNew = {
     filter: {
       category_id: {
-        eq: tabIds[activeTab2],
+        eq: tabIds[activeTab], // này truyền cứng id của danh mục bài viết
       },
+      ...(tabIds[activeTab] === 19
+        ? {}
+        : {
+            // Kiểm tra nếu activeTab là 19
+            is_featured: {
+              eq: 1, //set cứng là 1 để để ra bài viết nổi bật
+            },
+          }),
     },
-    pageSize: 100,
+    pageSize: 1000,
     currentPage: 1,
     sortFiled: "publish_time",
     allPosts: false,
     sort: ["DESC"],
   };
-
   // Fetch data for the main blog posts based on the active tab
   async function fetchBlogPostsData() {
     setLoading(true); // Set loading to true before fetching
@@ -107,9 +114,6 @@ export default function BodyBNew() {
     fetchBlogPostsData(); // Fetch main posts when activeTab changes
     fetchBlogPostsDataNew(); // Fetch new posts based on activeTab2
   }, [activeTab, activeTab2]);
-
-  console.log("Main news data:");
-  console.log("New news data:", newsData2);
 
   const tabs = [
     "Trang Chủ",
@@ -326,9 +330,7 @@ export default function BodyBNew() {
               {newsData2 &&
                 newsData2.length > 0 && ( // Check if newsData2 has items
                   <>
-                    <h2 className="header-BodyBNew-titleNew">
-                      Tin xem nhiều nhất
-                    </h2>
+                    <h2 className="header-BodyBNew-titleNew">TIN NỔI BẬT</h2>
                     <Swiper
                       breakpoints={{
                         240: {
@@ -361,7 +363,11 @@ export default function BodyBNew() {
                       className="mySwiper"
                     >
                       {newsData2
-                        .sort((a, b) => b.views_count - a.views_count)
+                        .sort(
+                          (a, b) =>
+                            new Date(b.creation_time).getTime() -
+                            new Date(a.creation_time).getTime()
+                        )
                         .map((post, index) => (
                           <SwiperSlide key={index}>
                             <a
