@@ -21,6 +21,7 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
   const [visibleCount, setVisibleCount] = useState(5); // State to track the number of visible posts
   const [visibleCountProduct, setVisibleCountProduct] = useState(5); // State to track the number of visible product posts
   const query = `query blogPosts( $filter: BlogPostsFilterInput $pageSize: Int $currentPage: Int $sortFiled: String $allPosts: Boolean $sort: [String] ) { blogPosts( filter: $filter pageSize: $pageSize currentPage: $currentPage sortFiled: $sortFiled allPosts: $allPosts sort: $sort ) { items { author { author_id author_url content creation_time custom_theme_to facebook_page_url featured_image filtered_content identifier instagram_page_url is_active layout_update_xml linkedin_page_url meta_description meta_title name page_layout relative_url title twitter_page_url type url } author_id canonical_url category_id content_heading creation_time end_time featured_image featured_img_alt featured_list_image featured_list_img_alt first_image identifier is_active page_layout position post_id post_url publish_time search title type update_time views_count categories { canonical_url category_id category_level category_url category_url_path content content_heading custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to display_mode featured_img identifier include_in_menu is_active layout_update_xml meta_description meta_keywords meta_title page_layout parent_category_id path position posts_count posts_sort_by relative_url title type breadcrumbs { category_id category_level category_name category_uid category_url_key category_url_path } } filtered_content media_gallery { url } meta_description meta_keywords meta_title promotion_image tags { content custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to identifier is_active layout_update_xml meta_description meta_keywords meta_robots meta_title page_layout relative_url tag_id tag_url title type } tag_id short_content short_filtered_content } total_count total_pages type } }`;
+  const queryTest = `query blogPosts( $filter: BlogPostsFilterInput $pageSize: Int $currentPage: Int $sortFiled: String $allPosts: Boolean $sort: [String] ) { blogPosts( filter: $filter pageSize: $pageSize currentPage: $currentPage sortFiled: $sortFiled allPosts: $allPosts sort: $sort ) { items { author { author_id author_url content creation_time custom_theme_to facebook_page_url featured_image filtered_content identifier instagram_page_url is_active layout_update_xml linkedin_page_url meta_description meta_title name page_layout relative_url title twitter_page_url type url } author_id canonical_url category_id content_heading creation_time end_time featured_image featured_img_alt featured_list_image featured_list_img_alt first_image identifier is_active page_layout position post_id post_url publish_time search title type update_time views_count categories { canonical_url category_id category_level category_url category_url_path content content_heading custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to display_mode featured_img identifier include_in_menu is_active layout_update_xml meta_description meta_keywords meta_title page_layout parent_category_id path position posts_count posts_sort_by relative_url title type breadcrumbs { category_id category_level category_name category_uid category_url_key category_url_path } } filtered_content media_gallery { url } meta_description meta_keywords meta_title promotion_image tags { content custom_layout custom_layout_update_xml custom_theme custom_theme_from custom_theme_to identifier is_active layout_update_xml meta_description meta_keywords meta_robots meta_title page_layout relative_url tag_id tag_url title type } tag_id short_content short_filtered_content } total_count total_pages type } }`;
   const variablesNew = {
     filter: {
       category_id: {
@@ -70,13 +71,13 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          query: queryBNew,
+          query: queryTest,
           variables: variablesNew,
         }),
       }
     );
     const data = await response.json();
-    console.log("dataaaa", data);
+    console.log("dataaaa1111", data);
     setNewsData2(data.data.blogPosts.items);
   }
 
@@ -104,63 +105,61 @@ export default function BodyBNew2({ activeTab2 }: ProductModalProps) {
           <Row className="header-BodyBNew2-cardRow">
             <Col span={14} className="header-BodyBNew2-CardCol">
               {newsData2 &&
-                newsData2
-                  .slice(0, -5)
-                  .reverse()
-                  .map(
-                    (
-                      post,
-                      index // Chỉnh sửa ở đây
-                    ) => (
-                      <div
-                        style={{ display: "flex", marginBottom: "10px" }}
-                        key={index}
+                newsData2.slice(5, newsData2.length).map(
+                  (
+                    post,
+                    index // Chỉnh sửa ở đây
+                  ) => (
+                    <div
+                      style={{ display: "flex", marginBottom: "10px" }}
+                      key={index}
+                    >
+                      <a
+                        style={{ display: "flex" }}
+                        onClick={() =>
+                          router.push(
+                            `/NewSub?page=${new URL(post.post_url).pathname
+                              .split("/")
+                              .pop()}`
+                          )
+                        }
                       >
-                        <a
-                          style={{ display: "flex" }}
-                          onClick={() =>
-                            router.push(
-                              `/NewSub?page=${new URL(post.post_url).pathname
-                                .split("/")
-                                .pop()}`
-                            )
-                          }
-                        >
-                          <img
-                            className="header-BodyBNew2-img"
-                            src={post.first_image}
-                            alt=""
-                          />
-                          <div style={{ padding: "10px" }}>
-                            <h2 className="header-BodyBNew2-titleSub">
-                              {post.title}
-                            </h2>
-                            <div className="header-BodyBNew2-cardPostView-tabInfo">
-                              <div className="author">
-                                <Image
-                                  alt="User icon"
-                                  loading="lazy"
-                                  className="header-BodyBNew2-icUser"
-                                  src={icUser}
-                                />
-                              </div>
-                              <span>{post.author.name}</span>
-                              <div>
-                                <span>
-                                  {new Date(
-                                    post.creation_time
-                                  ).toLocaleDateString()}
-                                </span>
-                              </div>
+                        <img
+                          className="header-BodyBNew2-img"
+                          src={post.first_image}
+                          alt=""
+                        />
+                        <div style={{ padding: "10px" }}>
+                          <p>{post.categories[0].meta_title}</p>
+                          <h2 className="header-BodyBNew2-titleSub">
+                            {post.title}
+                          </h2>
+                          <div className="header-BodyBNew2-cardPostView-tabInfo">
+                            <div className="author">
+                              <Image
+                                alt="User icon"
+                                loading="lazy"
+                                className="header-BodyBNew2-icUser"
+                                src={icUser}
+                              />
                             </div>
-                            <p className="header-BodyBNew2-cardPostView-view">
-                              {post.views_count} lượt xem
-                            </p>
+                            <span>{post.author.name}</span>
+                            <div>
+                              <span>
+                                {new Date(
+                                  post.creation_time
+                                ).toLocaleDateString()}
+                              </span>
+                            </div>
                           </div>
-                        </a>
-                      </div>
-                    )
-                  )}
+                          <p className="header-BodyBNew2-cardPostView-view">
+                            {post.views_count} lượt xem
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                  )
+                )}
             </Col>
             <Col span={10} className="header-BodyBNew2-CardCol">
               <div style={{ position: "relative" }}>

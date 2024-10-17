@@ -163,7 +163,7 @@ export default function BodyBNew() {
               <div className="header-BodyBNew-CardRow">
                 <div className="header-BodyBNew-CardRow-col-6">
                   {newsData &&
-                    newsData.slice(-5, -3).map((post, index) => (
+                    newsData.slice(3, 5).map((post, index) => (
                       <div key={index} className="header-BodyBNew-news-box">
                         <div className="header-BodyBNew-news-image">
                           <a
@@ -208,7 +208,7 @@ export default function BodyBNew() {
                         onClick={() =>
                           router.push(
                             `/NewSub?page=${new URL(
-                              newsData[newsData.length - 1].post_url
+                              newsData[newsData.length].post_url
                             ).pathname
                               .split("/")
                               .pop()}`
@@ -217,8 +217,8 @@ export default function BodyBNew() {
                       >
                         <img
                           className="header-BodyBNew-news-first-image"
-                          alt={newsData[newsData.length - 1].title}
-                          src={newsData[newsData.length - 1].first_image}
+                          alt={newsData[0].title}
+                          src={newsData[0].first_image}
                         />
                       </a>
                       <div className="header-BodyBNew-news-first-content">
@@ -228,14 +228,14 @@ export default function BodyBNew() {
                             onClick={() =>
                               router.push(
                                 `/NewSub?page=${new URL(
-                                  newsData[newsData.length - 1].post_url
+                                  newsData[newsData.length].post_url
                                 ).pathname
                                   .split("/")
                                   .pop()}`
                               )
                             }
                           >
-                            {newsData[newsData.length - 1].title}
+                            {newsData[0].title}
                           </a>
                         </h1>
                         <div className="header-BodyBNew-news-first-created">
@@ -247,20 +247,16 @@ export default function BodyBNew() {
                               src={icUser}
                             />
                           </div>
-                          <span>
-                            {newsData[newsData.length - 1].author.name}
-                          </span>
+                          <span>{newsData[0].author.name}</span>
                           <div>
                             <span>
                               {new Date(
-                                newsData[newsData.length - 1].creation_time
+                                newsData[0].creation_time
                               ).toLocaleDateString()}
                             </span>
                           </div>
 
-                          <span>
-                            {newsData[newsData.length - 1].views_count} lượt xem
-                          </span>
+                          <span>{newsData[0].views_count} lượt xem</span>
                         </div>
                       </div>
                     </div>
@@ -268,7 +264,7 @@ export default function BodyBNew() {
                 </div>
                 <div className="header-BodyBNew-CardCol2">
                   {newsData &&
-                    newsData.slice(-3, -1).map((post, index) => (
+                    newsData.slice(1, 3).map((post, index) => (
                       <div key={index} className="header-BodyBNew-news-box">
                         <div className="header-BodyBNew-news-image">
                           <a
@@ -408,6 +404,11 @@ export default function BodyBNew() {
                                     </span>
                                   </div>
                                 </div>
+                                <p
+                                  style={{ padding: "10px 0px", color: "blue" }}
+                                >
+                                  {post.categories[0].meta_title}
+                                </p>
                               </div>
                             </a>
                           </SwiperSlide>
