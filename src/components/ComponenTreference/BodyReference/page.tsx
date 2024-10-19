@@ -76,7 +76,7 @@ const BodyOldAutumn = () => {
     fetchData();
   }, []);
 
-  const itemsPerPage = 15; // Tổng số sản phẩm hiển thị trên mỗi trang
+  const itemsPerPage = 100; // Tổng số sản phẩm hiển thị trên mỗi trang
   const itemsPerRow = 4; // Sản phẩm trên mỗi hàng
 
   // Filter products based on the selected product type
@@ -93,7 +93,9 @@ const BodyOldAutumn = () => {
   );
 
   return (
-    <div style={{ backgroundColor: "#FFFEED", padding: "20px 0" }}>
+    <div
+      style={{ backgroundColor: "#FFFEED", padding: "20px 0", height: "100vh" }}
+    >
       <div className="container">
         <div className="BodyReference-card">
           <h2 className="BodyOldAutumn-title">
@@ -138,16 +140,17 @@ const BodyOldAutumn = () => {
               </div>
             ))}
           </div>
-
-          <Pagination
-            style={{ padding: "20px 0" }}
-            align="center"
-            current={currentPage}
-            total={filteredByType.length}
-            pageSize={itemsPerPage}
-            onChange={(page) => setCurrentPage(page)} // Cập nhật trang hiện tại
-            showSizeChanger={false}
-          />
+          <h2
+            style={{
+              color: "red",
+              fontWeight: "600",
+              padding: "20px 0px",
+              textAlign: "center",
+            }}
+          >
+            Lưu ý : Tất cả các loại máy thẩm định trực thuộc vào quản lý shop
+            kiểm trả trực tiếp
+          </h2>
         </div>
       </div>
     </div>

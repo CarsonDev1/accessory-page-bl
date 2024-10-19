@@ -49,17 +49,6 @@ function CardProduct({
           className="product__groupPrice_BodyReference"
           style={{ background: "0" }}
         >
-          <span className="product__price_BodyReference">Giá Thu: </span>
-          <span className="product__priceSpecial_BodyReference">
-            {new Intl.NumberFormat("vi-VN").format(price)}{" "}
-            <span className="product__price_BodyReference-text">VNĐ</span>
-            {/* Added space before VNĐ */}
-          </span>
-        </div>
-        <div
-          className="product__groupPrice_BodyReference"
-          style={{ background: "0" }}
-        >
           <span className="product__price_BodyReference">Giá Loại 1: </span>
           <span className="product__priceSpecial_BodyReference">
             {new Intl.NumberFormat("vi-VN").format(price1)}{" "}
