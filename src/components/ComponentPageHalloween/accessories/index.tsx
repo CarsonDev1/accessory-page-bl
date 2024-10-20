@@ -9,7 +9,7 @@ import DecorProduct from "../../../../public/halloween/ic-to.png";
 import DecorWomen from "../../../../public/halloween/decor-women-07.png";
 import FrameProduct from "../../../../public/halloween/frame-product.png";
 import { useProductSaleData } from "../../../app/hooksHalloween/useProductSaleData";
-
+import DecorProduct2 from "../../../../public/halloween/icon-dragon-sale.png";
 export interface Product {
   id: number;
   name: string;
@@ -415,6 +415,14 @@ const AccessoriesList: React.FC = () => {
                         quality={100}
                         alt="decor-product"
                         className="decor-product"
+                      />
+                      <Image
+                        src={DecorProduct2}
+                        width={80}
+                        height={80}
+                        quality={100}
+                        alt="decor-product"
+                        className="decor-product2"
                       />
                       <span></span>
                       {/* Only show "Trả góp 0%" if the product price is greater than 3,000,000 */}

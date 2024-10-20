@@ -10,7 +10,7 @@ import FrameProduct from "../../../../../public/halloween/frame-product.png";
 import "./acess-women.scss";
 import Gift from "../../../../../public/old/gift.png";
 import { useProductSaleData } from "../../../../app/hooksHalloween/useProductSaleData";
-
+import DecorProduct2 from "../../../../../public/halloween/icon-dragon-sale.png";
 export interface Product {
   id: number;
   name: string;
@@ -289,6 +289,14 @@ const Access310: React.FC = () => {
                   quality={100}
                   alt="decor-product"
                   className="decor-product"
+                />
+                <Image
+                  src={DecorProduct2}
+                  width={80}
+                  height={80}
+                  quality={100}
+                  alt="decor-product"
+                  className="decor-product2"
                 />
                 <span></span>
                 <span className="percent">Trả góp 0%</span>

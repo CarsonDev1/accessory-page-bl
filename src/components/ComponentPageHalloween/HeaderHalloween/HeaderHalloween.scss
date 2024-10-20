@@ -1,5 +1,9 @@
 .banner-HeaderHalloween-desktop {
   display: block;
+  img {
+    height: 500px;
+    object-fit: fill;
+  }
   @media (max-width: 767px) {
     display: none;
   }
@@ -205,6 +209,9 @@
   height: 150px;
   position: absolute;
   top: 10px;
+  @media (max-width: 1200px) {
+    display: none;
+  }
 }
 .HeaderHalloween-ic-bingo {
   width: 150px;
@@ -212,4 +219,7 @@
   position: absolute;
   top: 10px;
   right: 0;
+  @media (max-width: 1200px) {
+    display: none;
+  }
 }

@@ -103,12 +103,12 @@
             z-index: 3;
 
             @media screen and (max-width: 1024px) {
-              width: 2.2rem !important;
-              height: 3.6rem !important;
+              width: 60px !important;
+              height: 60px !important;
             }
             @media screen and (max-width: 768px) {
-              width: 1.6rem !important;
-              height: 2.2rem !important;
+              width: 40px !important;
+              height: 40px !important;
             }
             img {
               width: 100%;

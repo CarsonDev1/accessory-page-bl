@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
 import DecorProduct from "../../../../../public/halloween/ic-to.png";
+import DecorProduct2 from "../../../../../public/halloween/icon-dragon-sale.png";
 import FrameProduct from "../../../../../public/halloween/frame-product.png";
 import { useProductSaleData } from "../../../../app/hooksHalloween/useProductSaleData";
 import "./acess-women.scss";
@@ -293,6 +294,14 @@ const Access10k: React.FC = () => {
                   quality={100}
                   alt="decor-product"
                   className="decor-product"
+                />
+                <Image
+                  src={DecorProduct2}
+                  width={80}
+                  height={80}
+                  quality={100}
+                  alt="decor-product"
+                  className="decor-product2"
                 />
                 <span></span>
                 <span className="percent">Trả góp 0%</span>

@@ -9,7 +9,7 @@ import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useProductSaleData } from "../../../app/hooksHalloween/useProductSaleData";
-
+import DecorProduct2 from "../../../../public/halloween/icon-dragon-sale.png";
 export interface Product {
   id: number;
   name: string;
@@ -283,6 +283,14 @@ const AppleList: React.FC = () => {
                         quality={100}
                         alt="decor-product"
                         className="decor-product"
+                      />
+                      <Image
+                        src={DecorProduct2}
+                        width={80}
+                        height={80}
+                        quality={100}
+                        alt="decor-product"
+                        className="decor-product2"
                       />
                       <span></span>
                       {product.price_range.minimum_price.final_price.value >
