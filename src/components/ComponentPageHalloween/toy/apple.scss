@@ -224,6 +224,9 @@
       padding: 0.2rem;
       border-radius: 0.4rem;
       color: #ef373e;
+      @media (max-width: 767px) {
+        display: none;
+      }
     }
   }
 

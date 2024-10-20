@@ -121,6 +121,9 @@
 .HeaderHalloween-time-line-card-key {
   display: flex;
   gap: 20px;
+  @media (max-width: 767px) {
+    gap: 10px;
+  }
 }
 .HeaderHalloween-time-line-subtext,
 .HeaderHalloween-time-line-subtext-small {
