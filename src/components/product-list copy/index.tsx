@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
 import "./product-list.scss";
-import pkApple from "../../../public/PK apple.png"
+import pkApple from "../../../public/PK apple.png";
 export interface Product {
   id: number;
   name: string;
@@ -135,7 +135,7 @@ const ProductList: React.FC = () => {
   ];
 
   return (
-    <div className="product-list" id="item-apple">
+    <div className="product-list-halloween" id="item-apple">
       <div className="upgrade-list">
         <div className="container">
           {/* <Image
@@ -146,7 +146,7 @@ const ProductList: React.FC = () => {
             className=""
           /> */}
           <div className="upgrade">
-              <Image src={pkApple} alt="no-products" className="images-pk" />
+            <Image src={pkApple} alt="no-products" className="images-pk" />
 
             <div className="tabs">
               {tabs.map((tab) => (

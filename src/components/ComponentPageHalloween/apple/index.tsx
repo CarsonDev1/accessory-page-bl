@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import DecorProduct from "../../../../public/halloween/decor-product.png";
+import DecorProduct from "../../../../public/halloween/ic-to.png";
 import DecorWomen from "../../../../public/halloween/decor-women-02.png";
 import FrameProduct from "../../../../public/halloween/frame-product.png";
 import { Spin } from "antd";
@@ -186,12 +186,22 @@ const AppleList: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="loading container-spin">
-        <Spin />
+      <div
+        style={{
+          background:
+            "linear-gradient(180deg, #DC623B 0, var(--bg-gradient-white, #FE921E) 90%)",
+          padding: "20px 10px",
+          borderRadius: "10px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "300px",
+        }}
+      >
+        <Spin size="large" />
       </div>
     );
   }
-
   if (error) {
     return <div>Error loading data</div>;
   }
@@ -203,154 +213,166 @@ const AppleList: React.FC = () => {
   };
 
   return (
-    <div className="product-list" id="item-ipad">
-      <div className="upgrade-list">
-        <div className="container">
-          <div className="women-decor">
-            <Image
-              src={DecorWomen}
-              width={1920}
-              height={1200}
-              alt="product-banner-01"
-              className=""
-            />
-          </div>
-          <div className="tabs">
-            {tabs.map((tab) => (
-              <div key={tab.name}>
+    <div
+      style={{
+        background:
+          "linear-gradient(180deg, #a54200 0, var(--bg-gradient-white, #441f00) 90%)",
+      }}
+    >
+      <div className="product-list-halloween" id="item-ipad">
+        <div className="upgrade-list">
+          <div className="container">
+            <div className="women-decor">
+              <Image
+                src={DecorWomen}
+                width={1920}
+                height={1200}
+                alt="product-banner-01"
+                className=""
+              />
+            </div>
+            <div className="tabs">
+              {tabs.map((tab) => (
+                <div key={tab.name}>
+                  <button
+                    onClick={() => {
+                      setActiveTab(tab.name);
+                    }}
+                    className={activeTab === tab.name ? "tab active" : "tab"}
+                    style={{
+                      color: activeTab === tab.name ? "#fff" : "#333",
+                      backgroundColor:
+                        activeTab === tab.name ? "#ff4d4f" : "#fff",
+                      border:
+                        activeTab === tab.name
+                          ? "2px solid #ff4d4f"
+                          : "2px solid #eee",
+                      padding: "12px 24px",
+                      margin: "8px",
+                      borderRadius: "8px",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                      boxShadow:
+                        activeTab === tab.name
+                          ? "0 4px 8px rgba(0, 0, 0, 0.1)"
+                          : "none",
+                    }}
+                  >
+                    {tab.name}
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="upgrade">
+              {visibleProducts.map((product, index) => (
+                <Link
+                  key={index}
+                  href={`https://bachlongmobile.com/products/${product.url_key}`}
+                  passHref
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <div className="upgrade-item">
+                    <div className="upgrade-item-header">
+                      <Image
+                        src={DecorProduct}
+                        width={80}
+                        height={80}
+                        quality={100}
+                        alt="decor-product"
+                        className="decor-product"
+                      />
+                      <span></span>
+                      {product.price_range.minimum_price.final_price.value >
+                        3000000 && <span className="percent">Trả góp 0%</span>}
+                    </div>
+                    <div className="upgrade-item-img">
+                      <div className="img-content">
+                        <Image
+                          src={product.image.url}
+                          width={1400}
+                          height={1200}
+                          quality={100}
+                          alt={`product-${index}`}
+                        />
+                      </div>
+                      <div className="frame-product">
+                        <Image
+                          src={FrameProduct}
+                          width={500}
+                          height={500}
+                          quality={100}
+                          alt="frame-product"
+                        />
+                      </div>
+                    </div>
+                    <div className="upgrade-item-content">
+                      <h4 className="upgrade-item-content-tt">
+                        {product.name}
+                      </h4>
+                      <div className="upgrade-item-content-body">
+                        <div className="upgrade-item-content-body-price">
+                          {getProductSalePrice(
+                            product.name,
+                            product.price_range.minimum_price.final_price.value
+                          )}{" "}
+                          {
+                            product.price_range.minimum_price.final_price
+                              .currency
+                          }
+                        </div>
+                        <div className="upgrade-item-content-body-reduced">
+                          <div className="price-reduced">
+                            {product.attributes && product.attributes[0]?.value
+                              ? Number(
+                                  product.attributes[0].value
+                                ).toLocaleString("vi-VN")
+                              : ""}{" "}
+                            {product.attributes[0].value &&
+                              product.price_range.minimum_price.final_price
+                                .currency}
+                          </div>
+
+                          {product.attributes[0].value && (
+                            <div className="percent">
+                              -
+                              {Math.ceil(
+                                ((product.attributes[0].value -
+                                  product.price_range.minimum_price.final_price
+                                    .value) /
+                                  product.attributes[0].value) *
+                                  100
+                              )}
+                              %
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            {visibleCount < filteredData.length && (
+              <div style={{ textAlign: "center", marginTop: "20px" }}>
                 <button
-                  onClick={() => {
-                    setActiveTab(tab.name);
-                  }}
-                  className={activeTab === tab.name ? "tab active" : "tab"}
+                  onClick={loadMore}
                   style={{
-                    color: activeTab === tab.name ? "#fff" : "#333",
-                    backgroundColor:
-                      activeTab === tab.name ? "#ff4d4f" : "#fff",
-                    border:
-                      activeTab === tab.name
-                        ? "2px solid #ff4d4f"
-                        : "2px solid #eee",
-                    padding: "12px 24px",
-                    margin: "8px",
-                    borderRadius: "8px",
+                    backgroundColor: "#ef373e",
+                    color: "white",
+                    border: "none",
+                    padding: "10px 20px",
+                    borderRadius: "5px",
                     cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    boxShadow:
-                      activeTab === tab.name
-                        ? "0 4px 8px rgba(0, 0, 0, 0.1)"
-                        : "none",
                   }}
                 >
-                  {tab.name}
+                  Xem thêm
                 </button>
               </div>
-            ))}
+            )}
           </div>
-
-          <div className="upgrade">
-            {visibleProducts.map((product, index) => (
-              <Link
-                key={index}
-                href={`https://bachlongmobile.com/products/${product.url_key}`}
-                passHref
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <div className="upgrade-item">
-                  <div className="upgrade-item-header">
-                    <Image
-                      src={DecorProduct}
-                      width={80}
-                      height={80}
-                      quality={100}
-                      alt="decor-product"
-                      className="decor-product"
-                    />
-                    <span></span>
-                    {product.price_range.minimum_price.final_price.value >
-                      3000000 && <span className="percent">Trả góp 0%</span>}
-                  </div>
-                  <div className="upgrade-item-img">
-                    <div className="img-content">
-                      <Image
-                        src={product.image.url}
-                        width={1400}
-                        height={1200}
-                        quality={100}
-                        alt={`product-${index}`}
-                      />
-                    </div>
-                    <div className="frame-product">
-                      <Image
-                        src={FrameProduct}
-                        width={500}
-                        height={500}
-                        quality={100}
-                        alt="frame-product"
-                      />
-                    </div>
-                  </div>
-                  <div className="upgrade-item-content">
-                    <h4 className="upgrade-item-content-tt">{product.name}</h4>
-                    <div className="upgrade-item-content-body">
-                      <div className="upgrade-item-content-body-price">
-                        {getProductSalePrice(
-                          product.name,
-                          product.price_range.minimum_price.final_price.value
-                        )}{" "}
-                        {product.price_range.minimum_price.final_price.currency}
-                      </div>
-                      <div className="upgrade-item-content-body-reduced">
-                        <div className="price-reduced">
-                          {product.attributes && product.attributes[0]?.value
-                            ? Number(
-                                product.attributes[0].value
-                              ).toLocaleString("vi-VN")
-                            : ""}{" "}
-                          {product.attributes[0].value &&
-                            product.price_range.minimum_price.final_price
-                              .currency}
-                        </div>
-
-                        {product.attributes[0].value && (
-                          <div className="percent">
-                            -
-                            {Math.ceil(
-                              ((product.attributes[0].value -
-                                product.price_range.minimum_price.final_price
-                                  .value) /
-                                product.attributes[0].value) *
-                                100
-                            )}
-                            %
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-          {visibleCount < filteredData.length && (
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-              <button
-                onClick={loadMore}
-                style={{
-                  backgroundColor: "#ef373e",
-                  color: "white",
-                  border: "none",
-                  padding: "10px 20px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
-              >
-                Xem thêm
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>

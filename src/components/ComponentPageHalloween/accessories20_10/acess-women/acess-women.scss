@@ -1,4 +1,4 @@
-.product-list {
+.product-list-halloween {
   padding: 4.8rem 0;
   @media screen and (max-width: 768px) {
     padding: 2.4rem 0;
@@ -75,7 +75,7 @@
       }
 
       &-item {
-        background: #fff;
+        background: #f9f9f9;
         border-radius: 0.8rem;
         padding: 1.2rem;
         display: flex;
@@ -101,11 +101,11 @@
           justify-content: space-between;
 
           .decor-product {
-            width: 2.4rem !important;
-            height: 3rem !important;
+            width: 4.4rem !important;
+            height: 4rem !important;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 1.4rem;
+            left: 1.4rem;
             transform: translate(-50%, -50%) !important;
             z-index: 3;
 

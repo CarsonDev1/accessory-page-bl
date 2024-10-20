@@ -125,17 +125,14 @@ const ProductList: React.FC = () => {
     return <div>Error loading data</div>;
   }
 
-
-
   return (
-    <div className="product-list" >
+    <div className="product-list-halloween">
       <div className="upgrade-list">
         <div className="container">
           <div className="upgrade">
             <div className="upgrade-header">
               <h3 className="banner-slide-combo-title">iPad</h3>
             </div>
-
 
             <Swiper
               modules={[Navigation]}

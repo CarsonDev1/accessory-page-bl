@@ -129,7 +129,14 @@ const ProductList: React.FC = () => {
   }, []);
 
   return (
-    <div className="product-list" id="item-iphone">
+    <div
+      className="product-list-halloween"
+      id="item-iphone"
+      style={{
+        background:
+          "linear-gradient(180deg, #441f00 0, var(--bg-gradient-white, #a54200) 90%)",
+      }}
+    >
       <div className="upgrade-list">
         <div className="container">
           <div className="women-decor">

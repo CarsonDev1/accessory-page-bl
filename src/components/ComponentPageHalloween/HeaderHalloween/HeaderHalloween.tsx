@@ -25,7 +25,7 @@ function HeaderHalloween() {
   const [count, setCount] = useState(20);
 
   const [startDate, setStartDate] = useState(new Date("2024-10-20")); // Ngày bắt đầu
-  const [endDate, setEndDate] = useState(new Date("2024-10-31")); // Ngày kết thúc
+  const [endDate, setEndDate] = useState(new Date("2024-11-01T21:30:00"));
 
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
