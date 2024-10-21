@@ -1,32 +1,30 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import { Spin } from "antd";
-import DecorProduct from "../../../../../public/halloween/ic-to.png";
-import DecorWomen from "../../../../../public/halloween/decor-women-01.png";
-import FrameProduct from "../../../../../public/halloween/frame-product.png";
-import "./acess-women.scss";
-import Gift from "../../../../../public/old/gift.png";
-import { useProductSaleData } from "../../../../app/hooksHalloween/useProductSaleData";
-import DecorProduct2 from "../../../../../public/halloween/ICON-DRAGON.png";
+'use client';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
+import { Spin } from 'antd';
+import DecorProduct from '../../../../../public/halloween/ic-to.png';
+import FrameProduct from '../../../../../public/halloween/frame-product.png';
+import './acess-women.scss';
+import { useProductSaleData } from '../../../../app/hooksHalloween/useProductSaleData';
+import DecorProduct2 from '../../../../../public/halloween/ICON-DRAGON.png';
 export interface Product {
-  id: number;
-  name: string;
-  url_key: string;
-  image: {
-    url: string;
-  };
-  attributes: any;
-  price_range: {
-    minimum_price: {
-      final_price: {
-        value: number;
-        currency: string;
-      };
-    };
-  };
+	id: number;
+	name: string;
+	url_key: string;
+	image: {
+		url: string;
+	};
+	attributes: any;
+	price_range: {
+		minimum_price: {
+			final_price: {
+				value: number;
+				currency: string;
+			};
+		};
+	};
 }
 
 const query = `
@@ -170,238 +168,210 @@ fragment ProductPriceField on ProductPrice {
 `;
 
 const variables = {
-  filter: {
-    category_uid: {
-      eq: "Mzcz",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
+	filter: {
+		category_uid: {
+			eq: 'Mzcz',
+		},
+	},
+	pageSize: 200,
+	currentPage: 1,
 };
 
 async function fetchProductListData() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
+	const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query,
+			variables,
+		}),
+	});
 
-  const data = await response.json();
-  return data.data.products.items as Product[];
+	const data = await response.json();
+	return data.data.products.items as Product[];
 }
 
 const AccessWomen: React.FC = () => {
-  const {
-    data: AccessWomenData,
-    error,
-    isLoading,
-  } = useQuery<Product[]>({
-    queryKey: ["accessWomenData"],
-    queryFn: fetchProductListData,
-    staleTime: 300000,
-  });
+	const {
+		data: AccessWomenData,
+		error,
+		isLoading,
+	} = useQuery<Product[]>({
+		queryKey: ['accessWomenData'],
+		queryFn: fetchProductListData,
+		staleTime: 300000,
+	});
 
-  const { data } = useProductSaleData();
-  const productSale = data?.[0]?.items;
+	const { data } = useProductSaleData();
+	const productSale = data?.[0]?.items;
 
-  const [filteredData, setFilteredData] = useState<Product[]>([]);
-  const [visibleCount, setVisibleCount] = useState<number>(10);
+	const [filteredData, setFilteredData] = useState<Product[]>([]);
+	const [visibleCount, setVisibleCount] = useState<number>(10);
 
-  const productSaleNames = productSale?.map(
-    (productSale: any) => productSale.product.name
-  );
-  const productSalePrices = productSale?.map(
-    (productSale: any) => productSale.sale_price
-  );
+	const productSaleNames = productSale?.map((productSale: any) => productSale.product.name);
+	const productSalePrices = productSale?.map((productSale: any) => productSale.sale_price);
 
-  const getProductSalePrice = (productName: string, originalPrice: number) => {
-    if (productSaleNames && productSalePrices) {
-      const saleIndex = productSaleNames.findIndex(
-        (name: string) => name === productName
-      );
-      if (saleIndex !== -1) {
-        return productSalePrices[saleIndex].toLocaleString("vi-VN");
-      }
-    }
-    return originalPrice.toLocaleString("vi-VN");
-  };
+	const getProductSalePrice = (productName: string, originalPrice: number) => {
+		if (productSaleNames && productSalePrices) {
+			const saleIndex = productSaleNames.findIndex((name: string) => name === productName);
+			if (saleIndex !== -1) {
+				return productSalePrices[saleIndex].toLocaleString('vi-VN');
+			}
+		}
+		return originalPrice.toLocaleString('vi-VN');
+	};
 
-  useEffect(() => {
-    setFilteredData(AccessWomenData || []);
+	useEffect(() => {
+		setFilteredData(AccessWomenData || []);
 
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(4);
-      } else {
-        setVisibleCount(10);
-      }
-    };
+		const handleResize = () => {
+			if (window.innerWidth < 768) {
+				setVisibleCount(4);
+			} else {
+				setVisibleCount(10);
+			}
+		};
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+		handleResize();
+		window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [AccessWomenData]);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, [AccessWomenData]);
 
-  if (isLoading) {
-    return (
-      <div
-        style={{
-          background:
-            "linear-gradient(180deg, #DC623B 0, var(--bg-gradient-white, #FE921E) 90%)",
-          padding: "20px 10px",
-          borderRadius: "10px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "300px",
-        }}
-      >
-        <Spin size="large" />
-      </div>
-    );
-  }
+	if (isLoading) {
+		return (
+			<div className='container-spin'>
+				<Spin size='large' />
+			</div>
+		);
+	}
 
-  if (error) {
-    return <div>Error loading data</div>;
-  }
+	if (error) {
+		return <div>Error loading data</div>;
+	}
 
-  const visibleProducts = filteredData.slice(0, visibleCount);
+	const visibleProducts = filteredData.slice(0, visibleCount);
 
-  const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 10);
-  };
+	const loadMore = () => {
+		setVisibleCount((prevCount) => prevCount + 10);
+	};
 
-  return (
-    <div
-      style={{
-        background:
-          "linear-gradient(180deg, #DC623B 0, var(--bg-gradient-white, #FE921E) 90%)",
-        padding: "20px 10px",
-        borderRadius: "10px",
-      }}
-    >
-      <div className="upgrade-list">
-        <div className="upgrade">
-          {visibleProducts.map((product, index) => (
-            <Link
-              key={index}
-              href={`https://bachlongmobile.com/products/${product.url_key}`}
-              passHref
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <div className="upgrade-item">
-                <div className="upgrade-item-header">
-                  <Image
-                    src={DecorProduct}
-                    width={80}
-                    height={80}
-                    quality={100}
-                    alt="decor-product"
-                    className="decor-product"
-                  />
-                  <Image
-                    src={DecorProduct2}
-                    width={80}
-                    height={80}
-                    quality={100}
-                    alt="decor-product"
-                    className="decor-product2"
-                  />
-                  <span></span>
-                  <span className="percent">Trả góp 0%</span>
-                </div>
-                <div className="upgrade-item-img">
-                  <div className="img-content">
-                    <Image
-                      src={product.image.url}
-                      width={1400}
-                      height={1200}
-                      quality={100}
-                      alt={`product-${index}`}
-                    />
-                  </div>
-                  <div className="frame-product">
-                    <Image
-                      src={FrameProduct}
-                      width={500}
-                      height={500}
-                      quality={100}
-                      alt="frame-product"
-                    />
-                  </div>
-                </div>
-                <div className="upgrade-item-content">
-                  <h4 className="upgrade-item-content-tt">{product.name}</h4>
-                  <div className="upgrade-item-content-body">
-                    <div className="upgrade-item-content-body-price">
-                      {getProductSalePrice(
-                        product.name,
-                        product.price_range.minimum_price.final_price.value
-                      )}{" "}
-                      {product.price_range.minimum_price.final_price.currency}
-                    </div>
-                    <div className="upgrade-item-content-body-reduced">
-                      <div className="price-reduced">
-                        {product.attributes && product.attributes[0]?.value
-                          ? Number(product.attributes[0].value).toLocaleString(
-                              "vi-VN"
-                            )
-                          : ""}{" "}
-                        {product.attributes[0].value &&
-                          product.price_range.minimum_price.final_price
-                            .currency}
-                      </div>
+	return (
+		<div>
+			<div className='upgrade-list'>
+				<div className='upgrade'>
+					{visibleProducts.map((product, index) => (
+						<Link
+							key={index}
+							href={`https://bachlongmobile.com/products/${product.url_key}`}
+							passHref
+							target='_blank'
+							rel='noopener noreferrer'
+							style={{ textDecoration: 'none', color: 'black' }}
+						>
+							<div className='upgrade-item'>
+								<div className='upgrade-item-header'>
+									<Image
+										src={DecorProduct}
+										width={80}
+										height={80}
+										quality={100}
+										alt='decor-product'
+										className='decor-product'
+									/>
+									<Image
+										src={DecorProduct2}
+										width={80}
+										height={80}
+										quality={100}
+										alt='decor-product'
+										className='decor-product2'
+									/>
+									<span></span>
+									<span className='percent'>Trả góp 0%</span>
+								</div>
+								<div className='upgrade-item-img'>
+									<div className='img-content'>
+										<Image
+											src={product.image.url}
+											width={1400}
+											height={1200}
+											quality={100}
+											alt={`product-${index}`}
+										/>
+									</div>
+									<div className='frame-product'>
+										<Image
+											src={FrameProduct}
+											width={500}
+											height={500}
+											quality={100}
+											alt='frame-product'
+										/>
+									</div>
+								</div>
+								<div className='upgrade-item-content'>
+									<h4 className='upgrade-item-content-tt'>{product.name}</h4>
+									<div className='upgrade-item-content-body'>
+										<div className='upgrade-item-content-body-price'>
+											{getProductSalePrice(
+												product.name,
+												product.price_range.minimum_price.final_price.value
+											)}{' '}
+											{product.price_range.minimum_price.final_price.currency}
+										</div>
+										<div className='upgrade-item-content-body-reduced'>
+											<div className='price-reduced'>
+												{product.attributes && product.attributes[0]?.value
+													? Number(product.attributes[0].value).toLocaleString('vi-VN')
+													: ''}{' '}
+												{product.attributes[0].value &&
+													product.price_range.minimum_price.final_price.currency}
+											</div>
 
-                      {product.attributes[0].value && (
-                        <div className="percent">
-                          -
-                          {Math.ceil(
-                            ((product.attributes[0].value -
-                              product.price_range.minimum_price.final_price
-                                .value) /
-                              product.attributes[0].value) *
-                              100
-                          )}
-                          %
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-        {visibleCount < filteredData.length && (
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
-            <button
-              onClick={loadMore}
-              style={{
-                backgroundColor: "#ef373e",
-                color: "white",
-                border: "none",
-                padding: "10px 20px",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              Xem thêm
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+											{product.attributes[0].value && (
+												<div className='percent'>
+													-
+													{Math.ceil(
+														((product.attributes[0].value -
+															product.price_range.minimum_price.final_price.value) /
+															product.attributes[0].value) *
+															100
+													)}
+													%
+												</div>
+											)}
+										</div>
+									</div>
+								</div>
+							</div>
+						</Link>
+					))}
+				</div>
+				{visibleCount < filteredData.length && (
+					<div style={{ textAlign: 'center', marginTop: '20px' }}>
+						<button
+							onClick={loadMore}
+							style={{
+								backgroundColor: '#ef373e',
+								color: 'white',
+								border: 'none',
+								padding: '10px 20px',
+								borderRadius: '5px',
+								cursor: 'pointer',
+							}}
+						>
+							Xem thêm
+						</button>
+					</div>
+				)}
+			</div>
+		</div>
+	);
 };
 
 export default AccessWomen;

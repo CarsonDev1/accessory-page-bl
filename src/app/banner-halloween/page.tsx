@@ -1,17 +1,10 @@
 import React from 'react';
-import Image from 'next/image';
-import BgHallo from '../../../../public/halloween/bg-hallo.png';
-import HeadHallo from '../../../../public/halloween/head-hallo.png';
 import './banner-halloween.scss';
 
 const BannerHalloween = () => {
 	return (
 		<div>
 			<div className='halloween-wrap'>
-				<Image src={BgHallo} width={1820} height={1500} alt='bg-hallo' className='bg-hallo' />
-				<div className='banner-hallo'>
-					<Image src={HeadHallo} width={1820} height={1500} alt='head-hallo' className='head-hallo' />
-				</div>
 				<div className='sky'>
 					<div className='moon' />
 					<div className='clouds'>

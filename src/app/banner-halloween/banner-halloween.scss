@@ -52,40 +52,18 @@
 	margin: 0;
 	padding: 0;
 	width: 100vw;
+	height: 100vh;
 	overflow: hidden;
 	display: flex;
 	align-items: flex-end;
 	justify-content: center;
 	align-content: flex-end;
-	position: relative;
-
-	.bg-hallo {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
-	.banner-hallo {
-		position: absolute;
-		top: 10%;
-		right: 0;
-		z-index: 5;
-		width: 100%;
-		.head-hallo {
-			img {
-				display: block;
-				width: 100%;
-				height: auto;
-				object-fit: contain;
-			}
-		}
-	}
-	// background: linear-gradient(238deg, #000, #fff0, #fff0), linear-gradient(180deg, #000, #fff0, #fff0),
-	// 	radial-gradient(circle at 50% 100%, #005eff, #6d006d, #38005e);
+	background: linear-gradient(238deg, #000, #fff0, #fff0), linear-gradient(180deg, #000, #fff0, #fff0),
+		radial-gradient(circle at 50% 100%, #005eff, #6d006d, #38005e);
 
 	&::after {
 		content: '';
-		position: absolute;
+		position: fixed;
 		width: 100%;
 		height: 10vmin;
 		z-index: 0;
@@ -113,8 +91,8 @@
 	position: relative;
 	perspective: 100vmin;
 	perspective-origin: top;
-	bottom: 0vmin;
-	left: -35%;
+	bottom: 5vmin;
+	left: -25%;
 }
 
 .content * {
@@ -488,38 +466,33 @@
 	left: 0;
 }
 
-// .sky:after {
-// 	content: '';
-// 	position: absolute;
-// 	width: 99vw;
-// 	height: 100vh;
-// 	top: 0vh;
-// 	background-image: radial-gradient(2px 2px at 20px 30px, #484341, transparent),
-// 		radial-gradient(2px 2px at 43px 75px, #735454, transparent),
-// 		radial-gradient(2px 1px at 54px 184px, #828282, transparent),
-// 		radial-gradient(2px 2px at 93px 47px, #654b49, transparent),
-// 		radial-gradient(1px 1px at 148px 87px, #3a1919, transparent),
-// 		radial-gradient(2px 2px at 193px 137px, #a26662, transparent),
-// 		radial-gradient(1px 2px at 210px 154px, #805241, transparent),
-// 		radial-gradient(2px 2px at 243px 102px, #866356, transparent),
-// 		radial-gradient(2px 1px at 264px 184px, #794937, transparent),
-// 		radial-gradient(2px 2px at 293px 44px, #735454, transparent),
-// 		radial-gradient(1px 1px at 223px 62px, #ad968e, transparent),
-// 		radial-gradient(2px 2px at 249px 162px, #884228, transparent),
-// 		radial-gradient(2px 2px at 73px 99px, #442e26, transparent),
-// 		radial-gradient(1px 1px at 163px 42px, #403433, transparent),
-// 		linear-gradient(180deg, #fff0 10%, var(--house) 25%, #111 50%, #222 75%, #111 100%);
-// 	background-repeat: no-repeat, repeat;
-// 	background-size: 333px 263px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px,
-// 		333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 100% 100%;
-// 	opacity: 0.5;
-// 	mix-blend-mode: color-burn;
-
-// 	@media screen and (max-width: 768px) {
-// 		width: 100vw;
-// 		opacity: 1.5;
-// 	}
-// }
+.sky:after {
+	content: '';
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0vh;
+	background-image: radial-gradient(2px 2px at 20px 30px, #484341, transparent),
+		radial-gradient(2px 2px at 43px 75px, #735454, transparent),
+		radial-gradient(2px 1px at 54px 184px, #828282, transparent),
+		radial-gradient(2px 2px at 93px 47px, #654b49, transparent),
+		radial-gradient(1px 1px at 148px 87px, #3a1919, transparent),
+		radial-gradient(2px 2px at 193px 137px, #a26662, transparent),
+		radial-gradient(1px 2px at 210px 154px, #805241, transparent),
+		radial-gradient(2px 2px at 243px 102px, #866356, transparent),
+		radial-gradient(2px 1px at 264px 184px, #794937, transparent),
+		radial-gradient(2px 2px at 293px 44px, #735454, transparent),
+		radial-gradient(1px 1px at 223px 62px, #ad968e, transparent),
+		radial-gradient(2px 2px at 249px 162px, #884228, transparent),
+		radial-gradient(2px 2px at 73px 99px, #442e26, transparent),
+		radial-gradient(1px 1px at 163px 42px, #403433, transparent),
+		linear-gradient(180deg, #fff0 10%, var(--house) 25%, #111 50%, #222 75%, #111 100%);
+	background-repeat: no-repeat, repeat;
+	background-size: 333px 263px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px,
+		333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 333px 163px, 100% 100%;
+	opacity: 0.5;
+	mix-blend-mode: color-burn;
+}
 
 .moon {
 	position: absolute;
