@@ -9,7 +9,7 @@ import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useProductSaleData } from "../../../app/hooksHalloween/useProductSaleData";
-import DecorProduct2 from "../../../../public/halloween/icon-dragon-sale.png";
+import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
 export interface Product {
   id: number;
   name: string;

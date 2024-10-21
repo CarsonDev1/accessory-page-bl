@@ -123,22 +123,22 @@
             }
           }
           .decor-product2 {
-            width: 6rem !important;
-            height: 6rem !important;
+            width: 50px !important;
+            height: 50px !important;
             position: absolute;
             bottom: -2rem;
-            right: -3rem;
+            right: -2rem;
             transform: translate(-50%, -50%) !important;
             z-index: 3;
             @media screen and (max-width: 1024px) {
-              width: 60px !important;
-              height: 60px !important;
+              width: 40px !important;
+              height: 40px !important;
             }
             @media screen and (max-width: 768px) {
-              width: 60px !important;
-              height: 60px !important;
-              bottom: -2rem;
-              right: -3rem;
+              width: 40px !important;
+              height: 40px !important;
+              bottom: -1rem;
+              right: -1rem;
             }
             img {
               width: 100%;

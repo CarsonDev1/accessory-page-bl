@@ -9,7 +9,7 @@ import DecorProduct from "../../../../public/halloween/ic-to.png";
 import DecorWomen from "../../../../public/halloween/decor-women-03.png";
 import FrameProduct from "../../../../public/halloween/frame-product.png";
 import { useProductSaleData } from "../../../app/hooksHalloween/useProductSaleData";
-import DecorProduct2 from "../../../../public/halloween/icon-dragon-sale.png";
+import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
 export interface Product {
   id: number;
   name: string;
