@@ -216,7 +216,7 @@ const AppleList: React.FC = () => {
     <div
       style={{
         background:
-          "linear-gradient(180deg, #a54200 0, var(--bg-gradient-white, #441f00) 90%)",
+          "linear-gradient(180deg, #15001B 0, var(--bg-gradient-white, #5D0069) 90%)",
       }}
     >
       <div className="product-list-halloween" id="item-ipad">

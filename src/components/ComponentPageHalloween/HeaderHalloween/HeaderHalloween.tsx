@@ -56,13 +56,12 @@ function HeaderHalloween() {
         className="banner-HeaderHalloween shine-banner"
         style={{ position: "relative", overflow: "hidden" }}
       >
-        <div className="banner-HeaderHalloween-desktop">
+        {/* <div className="banner-HeaderHalloween-desktop">
           <Image src={bannerDesktop} alt="banner desktop" />
         </div>
         <div className="banner-HeaderHalloween-mobile">
           <Image src={bannerMobile} alt="banner mobile" />
-        </div>
-        <div className="HeaderHalloween-shine"></div>
+        </div> */}
       </div>
       <div className="container">
         <div className="HeaderHalloween-time-line">

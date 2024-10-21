@@ -134,7 +134,7 @@ const ProductList: React.FC = () => {
       id="item-iphone"
       style={{
         background:
-          "linear-gradient(180deg, #441f00 0, var(--bg-gradient-white, #a54200) 90%)",
+          "linear-gradient(180deg, #5D0069 0, var(--bg-gradient-white, #15001B) 90%)",
       }}
     >
       <div className="upgrade-list">

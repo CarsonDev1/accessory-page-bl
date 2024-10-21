@@ -9,10 +9,12 @@ import ToyList from "../../components/ComponentPageHalloween/toy/index";
 import AccessoriesList from "../../components/ComponentPageHalloween/accessories/index";
 import Rules from "../../components/ComponentPageHalloween/rules/index";
 import React from "react";
+import BannerHalloween from "../../components/ComponentPageHalloween/BannerHalloween/page";
 
 export default function page() {
   return (
     <div>
+      <BannerHalloween />
       <HeaderHalloween />
       <BodyHallowween />
       <div id="item-iphone">
