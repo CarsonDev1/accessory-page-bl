@@ -1,3 +1,9 @@
+.HeaderHalloween {
+	margin-top: -18rem;
+	@media screen and (max-width: 1200px) {
+		margin-top: 0;
+	}
+}
 .banner-HeaderHalloween-desktop {
 	display: block;
 	img {
@@ -24,7 +30,8 @@
 	border: none;
 }
 .HeaderHalloween {
-	background: linear-gradient(180deg, #15001b 0, var(--bg-gradient-white, #5d0069) 90%);
+	// background: linear-gradient(180deg, #15001b 0, var(--bg-gradient-white, #5d0069) 90%);
+	background: #372d62;
 }
 .banner-HeaderHalloween.shine-banner {
 	background-repeat: no-repeat;
@@ -97,6 +104,8 @@
 	background-image: url('../../../../public/halloween/stele.png');
 	background-size: cover;
 	background-repeat: no-repeat;
+	position: relative;
+	z-index: 10;
 
 	@media screen and (max-width: 1200px) {
 		width: 15rem;
@@ -221,13 +230,9 @@
 	align-items: center;
 	width: 100%;
 	justify-content: center;
-	margin-bottom: 2.4rem;
 
 	@media screen and (max-width: 1200px) {
 		gap: 0rem;
-	}
-	@media screen and (max-width: 768px) {
-		margin-bottom: 0;
 	}
 	img {
 		display: flex;

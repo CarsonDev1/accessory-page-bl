@@ -111,18 +111,12 @@ const ProductList: React.FC = () => {
 	}, []);
 
 	return (
-		<div
-			className='product-list-halloween'
-			id='item-iphone'
-			style={{
-				background: 'linear-gradient(180deg, #5D0069 0, var(--bg-gradient-white, #15001B) 90%)',
-			}}
-		>
+		<div className='product-list-halloween' id='item-iphone'>
 			<div className='container'>
 				<div className='upgrade-list'>
-					<div className='bg-product'>
+					{/* <div className='bg-product'>
 						<Image src={BgProduct} width={1820} height={1200} alt='bg-product' />
-					</div>
+					</div> */}
 					<div className='women-decor'>
 						<Image
 							src={DecorWomen}

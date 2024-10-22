@@ -304,9 +304,11 @@ const ProductPercent: React.FC = () => {
 
 	return (
 		<div
-			style={{
-				background: 'linear-gradient(180deg, #5D0069 0, var(--bg-gradient-white, #15001B) 90%)',
-			}}
+			style={
+				{
+					// background: 'linear-gradient(180deg, #372d62 0, var(--bg-gradient-white, #15001B) 90%)',
+				}
+			}
 		>
 			<div className='product-list-halloween' id='item-airpods'>
 				<div className='upgrade-list'>

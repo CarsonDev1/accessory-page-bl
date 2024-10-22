@@ -2,16 +2,33 @@ import React from 'react';
 import Image from 'next/image';
 import BgHallo from '../../../../public/halloween/bg-hallo.png';
 import HeadHallo from '../../../../public/halloween/head-hallo.png';
+import Cloud1 from '../../../../public/halloween/cloud1.png';
+import Cloud2 from '../../../../public/halloween/cloud2.png';
+import Cloud3 from '../../../../public/halloween/cloud3.png';
+import Cloud4 from '../../../../public/halloween/cloud4.png';
+import Cloud5 from '../../../../public/halloween/cloud5.png';
 import './banner-halloween.scss';
 
 const BannerHalloween = () => {
 	return (
 		<div>
 			<div className='halloween-wrap'>
-				<Image src={BgHallo} width={1820} height={1500} alt='bg-hallo' className='bg-hallo' />
 				<div className='banner-hallo'>
 					<Image src={HeadHallo} width={1820} height={1500} alt='head-hallo' className='head-hallo' />
 				</div>
+				<div className='clouds'>
+					<Image src={Cloud1} alt='cloud-1' style={{ '--i': 1 } as any} width={1820} height={1500} />
+					<Image src={Cloud2} alt='cloud-2' style={{ '--i': 2 } as any} width={1820} height={1500} />
+					<Image src={Cloud3} alt='cloud-3' style={{ '--i': 3 } as any} width={1820} height={1500} />
+					<Image src={Cloud4} alt='cloud-4' style={{ '--i': 4 } as any} width={1820} height={1500} />
+					<Image src={Cloud5} alt='cloud-5' style={{ '--i': 5 } as any} width={1820} height={1500} />
+				</div>
+				{/* <Image src={Cloud01} width={1820} height={1500} alt='cloud-01' className='cloud-01' />
+				<Image src={Cloud02} width={1820} height={1500} alt='cloud-02' className='cloud-02' />
+				<Image src={Cloud01} width={1820} height={1500} alt='cloud-03' className='cloud-03' />
+				<Image src={Cloud02} width={1820} height={1500} alt='cloud-04' className='cloud-04' /> */}
+				<Image src={BgHallo} width={1820} height={1500} alt='bg-hallo' className='bg-hallo' />
+				<div className='overlay'></div>
 				<div className='sky'>
 					<div className='moon' />
 					<div className='clouds'>
@@ -116,13 +133,13 @@ const BannerHalloween = () => {
 						</div>
 						<div className='chimney' />
 					</div>
-					<div className='fence'>
+					{/* <div className='fence'>
 						<span />
 						<span />
 						<div className='tomb'>RIP</div>
 						<div className='zombie-hand' />
 						<div className='stones' />
-					</div>
+					</div> */}
 					<div className='skeleton-floating' />
 					<div className='skeleton'>
 						<div className='head'>
@@ -211,7 +228,7 @@ const BannerHalloween = () => {
 							</div>
 						</div>
 					</div>
-					<div className='pumpkin'>
+					{/* <div className='pumpkin'>
 						<span />
 						<span />
 						<span />
@@ -222,7 +239,7 @@ const BannerHalloween = () => {
 						<div className='mouth'>
 							<div className='teeth' />
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>
