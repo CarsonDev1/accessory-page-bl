@@ -6,11 +6,8 @@ const query = `
 
 const variables = {
 	filter: {
-		end_date: {
-			gteq: '2024-09-29 21:30:00',
-		},
 		sale_type: {
-			eq: 'sale-multiple-product',
+			eq: 'thuong-hieu',
 		},
 	},
 	pageSize: 200,

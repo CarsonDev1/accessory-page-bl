@@ -58,20 +58,26 @@
 	justify-content: center;
 	align-content: flex-end;
 	position: relative;
+	height: 60vh;
+	@media screen and (max-width: 850px) {
+		height: 100%;
+	}
 
 	.clouds {
 		position: absolute;
-		bottom: -10%;
+		bottom: -30%;
 		left: 0;
 		width: 100%;
-		height: 40rem;
+		height: 50rem;
 		overflow: hidden;
-		z-index: 10;
+		z-index: 30;
 		img {
 			position: absolute;
 			bottom: 0;
-			max-width: 100%;
 			animation: cloudMove calc(30s * var(--i)) linear infinite;
+		}
+		@media screen and (max-width: 850px) {
+			display: none;
 		}
 	}
 
@@ -124,19 +130,38 @@
 		left: 0;
 		width: 100%;
 	}
+
 	.banner-hallo {
 		position: absolute;
-		top: 18%;
+		top: 5%;
 		right: 0;
-		z-index: 200;
-		width: 75%;
+		z-index: 20;
+		width: 100%;
+		@media screen and (max-width: 850px) {
+			z-index: 400;
+			top: 0;
+			position: relative;
+		}
+
 		.head-hallo {
 			position: relative;
+			display: block;
+			@media screen and (max-width: 850px) {
+				display: none;
+			}
+
 			img {
 				display: block;
 				width: 100%;
 				height: auto;
 				object-fit: contain;
+			}
+		}
+		.bg-hallo-mobile {
+			position: relative;
+			display: none;
+			@media screen and (max-width: 850px) {
+				display: block;
 			}
 		}
 	}
@@ -149,6 +174,10 @@
 		perspective-origin: top;
 		bottom: 0vmin;
 		left: -35%;
+		z-index: 20;
+		@media screen and (max-width: 850px) {
+			display: none;
+		}
 	}
 
 	.content * {
@@ -160,7 +189,7 @@
 		width: 30vmin;
 		height: 25vmin;
 		background: var(--house);
-		bottom: 0;
+		bottom: -5%;
 		left: 22vmin;
 		transform: rotateX(82deg) skewX(5deg);
 		z-index: 1;
@@ -179,20 +208,22 @@
 		width: 19vmin;
 		height: 35vmin;
 		background: var(--house);
-		bottom: 31.5vmin;
+		bottom: 19.5vmin;
 		left: 29vmin;
 		transform: perspective(150vmin) rotateX(45deg) skewX(2deg) rotate(2deg);
+		-webkit-clip-path: polygon(0% 85%, 0% 0%, 100% 0%, 100% 94%, 48% 57%);
 		clip-path: polygon(0% 85%, 0% 0%, 100% 0%, 100% 94%, 48% 57%);
-		z-index: 1;
-		box-shadow: 0.25vmin -0.5vmin 0.5vmin 0 #fff3 inset, 0.5vmin -0.5vmin 1.5vmin 0 #fff2 inset;
+		z-index: 0;
+		box-shadow: 0.25vmin -0.5vmin 0.5vmin 0 rgba(255, 255, 255, 0.2) inset,
+			0.5vmin -0.5vmin 1.5vmin 0 rgba(255, 255, 255, 0.1333333333) inset;
 	}
 
 	.roof-0 {
 		width: 37vmin;
 		height: 23vmin;
-		bottom: 23.25vmin;
+		bottom: 16.25vmin;
 		left: 18.75vmin;
-		border: 19vmin solid #0000;
+		border: 19vmin solid rgba(0, 0, 0, 0);
 		box-sizing: border-box;
 		border-bottom: 22vmin solid var(--house);
 		transform: skew(-8deg, -1deg) rotate(1.25deg);
@@ -221,12 +252,22 @@
 	}
 
 	.roof-2 {
-		background: radial-gradient(circle at 34vmin -9vmin, #fff0 35vmin, var(--house) calc(35vmin + 1px)),
-			radial-gradient(circle at -18vmin 4vmin, #fff0 28vmin, #fff4 calc(28vmin + 1px), #fff0 28.75vmin),
-			radial-gradient(circle at -18vmin 4vmin, #fff0 28vmin, var(--house) calc(28vmin + 1px)), #0f00;
+		background: radial-gradient(
+				circle at 34vmin -9vmin,
+				rgba(255, 255, 255, 0) 35vmin,
+				var(--house) calc(35vmin + 1px)
+			),
+			radial-gradient(
+				circle at -18vmin 4vmin,
+				rgba(255, 255, 255, 0) 28vmin,
+				rgba(255, 255, 255, 0.2666666667) calc(28vmin + 1px),
+				rgba(255, 255, 255, 0) 28.75vmin
+			),
+			radial-gradient(circle at -18vmin 4vmin, rgba(255, 255, 255, 0) 28vmin, var(--house) calc(28vmin + 1px)),
+			rgba(0, 255, 0, 0);
 		width: 34vmin;
 		height: 25vmin;
-		bottom: 63.9vmin;
+		bottom: 49.9vmin;
 		left: 26vmin;
 		transform: skew(-8deg, -1deg) rotate(1deg);
 		border-radius: 0.5vmin;
@@ -234,6 +275,7 @@
 			calc(50% - 7vmin) 100%;
 		background-repeat: no-repeat;
 		background-position: 99% 0, 0 0, 0 0;
+		z-index: 2;
 	}
 
 	.door {
@@ -497,23 +539,43 @@
 		height: 9vmin;
 		background: linear-gradient(
 				-101deg,
-				#fff0 0 1.5vmin,
+				rgba(255, 255, 255, 0) 0 1.5vmin,
 				var(--house) calc(1.5vmin + 1px) 2.25vmin,
-				#fff0 calc(2.25vmin + 1px)
+				rgba(255, 255, 255, 0) calc(2.25vmin + 1px)
 			),
 			linear-gradient(
 				-98deg,
-				#fff0 0 5.5vmin,
+				rgba(255, 255, 255, 0) 0 5.5vmin,
 				var(--house) calc(5.5vmin + 1px) 6.25vmin,
-				#fff0 calc(6.25vmin + 1px)
+				rgba(255, 255, 255, 0) calc(6.25vmin + 1px)
 			),
-			linear-gradient(88deg, #fff0 0 4vmin, var(--house) calc(4vmin + 1px) 4.75vmin, #fff0 calc(4.75vmin + 1px)),
-			linear-gradient(85deg, #fff0 0 9vmin, var(--house) calc(9vmin + 1px) 9.75vmin, #fff0 calc(9.75vmin + 1px)),
-			linear-gradient(177deg, #fff0 1vmin, var(--house) calc(1vmin + 1px) 2vmin, #fff0 calc(2vmin + 1px)),
-			linear-gradient(183deg, #fff0 1vmin, var(--house) calc(1vmin + 1px) 2vmin, #fff0 calc(2vmin + 1px));
+			linear-gradient(
+				88deg,
+				rgba(255, 255, 255, 0) 0 4vmin,
+				var(--house) calc(4vmin + 1px) 4.75vmin,
+				rgba(255, 255, 255, 0) calc(4.75vmin + 1px)
+			),
+			linear-gradient(
+				85deg,
+				rgba(255, 255, 255, 0) 0 9vmin,
+				var(--house) calc(9vmin + 1px) 9.75vmin,
+				rgba(255, 255, 255, 0) calc(9.75vmin + 1px)
+			),
+			linear-gradient(
+				177deg,
+				rgba(255, 255, 255, 0) 1vmin,
+				var(--house) calc(1vmin + 1px) 2vmin,
+				rgba(255, 255, 255, 0) calc(2vmin + 1px)
+			),
+			linear-gradient(
+				183deg,
+				rgba(255, 255, 255, 0) 1vmin,
+				var(--house) calc(1vmin + 1px) 2vmin,
+				rgba(255, 255, 255, 0) calc(2vmin + 1px)
+			);
 		z-index: 3;
 		left: 43vmin;
-		top: 34vmin;
+		top: 44vmin;
 		border-bottom: 2vmin solid var(--house);
 		border-right: 0.75vmin solid var(--house);
 		border-radius: 0.25vmin;
@@ -576,8 +638,8 @@
 		z-index: 2;
 		width: 20vmin;
 		height: 20vmin;
-		left: 20vmin;
-		top: 15vmin;
+		left: 30vmin;
+		top: 40vmin;
 		opacity: 1;
 		border-radius: 100%;
 		animation: start-moon 3s ease 0s 1;
@@ -2265,10 +2327,10 @@
 		width: 80vmin;
 		height: 40vmin;
 		animation: fly-move 1s ease 0s 1;
-		z-index: 2;
+		z-index: 3;
 		transform: scale(0.2);
 		left: 18vmin;
-		top: 12vmin;
+		top: 22vmin;
 	}
 
 	@keyframes fly {
@@ -4249,6 +4311,79 @@
 		}
 		100% {
 			transform: translateX(100%);
+		}
+	}
+
+	.halloween-button {
+		position: absolute;
+		overflow: hidden;
+		background-color: #44337a;
+		color: white;
+		font-weight: bold;
+		padding: 12px 24px;
+		border-radius: 9999px;
+		border: none;
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		left: 26%;
+
+		&:hover {
+			background-color: #553c9a; // Lighter purple
+			transform: scale(1.05);
+		}
+
+		.button-text {
+			position: relative;
+			z-index: 10;
+		}
+
+		.gradient-overlay {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(to right, #f6ad55, #faf089);
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out, clip-path 0.3s ease-in-out;
+			clip-path: circle(0% at 50% 50%);
+		}
+
+		&.hovered .gradient-overlay {
+			opacity: 0.75;
+			clip-path: circle(150% at 50% 50%);
+		}
+
+		.stars {
+			position: absolute;
+			inset: 0;
+			overflow: hidden;
+		}
+
+		.star {
+			position: absolute;
+			width: 8px;
+			height: 8px;
+			background-color: #faf089;
+			border-radius: 50%;
+			animation: twinkle 1.5s infinite alternate;
+		}
+
+		.pumpkin {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			font-size: 24px;
+			transition: transform 0.05s linear;
+		}
+	}
+
+	@keyframes twinkle {
+		0% {
+			opacity: 0;
+			transform: scale(0.5);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
 		}
 	}
 }

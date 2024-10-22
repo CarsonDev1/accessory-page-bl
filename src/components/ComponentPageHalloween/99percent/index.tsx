@@ -304,13 +304,14 @@ const ProductPercent: React.FC = () => {
 
 	return (
 		<div
+			className='product-list-halloween'
 			style={
 				{
 					// background: 'linear-gradient(180deg, #372d62 0, var(--bg-gradient-white, #15001B) 90%)',
 				}
 			}
 		>
-			<div className='product-list-halloween' id='item-airpods'>
+			<div id='item-airpods'>
 				<div className='upgrade-list'>
 					<div className='container'>
 						<div className='women-decor'>
@@ -325,9 +326,7 @@ const ProductPercent: React.FC = () => {
 										}}
 										className={activeTab === tab.name ? 'tab active' : 'tab'}
 										style={{
-											color: activeTab === tab.name ? '#fff' : '#333',
-											backgroundColor: activeTab === tab.name ? '#ff4d4f' : '#fff',
-											border: activeTab === tab.name ? '2px solid #ff4d4f' : '2px solid #eee',
+											backgroundColor: activeTab === tab.name ? '#f8f412' : '#fff',
 											padding: '12px 24px',
 											margin: '8px',
 											borderRadius: '8px',

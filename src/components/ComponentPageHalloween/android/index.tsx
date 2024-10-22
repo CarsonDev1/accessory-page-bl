@@ -279,13 +279,14 @@ const AndroidList: React.FC = () => {
 
 	return (
 		<div
+			className='product-list-halloween'
 			style={
 				{
 					// background: 'linear-gradient(180deg, #15001B 0, var(--bg-gradient-white, #5D0069) 90%)',
 				}
 			}
 		>
-			<div className='product-list-halloween' id='item-mac'>
+			<div id='item-mac'>
 				<div className='upgrade-list'>
 					<div className='container'>
 						<div className='women-decor'>
@@ -300,9 +301,7 @@ const AndroidList: React.FC = () => {
 										}}
 										className={activeTab === tab.name ? 'tab active' : 'tab'}
 										style={{
-											color: activeTab === tab.name ? '#fff' : '#333',
-											backgroundColor: activeTab === tab.name ? '#ff4d4f' : '#fff',
-											border: activeTab === tab.name ? '2px solid #ff4d4f' : '2px solid #eee',
+											backgroundColor: activeTab === tab.name ? '#f8f412' : '#fff',
 											padding: '12px 24px',
 											margin: '8px',
 											borderRadius: '8px',

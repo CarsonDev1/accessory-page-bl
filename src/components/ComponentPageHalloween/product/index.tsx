@@ -2,11 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import './product.scss';
 import DecorWomen from '../../../../public/halloween/decor-women-01.png';
-import BgProduct from '../../../../public/halloween/bg-product.png';
-import AccessWomen from '../accessories20_10/acess-women/index';
 import Access10k from '../accessories20_10/acess-10k/index';
 import Access20k from '../accessories20_10/acess-20k/index';
 import Access110 from '../accessories20_10/acess-110/index';
@@ -14,6 +10,8 @@ import AccessTo210 from '../accessories20_10/acess-to210/index';
 import Access310 from '../accessories20_10/acess-310/index';
 import Access290 from '../accessories20_10/acess-290/index';
 import Access210 from '../accessories20_10/acess-210/index';
+import 'swiper/css';
+import './product.scss';
 
 const ProductList: React.FC = () => {
 	const [activeTab, setActiveTab] = useState<number>(0);
@@ -23,76 +21,56 @@ const ProductList: React.FC = () => {
 		{
 			index: 0,
 			name: (
-				<p>
-					PHỤ KIỆN <br /> <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>PHÁI NỮ</span>
-				</p>
-			),
-			component: <AccessWomen />,
-		},
-		{
-			index: 1,
-			name: (
 				<span>
-					IPHONE <br /> <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>GIÁ TỪ 10K</span>
+					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 25/10</span>
 				</span>
 			),
 			component: <Access10k />,
 		},
 		{
-			index: 2,
+			index: 1,
 			name: (
 				<span>
-					SAMSUNG <br /> <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>GIÁ TỪ 20K</span>
+					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 26/10</span>
 				</span>
 			),
 			component: <Access20k />,
 		},
 		{
-			index: 3,
+			index: 2,
 			name: (
 				<span>
-					IPHONE 13 SERIES <br />{' '}
-					<span style={{ fontSize: '1.2rem', fontWeight: '600' }}>GIÁ TỪ 110,000</span>
+					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 27/10</span>
 				</span>
 			),
 			component: <Access110 />,
 		},
 		{
-			index: 4,
+			index: 3,
 			name: (
 				<span>
-					IPHONE 14 SERIES <br />{' '}
-					<span style={{ fontSize: '1.2rem', fontWeight: '600' }}>GIÁ TỪ 210,000</span>
+					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 28/10</span>
 				</span>
 			),
 			component: <Access210 />,
 		},
 		{
-			index: 5,
+			index: 4,
 			name: (
 				<span>
-					IPHONE 15 SERIES <br />{' '}
-					<span style={{ fontSize: '1.2rem', fontWeight: '600' }}>GIÁ TỪ 310,000</span>
+					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 29/10</span>
 				</span>
 			),
 			component: <Access310 />,
 		},
 		{
-			index: 6,
-			name: (
-				<span>
-					PIN DỰ PHÒNG <br /> <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>GIÁ TỪ 210.000</span>
-				</span>
-			),
+			index: 5,
+			name: <span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 30/10</span>,
 			component: <AccessTo210 />,
 		},
 		{
-			index: 7,
-			name: (
-				<span>
-					CÓC /CÁP SẠC <br /> <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>GIÁ TỪ 290.000</span>
-				</span>
-			),
+			index: 6,
+			name: <span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 31/10</span>,
 			component: <Access290 />,
 		},
 	];
@@ -113,10 +91,7 @@ const ProductList: React.FC = () => {
 	return (
 		<div className='product-list-halloween' id='item-iphone'>
 			<div className='container'>
-				<div className='upgrade-list'>
-					{/* <div className='bg-product'>
-						<Image src={BgProduct} width={1820} height={1200} alt='bg-product' />
-					</div> */}
+				<div className='upgrade-list bg-01'>
 					<div className='women-decor'>
 						<Image
 							src={DecorWomen}
@@ -139,7 +114,7 @@ const ProductList: React.FC = () => {
 										style={{
 											width: '100%',
 											color: activeTab === tab.index ? '#fff' : '#333',
-											backgroundColor: activeTab === tab.index ? '#ff4d4f' : '#fff',
+											backgroundColor: activeTab === tab.index ? '#f8f412' : '#fff',
 											border: activeTab === tab.index ? '2px solid #ff4d4f' : '2px solid #eee',
 											borderRadius: '8px',
 											cursor: 'pointer',
@@ -164,9 +139,7 @@ const ProductList: React.FC = () => {
 										className={activeTab === tab.index ? 'tab active' : 'tab'}
 										style={{
 											width: '100%',
-											color: activeTab === tab.index ? '#fff' : '#333',
-											backgroundColor: activeTab === tab.index ? '#ff4d4f' : '#fff',
-											border: activeTab === tab.index ? '2px solid #ff4d4f' : '2px solid #eee',
+											backgroundColor: activeTab === tab.index ? '#f8f412' : '#fff',
 											borderRadius: '8px',
 											cursor: 'pointer',
 											transition: 'all 0.3s ease',

@@ -1,6 +1,8 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import BgHallo from '../../../../public/halloween/bg-hallo.png';
+import BgHalloMobile from '../../../../public/halloween/bg-hallo-mobile.png';
 import HeadHallo from '../../../../public/halloween/head-hallo.png';
 import Cloud1 from '../../../../public/halloween/cloud1.png';
 import Cloud2 from '../../../../public/halloween/cloud2.png';
@@ -14,7 +16,22 @@ const BannerHalloween = () => {
 		<div>
 			<div className='halloween-wrap'>
 				<div className='banner-hallo'>
-					<Image src={HeadHallo} width={1820} height={1500} alt='head-hallo' className='head-hallo' />
+					<Image
+						src={HeadHallo}
+						width={2000}
+						height={1900}
+						alt='head-hallo'
+						quality={100}
+						priority
+						className='head-hallo'
+					/>
+					<Image
+						src={BgHalloMobile}
+						width={1820}
+						height={1500}
+						alt='bg-hallo-mobile'
+						className='bg-hallo-mobile'
+					/>
 				</div>
 				<div className='clouds'>
 					<Image src={Cloud1} alt='cloud-1' style={{ '--i': 1 } as any} width={1820} height={1500} />
@@ -23,10 +40,6 @@ const BannerHalloween = () => {
 					<Image src={Cloud4} alt='cloud-4' style={{ '--i': 4 } as any} width={1820} height={1500} />
 					<Image src={Cloud5} alt='cloud-5' style={{ '--i': 5 } as any} width={1820} height={1500} />
 				</div>
-				{/* <Image src={Cloud01} width={1820} height={1500} alt='cloud-01' className='cloud-01' />
-				<Image src={Cloud02} width={1820} height={1500} alt='cloud-02' className='cloud-02' />
-				<Image src={Cloud01} width={1820} height={1500} alt='cloud-03' className='cloud-03' />
-				<Image src={Cloud02} width={1820} height={1500} alt='cloud-04' className='cloud-04' /> */}
 				<Image src={BgHallo} width={1820} height={1500} alt='bg-hallo' className='bg-hallo' />
 				<div className='overlay'></div>
 				<div className='sky'>

@@ -9,6 +9,8 @@ import Privilege02 from '../../../../public/halloween/privilege-02.png';
 import Privilege03 from '../../../../public/halloween/privilege-03.png';
 import Privilege04 from '../../../../public/halloween/privilege-04.png';
 import Privilege05 from '../../../../public/halloween/privilege-05.png';
+import Privilege06 from '../../../../public/halloween/privilege-06.png';
+
 function HeaderHalloween() {
 	const [endDate, setEndDate] = useState(new Date('2024-10-31T21:30:00'));
 
@@ -72,7 +74,7 @@ function HeaderHalloween() {
 						</div>
 					</div>
 				</div>
-				<div className='HeaderHalloween-promotion-header'>5 đặc quyền mua hàng tại Bạch Long Mobile</div>
+				<div className='HeaderHalloween-promotion-header'>6 đặc quyền mua hàng tại Bạch Long Mobile</div>
 				<div className='HeaderHalloween-promotion-list-privilege'>
 					<div style={{ cursor: 'pointer' }} className='privilege-img'>
 						<Image src={Privilege01} alt='privilege-01' width={1200} height={1000} />
@@ -91,6 +93,9 @@ function HeaderHalloween() {
 					</Link>
 					<div style={{ cursor: 'pointer' }} className='privilege-img'>
 						<Image src={Privilege05} alt='privilege-05' width={1200} height={1000} />
+					</div>
+					<div style={{ cursor: 'pointer' }} className='privilege-img'>
+						<Image src={Privilege06} alt='privilege-05' width={1200} height={1000} />
 					</div>
 				</div>
 			</div>

@@ -311,7 +311,7 @@ const AccessoriesList: React.FC = () => {
 				}
 			}
 		>
-			<div className='product-list-halloween' id='item-mac'>
+			<div id='item-mac'>
 				<div className='upgrade-list'>
 					<div className='container'>
 						<div className='women-decor'>
