@@ -8,6 +8,9 @@
 		border-radius: 0.8rem !important;
 		.women-decor {
 			width: 80% !important;
+			@media screen and (max-width: 850px) {
+				width: 100% !important;
+			}
 		}
 		.tabs-grid {
 			padding: 1.2rem 0;
