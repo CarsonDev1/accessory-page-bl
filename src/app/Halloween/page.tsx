@@ -9,13 +9,13 @@ import LaptopList from '../../components/ComponentPageHalloween/laptop/index';
 import ToyList from '../../components/ComponentPageHalloween/toy/index';
 import Rules from '../../components/ComponentPageHalloween/rules/index';
 import BannerHalloween from '../../components/ComponentPageHalloween/BannerHalloween/page';
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import './halloween.scss';
 import AccessoriesList from '@/components/ComponentPageHalloween/accessories';
 
-export default function page() {
-	const [activeCategory, setActiveCategory] = useState<string | null>(null);
-	const categoryRef = useRef(null);
+export default function HalloweenPage() {
+	// const [activeCategory, setActiveCategory] = useState<string | null>(null);
+	// const categoryRef = useRef(null);
 
 	const handleClick = (id: string, offset = 0) => {
 		const element = document.getElementById(id);
@@ -27,7 +27,6 @@ export default function page() {
 				top: offsetPosition,
 				behavior: 'smooth',
 			});
-			setActiveCategory(id);
 		}
 	};
 
