@@ -104,25 +104,31 @@ const Access210: React.FC = () => {
 												</>
 											) : (
 												<>
-													xx.xxx.xxx{' '}
+													{Number(item?.sale_price)
+														?.toString()
+														.replace(/(?<=\d)\d(?=\d{3})/g, 'x')
+														.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}{' '}
 													{item?.product.price_range.minimum_price.final_price.currency}
 												</>
 											)}
 										</div>
-										<div className='upgrade-item-content-body-reduced'>
-											<div className='price-reduced'>
-												{Number(item?.price_original)?.toLocaleString('vi-VN')}{' '}
-												{item?.product.price_range.minimum_price.final_price.currency}
+										{currentDate >= targetDate && (
+											<div className='upgrade-item-content-body-reduced'>
+												<div className='price-reduced'>
+													{Number(item?.price_original)?.toLocaleString('vi-VN')}{' '}
+													{item?.product.price_range.minimum_price.final_price.currency}
+												</div>
+												<div className='percent'>
+													-
+													{Math.ceil(
+														((item?.price_original - item.sale_price) /
+															item?.price_original) *
+															100
+													)}
+													%
+												</div>
 											</div>
-											<div className='percent'>
-												-
-												{Math.ceil(
-													((item?.price_original - item.sale_price) / item?.price_original) *
-														100
-												)}
-												%
-											</div>
-										</div>
+										)}
 									</div>
 								</div>
 							</div>
