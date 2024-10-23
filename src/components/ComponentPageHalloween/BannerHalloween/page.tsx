@@ -4,6 +4,10 @@ import Image from 'next/image';
 import BgHallo from '../../../../public/halloween/bg-hallo.png';
 import BgHalloMobile from '../../../../public/halloween/bg-hallo-mobile.png';
 import HeadHallo from '../../../../public/halloween/head-hallo.png';
+import TableBanner01 from '../../../../public/halloween/table-banner-01.png';
+import TableBanner02 from '../../../../public/halloween/table-banner-02.png';
+import TableBanner03 from '../../../../public/halloween/table-banner-03.png';
+import TableBanner04 from '../../../../public/halloween/table-banner-04.png';
 import Cloud1 from '../../../../public/halloween/cloud1.png';
 import Cloud2 from '../../../../public/halloween/cloud2.png';
 import Cloud3 from '../../../../public/halloween/cloud3.png';
@@ -16,6 +20,48 @@ const BannerHalloween = () => {
 		<div>
 			<div className='halloween-wrap'>
 				<div className='banner-hallo'>
+					<div className='banner-hallo-table'>
+						<div className='banner-hallo-table-item'>
+							<Image
+								src={TableBanner01}
+								width={1000}
+								height={1000}
+								alt='table-banner-01'
+								priority
+								className='banner-hallo-table-01'
+							/>
+						</div>
+						<div className='banner-hallo-table-item'>
+							<Image
+								src={TableBanner02}
+								width={1000}
+								height={1000}
+								alt='table-banner-02'
+								priority
+								className='banner-hallo-table-02'
+							/>
+						</div>
+						<div className='banner-hallo-table-item'>
+							<Image
+								src={TableBanner03}
+								width={1000}
+								height={1000}
+								alt='table-banner-03'
+								priority
+								className='banner-hallo-table-03'
+							/>
+						</div>
+						<div className='banner-hallo-table-item'>
+							<Image
+								src={TableBanner04}
+								width={1000}
+								height={1000}
+								alt='table-banner-03'
+								priority
+								className='banner-hallo-table-03'
+							/>
+						</div>
+					</div>
 					<Image
 						src={HeadHallo}
 						width={2000}

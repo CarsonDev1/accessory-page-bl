@@ -72,6 +72,7 @@ function HeaderHalloween() {
 								</div>
 							))}
 						</div>
+						<button>Xem thể lệ</button>
 					</div>
 				</div>
 				<div className='HeaderHalloween-promotion-header'>6 đặc quyền mua hàng tại Bạch Long Mobile</div>
