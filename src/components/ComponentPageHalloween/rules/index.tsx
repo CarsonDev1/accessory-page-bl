@@ -6,7 +6,6 @@ const Rules = () => {
 		<div className='rules' id='item-rules'>
 			<div className='container'>
 				<div className='rules-header'>
-					<h1 className='rules-title'>Thể Lệ Chương Trình</h1>
 					<p
 						className='rules-title'
 						style={{ display: 'flex', flexDirection: 'column', gap: '10px', color: 'red' }}
