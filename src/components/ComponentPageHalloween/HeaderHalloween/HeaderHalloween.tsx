@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import './HeaderHalloween.scss';
 
-import Link from 'next/link';
 import Privilege01 from '../../../../public/halloween/privilege-01.png';
 import Privilege02 from '../../../../public/halloween/privilege-02.png';
 import Privilege03 from '../../../../public/halloween/privilege-03.png';
@@ -114,27 +113,27 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
 					<div style={{ cursor: 'pointer' }} className='privilege-img' onClick={onScrollToRules}>
 						<Image src={Privilege01} alt='privilege-01' width={1200} height={1000} />
 					</div>
-					<Link href='https://bachlongmobile.com/thu-cu-doi-moi/' className='privilege-img'>
+					<a href='https://bachlongmobile.com/thu-cu-doi-moi/' className='privilege-img'>
 						<Image src={Privilege02} alt='privilege-02' width={1200} height={1000} />
-					</Link>
-					<Link
+					</a>
+					<a
 						href='https://bachlongmobile.com/promotion/tet-apple-bao-hanh-toan-dien/'
 						className='privilege-img'
 					>
 						<Image src={Privilege03} alt='privilege-03' width={1200} height={1000} />
-					</Link>
-					<Link href='https://bachlongmobile.com/combo-phu-kien/' className='privilege-img'>
+					</a>
+					<a href='https://bachlongmobile.com/combo-phu-kien/' className='privilege-img'>
 						<Image src={Privilege04} alt='privilege-04' width={1200} height={1000} />
-					</Link>
+					</a>
 					<div style={{ cursor: 'pointer' }} className='privilege-img'>
 						<Image src={Privilege05} alt='privilege-05' width={1200} height={1000} />
 					</div>
-					<Link
+					<a
 						href='https://bachlongmobile.com/promotion/cung-mpos-x-bach-long-mobile-so-huu-iphone-16-series-gia-tot-qua-tang-khung/'
 						className='privilege-img'
 					>
 						<Image src={Privilege06} alt='privilege-05' width={1200} height={1000} />
-					</Link>
+					</a>
 				</div>
 			</div>
 		</div>

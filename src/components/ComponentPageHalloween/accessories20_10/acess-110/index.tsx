@@ -112,12 +112,12 @@ const Access110: React.FC = () => {
 												</>
 											)}
 										</div>
-										{currentDate >= targetDate && (
-											<div className='upgrade-item-content-body-reduced'>
-												<div className='price-reduced'>
-													{Number(item?.price_original)?.toLocaleString('vi-VN')}{' '}
-													{item?.product.price_range.minimum_price.final_price.currency}
-												</div>
+										<div className='upgrade-item-content-body-reduced'>
+											<div className='price-reduced'>
+												{Number(item?.price_original)?.toLocaleString('vi-VN')}{' '}
+												{item?.product.price_range.minimum_price.final_price.currency}
+											</div>
+											{currentDate >= targetDate && (
 												<div className='percent'>
 													-
 													{Math.ceil(
@@ -127,8 +127,8 @@ const Access110: React.FC = () => {
 													)}
 													%
 												</div>
-											</div>
-										)}
+											)}
+										</div>
 									</div>
 								</div>
 							</div>

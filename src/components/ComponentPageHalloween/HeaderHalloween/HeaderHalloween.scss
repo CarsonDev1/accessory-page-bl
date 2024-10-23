@@ -270,6 +270,8 @@
 	align-items: center;
 	width: 100%;
 	justify-content: center;
+	position: relative;
+	z-index: 200;
 
 	@media screen and (max-width: 1200px) {
 		gap: 0rem;
