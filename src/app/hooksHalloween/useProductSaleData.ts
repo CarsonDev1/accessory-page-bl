@@ -7,7 +7,7 @@ const query = `
 const variables = {
 	filter: {
 		sale_type: {
-			eq: 'thuong-hieu',
+			eq: 'sale-multiple-product',
 		},
 	},
 	pageSize: 200,
@@ -34,6 +34,6 @@ export const useProductSaleData = () => {
 	return useQuery({
 		queryKey: ['productSale'],
 		queryFn: fetchProductSaleData,
-		staleTime: 300000,
+		staleTime: 5000,
 	});
 };

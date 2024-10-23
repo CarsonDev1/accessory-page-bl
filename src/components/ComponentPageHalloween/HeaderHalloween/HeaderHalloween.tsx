@@ -11,17 +11,28 @@ import Privilege04 from '../../../../public/halloween/privilege-04.png';
 import Privilege05 from '../../../../public/halloween/privilege-05.png';
 import Privilege06 from '../../../../public/halloween/privilege-06.png';
 
-function HeaderHalloween() {
-	const [endDate, setEndDate] = useState(new Date('2024-10-31T21:30:00'));
+type PromotionProps = {
+	onScrollToRules: () => void;
+};
 
+function HeaderHalloween({ onScrollToRules }: PromotionProps) {
+	const [endDate, setEndDate] = useState(new Date('2024-10-31T21:30:00'));
 	const [timeArray, setTimeArray] = useState([
 		{ date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
 	]);
+	const [isEventOver, setIsEventOver] = useState(false);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			const now = new Date();
 			const timeDiff = endDate.getTime() - now.getTime();
+
+			if (timeDiff <= 0) {
+				setIsEventOver(true);
+				clearInterval(interval);
+				return;
+			}
+
 			const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 			const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 			const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
@@ -40,44 +51,67 @@ function HeaderHalloween() {
 				style={{ position: 'relative', overflow: 'hidden' }}
 			></div>
 			<div className='container'>
-				<div className='HeaderHalloween-time-line'>
-					<div className='HeaderHalloween-time-line-container'>
-						<div className='HeaderHalloween-time-line-card-container'>
-							{timeArray.map((time, index) => (
-								<div className='HeaderHalloween-time-line-card-key' key={index}>
-									<div className='HeaderHalloween-time-line-card'>
-										<div className='content-card'>
-											<p className='HeaderHalloween-time-line-count'>{`${time.days} `}</p>
-											<p className='HeaderHalloween-time-line-subtext'>Ngày</p>
-										</div>
-									</div>
-									<div className='HeaderHalloween-time-line-card'>
-										<div className='content-card'>
-											<p className='HeaderHalloween-time-line-count'>{`${time.hours} `}</p>
-											<p className='HeaderHalloween-time-line-subtext'>Giờ</p>
-										</div>
-									</div>
-									<div className='HeaderHalloween-time-line-card'>
-										<div className='content-card'>
-											<p className='HeaderHalloween-time-line-count'>{`${time.minutes} `}</p>
-											<p className='HeaderHalloween-time-line-subtext'>Phút</p>
-										</div>
-									</div>
-									<div className='HeaderHalloween-time-line-card'>
-										<div className='content-card'>
-											<p className='HeaderHalloween-time-line-count'>{`${time.seconds} `}</p>
-											<p className='HeaderHalloween-time-line-subtext'>Giây</p>
-										</div>
-									</div>
-								</div>
-							))}
-						</div>
-						<button>Xem thể lệ</button>
+				{isEventOver ? (
+					<div className='HeaderHalloween-time-line'>
+						<p
+							className='HeaderHalloween-time-line-end-text'
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								padding: '40px 0px',
+								color: '#ff000e',
+								fontSize: '32px',
+								fontWeight: '600',
+							}}
+						>
+							Hết thời gian sự kiện
+						</p>
 					</div>
+				) : (
+					<div className='HeaderHalloween-time-line'>
+						<div className='HeaderHalloween-time-line-container'>
+							<div className='HeaderHalloween-time-line-card-container'>
+								{timeArray.map((time, index) => (
+									<div className='HeaderHalloween-time-line-card-key' key={index}>
+										<div className='HeaderHalloween-time-line-card'>
+											<div className='content-card'>
+												<p className='HeaderHalloween-time-line-count'>{`${time.days} `}</p>
+												<p className='HeaderHalloween-time-line-subtext'>Ngày</p>
+											</div>
+										</div>
+										<div className='HeaderHalloween-time-line-card'>
+											<div className='content-card'>
+												<p className='HeaderHalloween-time-line-count'>{`${time.hours} `}</p>
+												<p className='HeaderHalloween-time-line-subtext'>Giờ</p>
+											</div>
+										</div>
+										<div className='HeaderHalloween-time-line-card'>
+											<div className='content-card'>
+												<p className='HeaderHalloween-time-line-count'>{`${time.minutes} `}</p>
+												<p className='HeaderHalloween-time-line-subtext'>Phút</p>
+											</div>
+										</div>
+										<div className='HeaderHalloween-time-line-card'>
+											<div className='content-card'>
+												<p className='HeaderHalloween-time-line-count'>{`${time.seconds} `}</p>
+												<p className='HeaderHalloween-time-line-subtext'>Giây</p>
+											</div>
+										</div>
+									</div>
+								))}
+							</div>
+							<button className='Halloween-button' onClick={onScrollToRules}>
+								Xem thể lệ
+							</button>
+						</div>
+					</div>
+				)}
+				<div className='HeaderHalloween-promotion-header' style={{ fontWeight: 400 }}>
+					6 đặc quyền mua hàng tại <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
 				</div>
-				<div className='HeaderHalloween-promotion-header'>6 đặc quyền mua hàng tại Bạch Long Mobile</div>
 				<div className='HeaderHalloween-promotion-list-privilege'>
-					<div style={{ cursor: 'pointer' }} className='privilege-img'>
+					<div style={{ cursor: 'pointer' }} className='privilege-img' onClick={onScrollToRules}>
 						<Image src={Privilege01} alt='privilege-01' width={1200} height={1000} />
 					</div>
 					<Link href='https://bachlongmobile.com/thu-cu-doi-moi/' className='privilege-img'>
@@ -95,9 +129,12 @@ function HeaderHalloween() {
 					<div style={{ cursor: 'pointer' }} className='privilege-img'>
 						<Image src={Privilege05} alt='privilege-05' width={1200} height={1000} />
 					</div>
-					<div style={{ cursor: 'pointer' }} className='privilege-img'>
+					<Link
+						href='https://bachlongmobile.com/promotion/cung-mpos-x-bach-long-mobile-so-huu-iphone-16-series-gia-tot-qua-tang-khung/'
+						className='privilege-img'
+					>
 						<Image src={Privilege06} alt='privilege-05' width={1200} height={1000} />
-					</div>
+					</Link>
 				</div>
 			</div>
 		</div>

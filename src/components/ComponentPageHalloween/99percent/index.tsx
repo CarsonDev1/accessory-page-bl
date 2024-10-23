@@ -276,17 +276,7 @@ const ProductPercent: React.FC = () => {
 
 	if (isLoading) {
 		return (
-			<div
-				style={{
-					background: 'linear-gradient(180deg, #DC623B 0, var(--bg-gradient-white, #FE921E) 90%)',
-					padding: '20px 10px',
-					borderRadius: '10px',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-					height: '300px',
-				}}
-			>
+			<div className='container-spin'>
 				<Spin size='large' />
 			</div>
 		);
@@ -326,7 +316,8 @@ const ProductPercent: React.FC = () => {
 										}}
 										className={activeTab === tab.name ? 'tab active' : 'tab'}
 										style={{
-											backgroundColor: activeTab === tab.name ? '#f8f412' : '#fff',
+											color: activeTab === tab.name ? '#fff' : '#000',
+											backgroundColor: activeTab === tab.name ? '#ff7518' : '#fff',
 											padding: '12px 24px',
 											margin: '8px',
 											borderRadius: '8px',

@@ -10,6 +10,7 @@ import DecorWomen from '../../../../public/halloween/decor-women-07.png';
 import FrameProduct from '../../../../public/halloween/frame-product.png';
 import { useProductSaleData } from '../../../app/hooksHalloween/useProductSaleData';
 import DecorProduct2 from '../../../../public/halloween/ICON-DRAGON.png';
+
 export interface Product {
 	id: number;
 	name: string;
@@ -305,6 +306,7 @@ const AccessoriesList: React.FC = () => {
 
 	return (
 		<div
+			className='product-list-halloween'
 			style={
 				{
 					// background: 'linear-gradient(180deg, #5D0069 0, var(--bg-gradient-white, #15001B) 90%)',
@@ -326,9 +328,8 @@ const AccessoriesList: React.FC = () => {
 										}}
 										className={activeTab === tab.name ? 'tab active' : 'tab'}
 										style={{
-											color: activeTab === tab.name ? '#fff' : '#333',
-											backgroundColor: activeTab === tab.name ? '#ff4d4f' : '#fff',
-											border: activeTab === tab.name ? '2px solid #ff4d4f' : '2px solid #eee',
+											color: activeTab === tab.name ? '#fff' : '#000',
+											backgroundColor: activeTab === tab.name ? '#ff7518' : '#fff',
 											padding: '12px 24px',
 											margin: '8px',
 											borderRadius: '8px',

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import BgHallo from '../../../../public/halloween/bg-hallo.png';
 import BgHalloMobile from '../../../../public/halloween/bg-hallo-mobile.png';
@@ -16,6 +16,47 @@ import Cloud5 from '../../../../public/halloween/cloud5.png';
 import './banner-halloween.scss';
 
 const BannerHalloween = () => {
+	const handleClickiPhone = () => {
+		const iPhone = document.getElementById('item-iphone');
+		if (iPhone) {
+			iPhone.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
+
+	const handleClickiPad = () => {
+		const iPad = document.getElementById('item-ipad');
+		if (iPad) {
+			iPad.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
+
+	const handleClickWatch = () => {
+		const Watch = document.getElementById('item-watch');
+		if (Watch) {
+			Watch.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
+
+	const handleClickMac = () => {
+		const Mac = document.getElementById('item-mac');
+		if (Mac) {
+			Mac.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
+
+	const handleClickAirpods = () => {
+		const AirPods = document.getElementById('item-airpods');
+		if (AirPods) {
+			AirPods.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
+
+	const handleClickAccess = () => {
+		const Access = document.getElementById('item-access');
+		if (Access) {
+			Access.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
 	return (
 		<div>
 			<div className='halloween-wrap'>

@@ -16,6 +16,7 @@ import './product.scss';
 const ProductList: React.FC = () => {
 	const [activeTab, setActiveTab] = useState<number>(0);
 	const [isMobile, setIsMobile] = useState<boolean>(false);
+	const [disabledTabs, setDisabledTabs] = useState<number[]>([]);
 
 	const tabs = [
 		{
@@ -26,6 +27,7 @@ const ProductList: React.FC = () => {
 				</span>
 			),
 			component: <Access10k />,
+			date: new Date('2024-10-25'),
 		},
 		{
 			index: 1,
@@ -35,6 +37,7 @@ const ProductList: React.FC = () => {
 				</span>
 			),
 			component: <Access20k />,
+			date: new Date('2024-10-26'),
 		},
 		{
 			index: 2,
@@ -44,6 +47,7 @@ const ProductList: React.FC = () => {
 				</span>
 			),
 			component: <Access110 />,
+			date: new Date('2024-10-27'),
 		},
 		{
 			index: 3,
@@ -53,6 +57,7 @@ const ProductList: React.FC = () => {
 				</span>
 			),
 			component: <Access210 />,
+			date: new Date('2024-10-28'),
 		},
 		{
 			index: 4,
@@ -62,20 +67,35 @@ const ProductList: React.FC = () => {
 				</span>
 			),
 			component: <Access310 />,
+			date: new Date('2024-10-29'),
 		},
 		{
 			index: 5,
-			name: <span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 30/10</span>,
+			name: (
+				<span>
+					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 30/10</span>
+				</span>
+			),
 			component: <AccessTo210 />,
+			date: new Date('2024-10-30'),
 		},
 		{
 			index: 6,
-			name: <span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 31/10</span>,
+			name: (
+				<span>
+					<span style={{ fontSize: '1.4rem', fontWeight: '600' }}>NGÀY 31/10</span>
+				</span>
+			),
 			component: <Access290 />,
+			date: new Date('2024-10-31'),
 		},
 	];
 
 	useEffect(() => {
+		const currentDate = new Date();
+		const disabled = tabs.filter((tab) => currentDate > tab.date).map((tab) => tab.index);
+		setDisabledTabs(disabled);
+
 		const handleResize = () => {
 			setIsMobile(window.innerWidth < 768);
 		};
@@ -86,7 +106,7 @@ const ProductList: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, []);
+	}, [tabs]);
 
 	return (
 		<div className='product-list-halloween' id='item-iphone'>
@@ -124,6 +144,7 @@ const ProductList: React.FC = () => {
 											fontSize: '1.2rem',
 											minHeight: '4rem',
 										}}
+										disabled={disabledTabs.includes(tab.index)}
 									>
 										{tab.name}
 									</button>
@@ -146,6 +167,7 @@ const ProductList: React.FC = () => {
 											boxShadow:
 												activeTab === tab.index ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none',
 										}}
+										disabled={disabledTabs.includes(tab.index)}
 									>
 										{tab.name}
 									</button>

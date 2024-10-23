@@ -54,7 +54,7 @@ const Rules = () => {
 
 					<h2 className='rules-section-title'>II/ SĂN MA ‘HAY’ SĂN SALE ? – NGÀNH HÀNG APPLE GIẢM ĐẾN 50%</h2>
 					<ul className='rules-list'>
-						<li>Giờ vàng giá sốc gồm 25 sản phẩm Apple hàng tuần giảm đến 50% và lì xì lên đến 300.000đ</li>
+						<li>Giờ vàng giá sốc gồm 5 sản phẩm Apple hàng ngày giảm đến 50%</li>
 						<li>Giảm đến 10 Triệu cho các sản phẩm Apple iPhone</li>
 						<li>Giảm đến 11 Triệu cho các thiết bị Likenew </li>
 						<li>Giảm đến 9 Triệu cho các thiết bị Samsung</li>
@@ -101,17 +101,17 @@ const Rules = () => {
 						</ul>
 					</ul>
 
-					<h2 className='rules-section-title'>III/ 5 ĐẶC QUYỀN KHI MUA HÀNG TẠI BẠCH LONG MOBILE</h2>
+					<h2 className='rules-section-title'>III/ 6 ĐẶC QUYỀN KHI MUA HÀNG TẠI BẠCH LONG MOBILE</h2>
 					<ul className='rules-list'>
 						<li>Vòng quay trúng iPhone 16 | Trạm sạc Pisen</li>
 						<li>Thu cũ đổi mới 100% giá trị máy bán ra</li>
 						<li>60 ngày đổi trả miễn phí</li>
 						<li>Combo phụ kiện giảm đến 60%</li>
+						<li>Giảm đến 1 triệu khi tham gia trả góp</li>
 						<li>
-							Vòng quay may mắn <span className='rules-section-title-hot'>HẰNG NGÀY</span> – Lì xì Tết
-							Apple 100% trúng quà:{' '}
+							Vòng quay may mắn <span className='rules-section-title-hot'>HẰNG NGÀY</span> 100% trúng quà:{' '}
 							<span className='rules-section-title-hot'>
-								Tiền mặt từ 50.000 đồng đến 300.000 đồng hoặc quà tặng cốc sạc, cáp sạc và nón bảo hiểm
+								Tặng tiền mặt hoặc cốc sạc, cáp sạc và nón bảo hiểm
 							</span>
 						</li>
 					</ul>

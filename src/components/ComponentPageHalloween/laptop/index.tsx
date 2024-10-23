@@ -218,7 +218,8 @@ const LaptopList: React.FC = () => {
 										}}
 										className={activeTab === tab.name ? 'tab active' : 'tab'}
 										style={{
-											backgroundColor: activeTab === tab.name ? '#f8f412' : '#fff',
+											color: activeTab === tab.name ? '#fff' : '#000',
+											backgroundColor: activeTab === tab.name ? '#ff7518' : '#fff',
 											padding: '12px 24px',
 											margin: '8px',
 											borderRadius: '8px',

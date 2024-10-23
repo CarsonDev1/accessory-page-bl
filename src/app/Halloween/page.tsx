@@ -1,3 +1,4 @@
+'use client';
 import HeaderHalloween from '../../components/ComponentPageHalloween/HeaderHalloween/HeaderHalloween';
 import BodyHallowween from '../../components/ComponentPageHalloween/BodyHalloween/BodyHalloween';
 import ProductList from '../../components/ComponentPageHalloween/product/index';
@@ -8,10 +9,33 @@ import LaptopList from '../../components/ComponentPageHalloween/laptop/index';
 import ToyList from '../../components/ComponentPageHalloween/toy/index';
 import Rules from '../../components/ComponentPageHalloween/rules/index';
 import BannerHalloween from '../../components/ComponentPageHalloween/BannerHalloween/page';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import './halloween.scss';
+import AccessoriesList from '@/components/ComponentPageHalloween/accessories';
 
 export default function page() {
+	const [activeCategory, setActiveCategory] = useState<string | null>(null);
+	const categoryRef = useRef(null);
+
+	const handleClick = (id: string, offset = 0) => {
+		const element = document.getElementById(id);
+		if (element) {
+			const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+			const offsetPosition = elementPosition - offset;
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth',
+			});
+			setActiveCategory(id);
+		}
+	};
+
+	const handleScrollToRules = () => {
+		const customOffset = 500;
+		handleClick('item-rules', customOffset);
+	};
+
 	return (
 		<div className='halloween'>
 			<svg
@@ -65,10 +89,13 @@ export default function page() {
 				/>
 			</svg>
 			<BannerHalloween />
-			<HeaderHalloween />
+			<HeaderHalloween onScrollToRules={handleScrollToRules} />
 			<BodyHallowween />
 			<div id='item-iphone'>
 				<ProductList />
+			</div>
+			<div id='item-access'>
+				<AccessoriesList />
 			</div>
 			<div id='item-ipad'>
 				<AppleList />
