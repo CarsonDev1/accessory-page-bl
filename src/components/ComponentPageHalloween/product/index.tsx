@@ -14,10 +14,7 @@ import 'swiper/css';
 import './product.scss';
 
 const ProductList: React.FC = () => {
-	const [activeTab, setActiveTab] = useState<number>(0);
-	const [isMobile, setIsMobile] = useState<boolean>(false);
-	const [disabledTabs, setDisabledTabs] = useState<number[]>([]);
-
+	const currentDate = new Date();
 	const tabs = [
 		{
 			index: 0,
@@ -90,9 +87,12 @@ const ProductList: React.FC = () => {
 			date: new Date('2024-10-31'),
 		},
 	];
+	const initialActiveTab = tabs.findIndex((tab) => currentDate <= tab.date);
+	const [activeTab, setActiveTab] = useState<number>(initialActiveTab === -1 ? 0 : initialActiveTab);
+	const [isMobile, setIsMobile] = useState<boolean>(false);
+	const [disabledTabs, setDisabledTabs] = useState<number[]>([]);
 
 	useEffect(() => {
-		const currentDate = new Date();
 		const disabled = tabs.filter((tab) => currentDate > tab.date).map((tab) => tab.index);
 		setDisabledTabs(disabled);
 
@@ -106,7 +106,7 @@ const ProductList: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, []);
+	}, [tabs]);
 
 	return (
 		<div className='product-list-halloween'>
@@ -137,7 +137,7 @@ const ProductList: React.FC = () => {
 											backgroundColor: activeTab === tab.index ? '#f8f412' : '#fff',
 											border: activeTab === tab.index ? '2px solid #ff4d4f' : '2px solid #eee',
 											borderRadius: '8px',
-											cursor: 'pointer',
+											cursor: disabledTabs.includes(tab.index) ? 'not-allowed' : 'pointer',
 											transition: 'all 0.3s ease',
 											boxShadow:
 												activeTab === tab.index ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none',
@@ -162,7 +162,7 @@ const ProductList: React.FC = () => {
 											width: '100%',
 											backgroundColor: activeTab === tab.index ? '#f8f412' : '#fff',
 											borderRadius: '8px',
-											cursor: 'pointer',
+											cursor: disabledTabs.includes(tab.index) ? 'not-allowed' : 'pointer',
 											transition: 'all 0.3s ease',
 											boxShadow:
 												activeTab === tab.index ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none',
