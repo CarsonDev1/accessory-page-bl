@@ -72,7 +72,7 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MzQ3',
+			eq: 'Mzg2',
 		},
 	},
 	pageSize: 200,
@@ -172,7 +172,7 @@ const ToyList: React.FC = () => {
 				}
 			}
 		>
-			<div id='item-watch'>
+			<div>
 				<div className='upgrade-list'>
 					<div className='container'>
 						<div className='women-decor'>
@@ -279,7 +279,7 @@ const ToyList: React.FC = () => {
 								<button
 									onClick={loadMore}
 									style={{
-										backgroundColor: '#ef373e',
+										backgroundColor: '#ff7518',
 										color: 'white',
 										border: 'none',
 										padding: '10px 20px',

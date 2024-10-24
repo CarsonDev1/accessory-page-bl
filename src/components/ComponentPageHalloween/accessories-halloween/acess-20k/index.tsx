@@ -1,14 +1,14 @@
-'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Spin } from 'antd';
 import DecorProduct from '../../../../../public/halloween/ic-to.png';
-import FrameProduct from '../../../../../public/halloween/frame-product.png';
-import './acess-women.scss';
-import { useProductSaleData } from '../../../../app/hooksHalloween/useProductSaleData';
 import DecorProduct2 from '../../../../../public/halloween/ICON-DRAGON.png';
+import FrameProduct from '../../../../../public/halloween/frame-product.png';
+import { useProductSaleData } from '@/app/hooksWomen/useProductWomenData';
+import './acess-women.scss';
+
 export interface Product {
 	id: number;
 	name: string;
@@ -170,7 +170,7 @@ fragment ProductPriceField on ProductPrice {
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'Mzcz',
+			eq: 'Mzcw',
 		},
 	},
 	pageSize: 200,
@@ -193,13 +193,13 @@ async function fetchProductListData() {
 	return data.data.products.items as Product[];
 }
 
-const AccessWomen: React.FC = () => {
+const Access20k: React.FC = () => {
 	const {
-		data: AccessWomenData,
+		data: Access20k,
 		error,
 		isLoading,
 	} = useQuery<Product[]>({
-		queryKey: ['accessWomenData'],
+		queryKey: ['Access20kDataWomen'],
 		queryFn: fetchProductListData,
 		staleTime: 300000,
 	});
@@ -224,7 +224,11 @@ const AccessWomen: React.FC = () => {
 	};
 
 	useEffect(() => {
-		setFilteredData(AccessWomenData || []);
+		setFilteredData(
+			(Access20k || []).sort(
+				(a, b) => a.price_range.minimum_price.final_price.value - b.price_range.minimum_price.final_price.value
+			)
+		);
 
 		const handleResize = () => {
 			if (window.innerWidth < 768) {
@@ -240,12 +244,12 @@ const AccessWomen: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [AccessWomenData]);
+	}, [Access20k]);
 
 	if (isLoading) {
 		return (
-			<div className='container-spin'>
-				<Spin size='large' />
+			<div className='loading container-spin'>
+				<Spin />
 			</div>
 		);
 	}
@@ -261,117 +265,115 @@ const AccessWomen: React.FC = () => {
 	};
 
 	return (
-		<div>
-			<div className='upgrade-list'>
-				<div className='upgrade'>
-					{visibleProducts.map((product, index) => (
-						<Link
-							key={index}
-							href={`https://bachlongmobile.com/products/${product.url_key}`}
-							passHref
-							target='_blank'
-							rel='noopener noreferrer'
-							style={{ textDecoration: 'none', color: 'black' }}
-						>
-							<div className='upgrade-item'>
-								<div className='upgrade-item-header'>
+		<div className='upgrade-list'>
+			<div className='upgrade'>
+				{visibleProducts.map((product, index) => (
+					<Link
+						key={index}
+						href={`https://bachlongmobile.com/products/${product.url_key}`}
+						passHref
+						target='_blank'
+						rel='noopener noreferrer'
+						style={{ textDecoration: 'none', color: 'black' }}
+					>
+						<div className='upgrade-item'>
+							<div className='upgrade-item-header'>
+								<Image
+									src={DecorProduct}
+									width={80}
+									height={80}
+									quality={100}
+									alt='decor-product'
+									className='decor-product'
+								/>
+								<Image
+									src={DecorProduct2}
+									width={80}
+									height={80}
+									quality={100}
+									alt='decor-product'
+									className='decor-product2'
+								/>
+								<span></span>
+								<span className='percent'>Trả góp 0%</span>
+							</div>
+							<div className='upgrade-item-img'>
+								<div className='img-content'>
 									<Image
-										src={DecorProduct}
-										width={80}
-										height={80}
+										src={product.image.url}
+										width={1400}
+										height={1200}
 										quality={100}
-										alt='decor-product'
-										className='decor-product'
+										alt={`product-${index}`}
 									/>
+								</div>
+								<div className='frame-product'>
 									<Image
-										src={DecorProduct2}
-										width={80}
-										height={80}
+										src={FrameProduct}
+										width={500}
+										height={500}
 										quality={100}
-										alt='decor-product'
-										className='decor-product2'
+										alt='frame-product'
 									/>
-									<span></span>
-									<span className='percent'>Trả góp 0%</span>
 								</div>
-								<div className='upgrade-item-img'>
-									<div className='img-content'>
-										<Image
-											src={product.image.url}
-											width={1400}
-											height={1200}
-											quality={100}
-											alt={`product-${index}`}
-										/>
+							</div>
+							<div className='upgrade-item-content'>
+								<h4 className='upgrade-item-content-tt'>{product.name}</h4>
+								<div className='upgrade-item-content-body'>
+									<div className='upgrade-item-content-body-price'>
+										{getProductSalePrice(
+											product.name,
+											product.price_range.minimum_price.final_price.value
+										)}{' '}
+										{product.price_range.minimum_price.final_price.currency}
 									</div>
-									<div className='frame-product'>
-										<Image
-											src={FrameProduct}
-											width={500}
-											height={500}
-											quality={100}
-											alt='frame-product'
-										/>
-									</div>
-								</div>
-								<div className='upgrade-item-content'>
-									<h4 className='upgrade-item-content-tt'>{product.name}</h4>
-									<div className='upgrade-item-content-body'>
-										<div className='upgrade-item-content-body-price'>
-											{getProductSalePrice(
-												product.name,
-												product.price_range.minimum_price.final_price.value
-											)}{' '}
-											{product.price_range.minimum_price.final_price.currency}
+									<div className='upgrade-item-content-body-reduced'>
+										<div className='price-reduced'>
+											{product.attributes && product.attributes[0]?.value
+												? Number(product.attributes[0].value).toLocaleString('vi-VN')
+												: ''}{' '}
+											{product.attributes[0].value &&
+												product.price_range.minimum_price.final_price.currency}
 										</div>
-										<div className='upgrade-item-content-body-reduced'>
-											<div className='price-reduced'>
-												{product.attributes && product.attributes[0]?.value
-													? Number(product.attributes[0].value).toLocaleString('vi-VN')
-													: ''}{' '}
-												{product.attributes[0].value &&
-													product.price_range.minimum_price.final_price.currency}
-											</div>
 
-											{product.attributes[0].value && (
-												<div className='percent'>
-													-
-													{Math.ceil(
-														((product.attributes[0].value -
-															product.price_range.minimum_price.final_price.value) /
-															product.attributes[0].value) *
-															100
-													)}
-													%
-												</div>
-											)}
-										</div>
+										{product.attributes[0].value && (
+											<div className='percent'>
+												-
+												{Math.ceil(
+													((product.attributes[0].value -
+														product.price_range.minimum_price.final_price.value) /
+														product.attributes[0].value) *
+														100
+												)}
+												%
+											</div>
+										)}
 									</div>
 								</div>
 							</div>
-						</Link>
-					))}
-				</div>
-				{visibleCount < filteredData.length && (
-					<div style={{ textAlign: 'center', marginTop: '20px' }}>
-						<button
-							onClick={loadMore}
-							style={{
-								backgroundColor: '#ff7518',
-								color: 'white',
-								border: 'none',
-								padding: '10px 20px',
-								borderRadius: '5px',
-								cursor: 'pointer',
-							}}
-						>
-							Xem thêm
-						</button>
-					</div>
-				)}
+						</div>
+					</Link>
+				))}
 			</div>
+			{visibleCount < filteredData.length && (
+				<div style={{ textAlign: 'center', marginTop: '20px' }}>
+					<button
+						onClick={loadMore}
+						style={{
+							backgroundColor: '#ff7518',
+							color: 'white',
+							border: 'none',
+							padding: '10px 20px',
+							borderRadius: '5px',
+							cursor: 'pointer',
+						}}
+					>
+						Xem thêm
+					</button>
+				</div>
+			)}
 		</div>
 	);
 };
 
-export default AccessWomen;
+export default Access20k;

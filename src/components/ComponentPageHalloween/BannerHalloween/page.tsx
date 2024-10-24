@@ -52,7 +52,7 @@ const BannerHalloween = () => {
 	};
 
 	const handleClickAccess = () => {
-		const Access = document.getElementById('item-access');
+		const Access = document.getElementById('item-toy');
 		if (Access) {
 			Access.scrollIntoView({ behavior: 'smooth' });
 		}
@@ -62,7 +62,7 @@ const BannerHalloween = () => {
 			<div className='halloween-wrap'>
 				<div className='banner-hallo'>
 					<div className='banner-hallo-table'>
-						<div className='banner-hallo-table-item'>
+						<div className='banner-hallo-table-item' onClick={handleClickiPhone}>
 							<Image
 								src={TableBanner01}
 								width={1000}
@@ -72,7 +72,7 @@ const BannerHalloween = () => {
 								className='banner-hallo-table-01'
 							/>
 						</div>
-						<div className='banner-hallo-table-item'>
+						<div className='banner-hallo-table-item' onClick={handleClickWatch}>
 							<Image
 								src={TableBanner02}
 								width={1000}
@@ -82,7 +82,7 @@ const BannerHalloween = () => {
 								className='banner-hallo-table-02'
 							/>
 						</div>
-						<div className='banner-hallo-table-item'>
+						<div className='banner-hallo-table-item' onClick={handleClickiPad}>
 							<Image
 								src={TableBanner03}
 								width={1000}
@@ -92,7 +92,7 @@ const BannerHalloween = () => {
 								className='banner-hallo-table-03'
 							/>
 						</div>
-						<div className='banner-hallo-table-item'>
+						<div className='banner-hallo-table-item' onClick={handleClickAccess}>
 							<Image
 								src={TableBanner04}
 								width={1000}

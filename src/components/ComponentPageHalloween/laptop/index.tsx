@@ -72,7 +72,7 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MzQ2',
+			eq: 'Mzgx',
 		},
 	},
 	pageSize: 200,
@@ -122,18 +122,9 @@ const LaptopList: React.FC = () => {
 		return originalPrice.toLocaleString('vi-VN');
 	};
 
-	const [activeTab, setActiveTab] = useState<string>('LG');
+	const [activeTab, setActiveTab] = useState<string>('');
 	const [filteredData, setFilteredData] = useState<Product[]>([]);
 	const [visibleCount, setVisibleCount] = useState<number>(10);
-
-	const tabs = [
-		{
-			name: 'LG',
-		},
-		{
-			name: 'Phụ Kiện',
-		},
-	];
 
 	useEffect(() => {
 		let filtered = dataLaptop || [];
@@ -203,35 +194,11 @@ const LaptopList: React.FC = () => {
 				}
 			}
 		>
-			<div id='item-watch'>
+			<div>
 				<div className='upgrade-list'>
 					<div className='container'>
 						<div className='women-decor'>
 							<Image src={DecorWomen} width={1920} height={1200} alt='product-banner-01' className='' />
-						</div>
-						<div className='tabs'>
-							{tabs.map((tab) => (
-								<div key={tab.name}>
-									<button
-										onClick={() => {
-											setActiveTab(tab.name);
-										}}
-										className={activeTab === tab.name ? 'tab active' : 'tab'}
-										style={{
-											color: activeTab === tab.name ? '#fff' : '#000',
-											backgroundColor: activeTab === tab.name ? '#ff7518' : '#fff',
-											padding: '12px 24px',
-											margin: '8px',
-											borderRadius: '8px',
-											cursor: 'pointer',
-											transition: 'all 0.3s ease',
-											boxShadow: activeTab === tab.name ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none',
-										}}
-									>
-										{tab.name}
-									</button>
-								</div>
-							))}
 						</div>
 
 						<div className='upgrade'>
@@ -334,7 +301,7 @@ const LaptopList: React.FC = () => {
 								<button
 									onClick={loadMore}
 									style={{
-										backgroundColor: '#ef373e',
+										backgroundColor: '#ff7518',
 										color: 'white',
 										border: 'none',
 										padding: '10px 20px',

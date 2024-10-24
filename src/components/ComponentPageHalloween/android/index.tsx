@@ -171,7 +171,7 @@ fragment ProductPriceField on ProductPrice {
 const variables = {
 	filter: {
 		category_uid: {
-			eq: 'MzQ1',
+			eq: 'Mzgy',
 		},
 	},
 	pageSize: 200,
@@ -232,6 +232,9 @@ const AndroidList: React.FC = () => {
 		{
 			name: 'Oppo',
 		},
+		{
+			name: 'Samsung',
+		},
 	];
 
 	useEffect(() => {
@@ -286,7 +289,7 @@ const AndroidList: React.FC = () => {
 				}
 			}
 		>
-			<div id='item-mac'>
+			<div id='item-watch'>
 				<div className='upgrade-list'>
 					<div className='container'>
 						<div className='women-decor'>
@@ -440,7 +443,7 @@ const AndroidList: React.FC = () => {
 								<button
 									onClick={loadMore}
 									style={{
-										backgroundColor: '#ef373e',
+										backgroundColor: '#ff7518',
 										color: 'white',
 										border: 'none',
 										padding: '10px 20px',

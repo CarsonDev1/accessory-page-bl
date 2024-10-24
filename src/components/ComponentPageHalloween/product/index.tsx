@@ -106,10 +106,10 @@ const ProductList: React.FC = () => {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [tabs]);
+	}, []);
 
 	return (
-		<div className='product-list-halloween' id='item-iphone'>
+		<div className='product-list-halloween'>
 			<div className='container'>
 				<div className='upgrade-list bg-01'>
 					<div className='women-decor'>
@@ -130,7 +130,7 @@ const ProductList: React.FC = () => {
 								<SwiperSlide key={tab.index} style={{ padding: '1.2rem 0' }}>
 									<button
 										onClick={() => setActiveTab(tab.index)}
-										className={activeTab === tab.index ? 'tab active' : 'tab'}
+										className={activeTab === tab.index ? 'tab-halloween active' : 'tab-halloween'}
 										style={{
 											width: '100%',
 											color: activeTab === tab.index ? '#fff' : '#333',
@@ -157,7 +157,7 @@ const ProductList: React.FC = () => {
 								<div key={tab.index} style={{ flex: 1 }}>
 									<button
 										onClick={() => setActiveTab(tab.index)}
-										className={activeTab === tab.index ? 'tab active' : 'tab'}
+										className={activeTab === tab.index ? 'tab-halloween active' : 'tab-halloween'}
 										style={{
 											width: '100%',
 											backgroundColor: activeTab === tab.index ? '#f8f412' : '#fff',
