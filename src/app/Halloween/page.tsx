@@ -17,6 +17,8 @@ import AccessoriesList from '@/components/ComponentPageHalloween/accessories';
 import IpadList from '@/components/ComponentPageHalloween/ipad';
 
 const categories = [
+	{ id: 'item-hot', name: 'Giá sốc' },
+	{ id: 'item-access', name: 'Phụ kiện' },
 	{ id: 'item-iphone', name: 'iPhone' },
 	{ id: 'item-airpods', name: 'Máy 99%' },
 	{ id: 'item-ipad', name: 'iPad' },
@@ -29,7 +31,7 @@ export default function HalloweenPage() {
 	const categoryRef = useRef(null);
 	const [isStickyVisible, setIsStickyVisible] = useState(false);
 	const [activeCategory, setActiveCategory] = useState<string | null>(null);
-	const scrollThreshold = 2500;
+	const scrollThreshold = 500;
 
 	const handleClick = (id: string, offset = 0) => {
 		const element = document.getElementById(id);
@@ -145,8 +147,12 @@ export default function HalloweenPage() {
 			<BannerHalloween />
 			<HeaderHalloween onScrollToRules={handleScrollToRules} />
 			<BodyHallowween />
-			<ProductList />
-			<AccessoriesList />
+			<div id='item-hot'>
+				<ProductList />
+			</div>
+			<div id='item-access'>
+				<AccessoriesList />
+			</div>
 			<div id='item-iphone'>
 				<AppleList />
 			</div>
@@ -190,7 +196,7 @@ export default function HalloweenPage() {
 						onSlideChange={(swiper) => setActiveCategory(categories[swiper.activeIndex].id)} // Set active category on change
 						breakpoints={{
 							300: {
-								slidesPerView: 2.5,
+								slidesPerView: 3.5,
 							},
 							850: {
 								slidesPerView: 5,

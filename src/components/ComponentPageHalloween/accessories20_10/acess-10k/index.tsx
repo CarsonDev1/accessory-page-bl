@@ -27,6 +27,19 @@ export interface Product {
 	};
 }
 
+const formatPriceWithCondition = (salePrice: number) => {
+	const salePriceStr = salePrice.toString();
+	const numberOfDigits = salePriceStr.length;
+
+	if (numberOfDigits > 7) {
+		const formattedPrice = salePriceStr.replace(/(?<=\d)\d(?=\d{6})/g, 'x').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+		return formattedPrice;
+	} else {
+		const formattedPrice = salePriceStr.replace(/^(\d)(\d)/, '$1.x').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+		return formattedPrice;
+	}
+};
+
 const Access10k: React.FC = () => {
 	const { data, isLoading } = useProductSaleData();
 	const filteredItem = data?.find((item: any) => item.title === 'Giá sốc ngày 1');
@@ -104,10 +117,7 @@ const Access10k: React.FC = () => {
 												</>
 											) : (
 												<>
-													{Number(item?.sale_price)
-														?.toString()
-														.replace(/(?<=\d)\d(?=\d{3})/g, 'x')
-														.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}{' '}
+													{formatPriceWithCondition(Number(item?.sale_price))}{' '}
 													{item?.product.price_range.minimum_price.final_price.currency}
 												</>
 											)}
