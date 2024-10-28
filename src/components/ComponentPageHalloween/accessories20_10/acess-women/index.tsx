@@ -7,7 +7,7 @@ import { Spin } from 'antd';
 import DecorProduct from '../../../../../public/halloween/ic-to.png';
 import FrameProduct from '../../../../../public/halloween/frame-product.png';
 import './acess-women.scss';
-import { useProductSaleData } from '../../../../app/hooksHalloween/useProductSaleData';
+import { useProductSaleData } from '../../../../app/hooksTeacher/useProductSaleData';
 import DecorProduct2 from '../../../../../public/halloween/ICON-DRAGON.png';
 export interface Product {
 	id: number;

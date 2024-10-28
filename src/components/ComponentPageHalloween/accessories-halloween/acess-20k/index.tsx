@@ -286,14 +286,7 @@ const Access20k: React.FC = () => {
 									alt='decor-product'
 									className='decor-product'
 								/>
-								<Image
-									src={DecorProduct2}
-									width={80}
-									height={80}
-									quality={100}
-									alt='decor-product'
-									className='decor-product2'
-								/>
+
 								<span></span>
 								<span className='percent'>Trả góp 0%</span>
 							</div>
